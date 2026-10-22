@@ -16,6 +16,7 @@ describe("authored content integrity", () => {
     (_, puzzle) => {
       expect(puzzle.entities).toHaveLength(12);
       expect(puzzle.attributes).toHaveLength(6);
+      expect(puzzle.rules.maxSelected).toBe(6);
       const report = validatePuzzle(puzzle);
       expect(report.solvable).toBe(true);
       expect(report.minimum).toBe(3);
@@ -76,7 +77,12 @@ describe("authored content integrity", () => {
     expect(dailyPuzzle("2026-10-23").puzzle.id).not.toBe(
       dailyPuzzle("2026-10-22").puzzle.id,
     );
-    expect(dailyPuzzle("2026-10-25").puzzle.id).toBe(
+    const cycleEnd = new Date("2026-10-22T00:00:00Z");
+    for (const puzzle of puzzles) {
+      expect(dailyPuzzle(utcDate(cycleEnd)).puzzle.id).toBe(puzzle.id);
+      cycleEnd.setUTCDate(cycleEnd.getUTCDate() + 1);
+    }
+    expect(dailyPuzzle(utcDate(cycleEnd)).puzzle.id).toBe(
       dailyPuzzle("2026-10-22").puzzle.id,
     );
     expect(dailyPuzzle("2026-10-22")).toEqual(dailyPuzzle("2026-10-22"));

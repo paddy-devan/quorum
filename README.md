@@ -1,6 +1,6 @@
 # Quorum
 
-Quorum is a daily country puzzle: choose the smallest group of countries that together meets six requirements. This first iteration runs entirely in the browser, with three authored test puzzles, editable country facts, local progress and local analytics.
+Quorum is a daily country puzzle: choose the smallest group of countries that together meets six requirements. This first iteration runs entirely in the browser, with six authored test puzzles, editable country facts, local progress and local analytics.
 
 ## Run locally
 

@@ -3,7 +3,7 @@
   "puzzles": [
     {
       "id": "countries-crossroads",
-      "version": 2,
+      "version": 3,
       "title": "A world of possibilities.",
       "entityIds": [
         "brazil",
@@ -28,7 +28,7 @@
         "europe"
       ],
       "rules": {
-        "maxSelected": 5,
+        "maxSelected": 6,
         "maxChecks": 3,
         "expectedOptimal": 3,
         "clueMode": "partial"
@@ -36,7 +36,7 @@
     },
     {
       "id": "countries-atlantic",
-      "version": 2,
+      "version": 3,
       "title": "A world of possibilities.",
       "entityIds": [
         "brazil",
@@ -61,7 +61,7 @@
         "atlantic"
       ],
       "rules": {
-        "maxSelected": 5,
+        "maxSelected": 6,
         "maxChecks": 3,
         "expectedOptimal": 3,
         "clueMode": "partial"
@@ -69,7 +69,7 @@
     },
     {
       "id": "countries-coastlines",
-      "version": 2,
+      "version": 3,
       "title": "A world of possibilities.",
       "entityIds": [
         "brazil",
@@ -94,7 +94,106 @@
         "atlantic"
       ],
       "rules": {
-        "maxSelected": 5,
+        "maxSelected": 6,
+        "maxChecks": 3,
+        "expectedOptimal": 3,
+        "clueMode": "partial"
+      }
+    },
+    {
+      "id": "countries-equator",
+      "version": 2,
+      "title": "Across the equator.",
+      "entityIds": [
+        "brazil",
+        "portugal",
+        "kenya",
+        "south-africa",
+        "japan",
+        "egypt",
+        "austria",
+        "indonesia",
+        "peru",
+        "france",
+        "nigeria",
+        "nepal"
+      ],
+      "attributeIds": [
+        "africa",
+        "equator",
+        "landlocked",
+        "south",
+        "euro",
+        "asia"
+      ],
+      "rules": {
+        "maxSelected": 6,
+        "maxChecks": 3,
+        "expectedOptimal": 3,
+        "clueMode": "partial"
+      }
+    },
+    {
+      "id": "countries-land-and-sea",
+      "version": 2,
+      "title": "From land to sea.",
+      "entityIds": [
+        "brazil",
+        "portugal",
+        "kenya",
+        "south-africa",
+        "japan",
+        "egypt",
+        "austria",
+        "indonesia",
+        "peru",
+        "france",
+        "nigeria",
+        "nepal"
+      ],
+      "attributeIds": [
+        "equator",
+        "landlocked",
+        "south",
+        "asia",
+        "atlantic",
+        "mediterranean"
+      ],
+      "rules": {
+        "maxSelected": 6,
+        "maxChecks": 3,
+        "expectedOptimal": 3,
+        "clueMode": "partial"
+      }
+    },
+    {
+      "id": "countries-continents",
+      "version": 2,
+      "title": "Continental connections.",
+      "entityIds": [
+        "brazil",
+        "portugal",
+        "kenya",
+        "south-africa",
+        "japan",
+        "egypt",
+        "austria",
+        "indonesia",
+        "peru",
+        "france",
+        "nigeria",
+        "nepal"
+      ],
+      "attributeIds": [
+        "africa",
+        "landlocked",
+        "portuguese",
+        "south",
+        "europe",
+        "asia"
+      ],
+      "rules": {
+        "maxSelected": 6,
         "maxChecks": 3,
         "expectedOptimal": 3,
         "clueMode": "partial"

@@ -85,6 +85,19 @@ p {
   padding: 16px 0 12px;
   border-bottom: 1px solid #bfcbbf;
 }
+.header-brand {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+.header-title {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--muted);
+}
 .wordmark {
   font-family: var(--serif);
   font-size: 39px;
@@ -136,14 +149,6 @@ p {
 }
 .intro {
   margin: 16px 0 20px;
-}
-h1 {
-  font-family: var(--serif);
-  font-weight: 700;
-  font-size: clamp(36px, 4.5vw, 48px);
-  letter-spacing: -2.8px;
-  line-height: 1.08;
-  margin-bottom: 13px;
 }
 .intro > p {
   color: #5c6b62;
@@ -562,21 +567,6 @@ h1 {
   color: var(--accent);
   background: transparent;
   text-decoration: underline;
-}
-footer {
-  text-align: center;
-  border-top: 1px solid #cbd3c5;
-  padding: 22px 0 20px;
-  margin-top: 35px;
-  color: var(--muted);
-}
-footer p {
-  font-size: 12px;
-  margin-bottom: 9px;
-}
-footer > span {
-  font-size: 10px;
-  color: #84907d;
 }
 .local-tools {
   border-top: 1px solid var(--line);
@@ -1051,6 +1041,9 @@ dialog::backdrop {
   .masthead {
     padding: 8px 0;
   }
+  .header-title {
+    font-size: 12px;
+  }
   .wordmark {
     font-size: 32px;
     letter-spacing: -1.6px;
@@ -1076,12 +1069,6 @@ dialog::backdrop {
   }
   .intro {
     margin: 10px 0 14px;
-  }
-  h1 {
-    font-size: clamp(25px, 6.5vw, 32px);
-    letter-spacing: -1.2px;
-    line-height: 1.15;
-    margin-bottom: 5px;
   }
   .intro > p {
     font-size: 12px;
@@ -1151,7 +1138,7 @@ dialog::backdrop {
     justify-content: center;
     gap: 3px;
     padding: 6px 4px;
-    min-height: 54px;
+    min-height: clamp(56px, 9.5svh, 76px);
     text-align: center;
   }
   .country-flag {
@@ -1255,16 +1242,6 @@ dialog::backdrop {
   .finish-button {
     font-size: 11px;
   }
-  footer {
-    margin-top: 25px;
-    padding: 21px 0;
-  }
-  footer p {
-    font-size: 11px;
-  }
-  footer > span {
-    font-size: 9px;
-  }
   .results {
     margin-top: 25px;
     padding-top: 30px;
@@ -1305,9 +1282,6 @@ dialog::backdrop {
   .app-shell {
     padding-inline: 10px;
   }
-  h1 {
-    font-size: 25px;
-  }
   .country-name {
     font-size: 13px;
   }
@@ -1344,7 +1318,6 @@ dialog::backdrop {
     gap: 4px;
   }
   .country-card {
-    min-height: 44px;
     padding-block: 4px;
   }
   .country-name {
@@ -1357,19 +1330,13 @@ dialog::backdrop {
 
 @media (max-width: 720px) and (max-height: 620px) {
   .masthead {
-    padding-block: 2px;
+    padding-block: 1px;
+  }
+  .puzzle-meta {
+    padding-top: 4px;
   }
   .intro {
     margin-block: 4px;
-  }
-  .intro h1 {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
   }
   .country-card {
     flex-direction: column;
@@ -1398,15 +1365,6 @@ dialog::backdrop {
   .intro > p {
     max-width: none;
   }
-  .intro h1 {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    margin: -1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
-  }
   .game-layout {
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 8px 20px;
@@ -1415,6 +1373,7 @@ dialog::backdrop {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .country-card {
+    min-height: 44px;
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;

@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { dailyPuzzle, utcDate } from "./content/loader";
+import { dailyPuzzle, puzzles, utcDate } from "./content/loader";
 import { bestCheck, resultLabel, submitCheck } from "./game/engine";
 import type { Attribute, DailyPuzzle } from "./game/types";
 import {
@@ -220,13 +220,16 @@ function Game({
   return (
     <div className="app-shell">
       <header className="masthead">
-        <a
-          href={window.location.pathname}
-          className="wordmark"
-          aria-label="Quorum, today’s puzzle"
-        >
-          Quorum<span className="wordmark-dot">.</span>
-        </a>
+        <div className="header-brand">
+          <a
+            href={window.location.pathname}
+            className="wordmark"
+            aria-label="Quorum, today’s puzzle"
+          >
+            Quorum<span className="wordmark-dot">.</span>
+          </a>
+          <h1 className="header-title">{puzzle.title}</h1>
+        </div>
         <button className="help-button" onClick={() => setHelp(true)}>
           How to play <span aria-hidden="true">?</span>
         </button>
@@ -248,7 +251,6 @@ function Game({
           <span className="theme-label">{puzzle.theme}</span>
         </div>
         <div className="intro">
-          <h1>{puzzle.title}</h1>
           <p>
             Meet all {puzzle.attributes.length} requirements.{" "}
             <span>Aim for {puzzle.rules.expectedOptimal} countries.</span>
@@ -441,16 +443,12 @@ function Game({
             <Results daily={daily} run={run} onShare={() => track("share")} />
           </div>
         ) : null}
-        <footer>
-          <p>A little knowledge. A little logic. A smaller Quorum.</p>
-          <span>Local edition · Progress stays in this browser</span>
-        </footer>
         {isLocal ? (
           <details className="local-tools">
             <summary>Local testing</summary>
             <p>
-              Three authored fixtures rotate by UTC date. These controls are
-              available on localhost only.
+              {puzzles.length} authored puzzles rotate by UTC date. These
+              controls are available on localhost only.
             </p>
             <label>
               Preview a day{" "}
@@ -480,7 +478,7 @@ function Game({
           </details>
         ) : null}
       </main>
-      {help ? <Help onClose={closeHelp} /> : null}
+      {help ? <Help maxSelected={puzzle.rules.maxSelected} onClose={closeHelp} /> : null}
       {definition ? (
         <Modal title={definition.label} onClose={() => setDefinition(null)}>
           <p>{definition.definition}</p>

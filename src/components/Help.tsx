@@ -1,7 +1,13 @@
 import { useState } from "react";
 import { Modal, TickIcon } from "./Modal";
 
-export function Help({ onClose }: { onClose: () => void }) {
+export function Help({
+  maxSelected,
+  onClose,
+}: {
+  maxSelected: number;
+  onClose: () => void;
+}) {
   const [selected, setSelected] = useState<string[]>([]);
   const [checked, setChecked] = useState(false);
   const sample = [
@@ -22,7 +28,7 @@ export function Help({ onClose }: { onClose: () => void }) {
       </p>
       <ol className="help-steps">
         <li>
-          <strong>Choose.</strong> Select up to five countries. Use your
+          <strong>Choose.</strong> Select up to {maxSelected} countries. Use your
           knowledge to work out which requirements they cover.
         </li>
         <li>
@@ -81,7 +87,7 @@ export function Help({ onClose }: { onClose: () => void }) {
         <span className="tiny-tick">
           <TickIcon />
         </span>{" "}
-        Three countries is perfect. Four or five is complete. You can finish
+        Three countries is perfect. Four to {maxSelected} is complete. You can finish
         early to reveal the facts.
       </p>
       <button className="primary-button wide" onClick={onClose}>
