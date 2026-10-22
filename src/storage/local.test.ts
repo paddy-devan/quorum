@@ -63,7 +63,7 @@ describe("local persistence", () => {
     saveRun(storage, daily, run);
     const loaded = loadRun(storage, daily, "p");
     expect(bestCheck(loaded.checks)?.complete).toBe(false);
-    expect(bestCheck(loaded.checks)?.coveredIds).toHaveLength(4);
+    expect(bestCheck(loaded.checks)?.coveredIds).toHaveLength(3);
   });
   it("recovers from corrupt JSON, invalid IDs and excessive attempts", () => {
     storage.setItem(runKey(daily, "p"), "{broken");
@@ -94,6 +94,12 @@ describe("local persistence", () => {
       puzzle: { ...daily.puzzle, contentVersion: "countries-2" },
     };
     expect(runKey(daily, "a")).not.toBe(runKey(updated, "a"));
+    const revisedPuzzle = {
+      ...daily,
+      puzzle: { ...daily.puzzle, version: daily.puzzle.version + 1 },
+    };
+    expect(runKey(daily, "a")).not.toBe(runKey(revisedPuzzle, "a"));
+    expect(loadRun(storage, revisedPuzzle, "a").checks).toEqual([]);
   });
   it("deduplicates lifecycle telemetry locally and bounds retained events", () => {
     const event = {

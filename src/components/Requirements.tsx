@@ -62,7 +62,7 @@ export function Requirements({
       <p className="requirements-note">
         {check
           ? `Coverage from your ${finished ? "best" : "last"} check.`
-          : "Tap any requirement for its definition."}
+          : "Tap for definitions. Check to reveal coverage."}
       </p>
     </section>
   );

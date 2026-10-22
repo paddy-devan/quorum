@@ -82,7 +82,7 @@ p {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 26px 0 20px;
+  padding: 16px 0 12px;
   border-bottom: 1px solid #bfcbbf;
 }
 .wordmark {
@@ -125,7 +125,7 @@ p {
   gap: 12px;
   font-size: 12px;
   color: var(--muted);
-  padding-top: 23px;
+  padding-top: 14px;
 }
 .meta-dot {
   color: #8d9a8c;
@@ -135,12 +135,12 @@ p {
   letter-spacing: 0.03em;
 }
 .intro {
-  margin: 22px 0 30px;
+  margin: 16px 0 20px;
 }
 h1 {
   font-family: var(--serif);
   font-weight: 700;
-  font-size: clamp(36px, 5.3vw, 62px);
+  font-size: clamp(36px, 4.5vw, 48px);
   letter-spacing: -2.8px;
   line-height: 1.08;
   margin-bottom: 13px;
@@ -162,7 +162,7 @@ h1 {
   border-top: 1px solid var(--line);
   border-bottom: 1px solid var(--line);
   padding: 13px 0;
-  margin-bottom: 28px;
+  margin-bottom: 20px;
   font-size: 12px;
   color: var(--muted);
 }
@@ -184,13 +184,12 @@ h1 {
 }
 .game-layout {
   display: grid;
-  grid-template-columns: 280px minmax(0, 1fr);
-  gap: 38px;
+  grid-template-columns: minmax(0, 1.5fr) minmax(280px, 1fr);
+  gap: 20px;
   align-items: start;
 }
-.requirements {
-  padding-right: 26px;
-  border-right: 1px solid var(--line);
+.play-area {
+  grid-column: 1 / -1;
 }
 .section-heading {
   display: flex;
@@ -215,7 +214,7 @@ h1 {
   margin: 0;
   padding: 0;
   display: grid;
-  gap: 7px;
+  gap: 4px;
 }
 .requirement-list li {
   min-width: 0;
@@ -296,17 +295,17 @@ h1 {
 .country-grid {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 11px;
+  gap: 8px;
 }
 .country-card {
   position: relative;
   display: flex;
-  align-items: flex-start;
-  gap: 12px;
+  align-items: center;
+  gap: 8px;
   text-align: left;
   min-width: 0;
-  min-height: 99px;
-  padding: 23px 13px 18px;
+  min-height: 60px;
+  padding: 12px 10px;
   border: 1px solid var(--line);
   border-radius: 8px;
   background: #fafaf6;
@@ -344,16 +343,10 @@ h1 {
 }
 .country-name {
   font-family: var(--serif);
-  font-size: 19px;
+  font-size: 17px;
   font-weight: 700;
   letter-spacing: -0.5px;
   line-height: 1.2;
-}
-.country-clue {
-  font-size: 11px;
-  color: #677367;
-  margin-top: 6px;
-  line-height: 1.3;
 }
 .full-clues {
   font-size: 10px;
@@ -385,7 +378,7 @@ h1 {
   border: 1px solid var(--line);
   border-radius: 8px;
   padding: 12px 15px;
-  margin-top: 17px;
+  margin-top: 0;
 }
 .selection-count {
   display: flex;
@@ -404,7 +397,8 @@ h1 {
   color: var(--muted);
 }
 .checks-left {
-  display: flex;
+  display: grid;
+  grid-template-columns: auto auto;
   align-items: center;
   gap: 8px;
   white-space: nowrap;
@@ -463,12 +457,15 @@ h1 {
   min-height: 23px;
   line-height: 1.5;
 }
-.selection-tray button {
+.clear-selection {
   background: transparent;
   font-size: 11px;
   text-decoration: underline;
-  align-self: flex-start;
-  padding: 0 0 4px 10px;
+  padding: 6px;
+  margin-left: 6px;
+}
+.clear-selection:disabled {
+  opacity: 0.4;
 }
 .interaction-message {
   font-size: 11px;
@@ -542,8 +539,9 @@ h1 {
   font-size: 11px;
   background: transparent;
   color: var(--muted);
-  margin: 14px 0 0 auto;
-  padding: 11px 0 11px 10px;
+  grid-column: 1 / -1;
+  margin: 0;
+  padding: 4px 0;
 }
 .finish-button:hover {
   color: var(--ink);
@@ -1022,26 +1020,19 @@ dialog::backdrop {
   .app-shell {
     padding: 0 28px;
   }
-  .game-layout {
-    grid-template-columns: 245px minmax(0, 1fr);
-    gap: 24px;
-  }
-  .requirements {
-    padding-right: 20px;
-  }
   .country-card {
     flex-direction: column;
-    gap: 8px;
-    padding: 14px 11px;
-    min-height: 110px;
+    align-items: flex-start;
+    gap: 5px;
+    min-height: 54px;
+    padding: 10px;
+  }
+  .country-name {
+    font-size: 16px;
   }
   .check-bar {
     gap: 12px;
     padding: 11px;
-  }
-  .checks-left {
-    flex-direction: column;
-    gap: 5px;
   }
   .selection-count {
     flex-direction: column;
@@ -1049,16 +1040,16 @@ dialog::backdrop {
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 720px), (max-width: 1000px) and (max-height: 500px) {
   body {
-    padding-bottom: 95px;
+    padding-bottom: calc(80px + env(safe-area-inset-bottom));
   }
   .app-shell {
-    padding: 0 22px;
-    max-width: 510px;
+    padding: 0 14px;
+    max-width: 560px;
   }
   .masthead {
-    padding: 21px 0 17px;
+    padding: 8px 0;
   }
   .wordmark {
     font-size: 32px;
@@ -1066,7 +1057,7 @@ dialog::backdrop {
   }
   .help-button {
     font-size: 11px;
-    min-height: 36px;
+    min-height: 40px;
     padding: 7px 10px;
     gap: 7px;
   }
@@ -1076,7 +1067,7 @@ dialog::backdrop {
     font-size: 10px;
   }
   .puzzle-meta {
-    padding-top: 18px;
+    padding-top: 9px;
     font-size: 10px;
     gap: 9px;
   }
@@ -1084,44 +1075,28 @@ dialog::backdrop {
     font-size: 10px;
   }
   .intro {
-    margin: 18px 0 21px;
+    margin: 10px 0 14px;
   }
   h1 {
-    font-size: clamp(25px, 7.1vw, 35px);
+    font-size: clamp(25px, 6.5vw, 32px);
     letter-spacing: -1.2px;
     line-height: 1.15;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
   }
   .intro > p {
-    font-size: 13px;
-    line-height: 1.7;
-    max-width: 365px;
+    font-size: 12px;
+    line-height: 1.5;
+    max-width: 420px;
   }
   .first-play {
     display: none;
   }
-  .first-play p {
-    max-width: 310px;
-  }
-  .first-play strong {
-    font-weight: 600;
-  }
-  .first-play button {
-    padding: 9px 0 0;
-    font-size: 11px;
-  }
   .game-layout {
-    display: flex;
-    flex-direction: column;
-    gap: 27px;
-  }
-  .requirements {
-    border: 0;
-    padding: 0;
-    width: 100%;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 12px;
   }
   .section-heading {
-    margin-bottom: 10px;
+    margin-bottom: 7px;
   }
   .section-heading h2 {
     font-size: 13px;
@@ -1134,24 +1109,24 @@ dialog::backdrop {
     border-top: 1px solid var(--line);
   }
   .requirement-list li {
-    border-bottom: 1px solid #dfe4d9;
+    border-bottom: 1px solid var(--line);
   }
   .requirement {
+    min-height: 32px;
+    padding: 4px 2px;
     border: 0;
     border-radius: 0;
-    min-height: 32px;
     background: transparent;
-    padding: 4px 2px;
     font-size: 12px;
-    gap: 10px;
+    gap: 6px;
   }
   .requirement-number {
-    width: 20px;
-    height: 20px;
+    width: 18px;
+    height: 18px;
     font-size: 10px;
   }
   .definition-hint {
-    margin-right: 4px;
+    margin-right: 1px;
   }
   .covered .requirement {
     background: #edf3e580;
@@ -1162,40 +1137,39 @@ dialog::backdrop {
   }
   .requirements-note {
     font-size: 10px;
-    margin-top: 9px;
+    margin-top: 6px;
   }
   .play-area {
     width: 100%;
   }
   .country-grid {
-    gap: 8px;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 6px;
   }
   .country-card {
     flex-direction: column;
-    gap: 8px;
-    padding: 14px 10px 12px;
-    min-height: 100px;
+    justify-content: center;
+    gap: 3px;
+    padding: 6px 4px;
+    min-height: 54px;
+    text-align: center;
   }
   .country-flag {
-    font-size: 23px;
+    font-size: 20px;
   }
   .country-name {
-    font-size: 15px;
+    font-size: 13px;
     letter-spacing: -0.4px;
   }
-  .country-clue {
-    font-size: 9px;
-    margin-top: 5px;
-  }
   .selected-mark {
-    right: 5px;
-    top: 5px;
-    width: 14px;
-    height: 14px;
+    right: 2px;
+    top: 2px;
+    width: 12px;
+    height: 12px;
   }
   .selected-mark svg {
-    width: 14px;
-    height: 14px;
+    width: 12px;
+    height: 12px;
   }
   .check-bar {
     position: fixed;
@@ -1207,24 +1181,32 @@ dialog::backdrop {
     border: 0;
     border-top: 1px solid #cbd4c3;
     border-radius: 0;
-    padding: 13px 20px calc(13px + env(safe-area-inset-bottom));
+    padding: 8px max(14px, env(safe-area-inset-left)) calc(8px + env(safe-area-inset-bottom));
     background: #f7f7f2f5;
     backdrop-filter: blur(12px);
     gap: 14px;
-    min-height: 78px;
+    min-height: 64px;
   }
   .selection-count {
-    flex-direction: column;
-    align-items: flex-start;
+    display: grid;
+    grid-template-columns: auto auto;
     font-size: 10px;
     line-height: 1.4;
-    gap: 1px;
+    gap: 0 3px;
   }
   .selection-count strong {
     font-size: 12px;
   }
+  .clear-selection {
+    grid-column: 1 / -1;
+    justify-self: start;
+    min-width: 44px;
+    padding: 4px 0;
+    margin: 0;
+    text-align: left;
+  }
   .checks-left {
-    gap: 7px;
+    gap: 2px 7px;
     font-size: 10px;
   }
   .check-dots {
@@ -1237,13 +1219,13 @@ dialog::backdrop {
   .check-button {
     padding: 12px 14px;
     font-size: 11px;
-    min-height: 43px;
+    min-height: 44px;
   }
   .selection-tray {
-    margin-top: 15px;
+    display: none;
   }
   .interaction-message {
-    margin-top: 6px;
+    margin-top: 0;
     font-size: 10px;
   }
   .check-feedback {
@@ -1271,7 +1253,6 @@ dialog::backdrop {
     height: 10px;
   }
   .finish-button {
-    margin-top: 10px;
     font-size: 11px;
   }
   footer {
@@ -1322,27 +1303,135 @@ dialog::backdrop {
 
 @media (max-width: 360px) {
   .app-shell {
-    padding-inline: 16px;
+    padding-inline: 10px;
   }
   h1 {
     font-size: 25px;
   }
-  .country-card {
-    padding: 12px 8px;
-  }
   .country-name {
-    font-size: 14px;
-  }
-  .country-clue {
-    font-size: 8px;
+    font-size: 13px;
   }
   .check-bar {
     padding-inline: 13px;
     gap: 10px;
   }
-  .checks-left {
+}
+
+/* Short phone viewports include the space taken by browser controls. */
+@media (max-width: 1000px) and (max-height: 740px) {
+  .masthead {
+    padding-block: 4px;
+  }
+  .wordmark {
+    font-size: 28px;
+  }
+  .puzzle-meta {
+    padding-top: 6px;
+  }
+  .intro {
+    margin: 5px 0 4px;
+  }
+  .intro > p {
+    line-height: 1.4;
+  }
+  .game-layout {
+    gap: 8px;
+  }
+  .section-heading {
+    margin-bottom: 5px;
+  }
+  .country-grid {
+    gap: 4px;
+  }
+  .country-card {
+    min-height: 44px;
+    padding-block: 4px;
+  }
+  .country-name {
+    font-size: 12px;
+  }
+  .requirements-note {
+    margin-top: 4px;
+  }
+}
+
+@media (max-width: 720px) and (max-height: 620px) {
+  .masthead {
+    padding-block: 2px;
+  }
+  .intro {
+    margin-block: 4px;
+  }
+  .intro h1 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .country-card {
     flex-direction: column;
-    gap: 5px;
+    justify-content: center;
+    gap: 2px;
+    min-height: 48px;
+    padding: 4px;
+    text-align: center;
+  }
+  .country-flag {
+    font-size: 18px;
+  }
+  .country-name {
+    font-size: 12px;
+  }
+  .requirement {
+    min-height: 28px;
+    padding-block: 3px;
+  }
+}
+
+@media (min-width: 721px) and (max-width: 1000px) and (max-height: 500px) {
+  .app-shell {
+    max-width: 1000px;
+  }
+  .intro > p {
+    max-width: none;
+  }
+  .intro h1 {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+  .game-layout {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px 20px;
+  }
+  .country-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+  .country-card {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+  }
+  .play-area {
+    grid-column: 1 / -1;
+  }
+  .requirement {
+    min-height: 28px;
+    font-size: 11px;
+  }
+}
+
+@media (min-width: 721px) and (max-height: 800px) {
+  .first-play {
+    display: none;
   }
 }
 

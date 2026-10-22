@@ -250,9 +250,8 @@ function Game({
         <div className="intro">
           <h1>{puzzle.title}</h1>
           <p>
-            Choose countries that together meet all {puzzle.attributes.length}{" "}
-            requirements.{" "}
-            <span>Can you do it in {puzzle.rules.expectedOptimal}?</span>
+            Meet all {puzzle.attributes.length} requirements.{" "}
+            <span>Aim for {puzzle.rules.expectedOptimal} countries.</span>
           </p>
         </div>
         {saveProblem ? (
@@ -273,6 +272,14 @@ function Game({
           </div>
         ) : null}
         <div className="game-layout">
+          <CountryGrid
+            puzzle={puzzle}
+            selectedIds={
+              run.finished ? (best?.entityIds ?? []) : run.selectedIds
+            }
+            finished={run.finished}
+            onToggle={toggle}
+          />
           <Requirements
             puzzle={puzzle}
             check={displayCheck}
@@ -280,14 +287,6 @@ function Game({
             onDefinition={setDefinition}
           />
           <div className="play-area">
-            <CountryGrid
-              puzzle={puzzle}
-              selectedIds={
-                run.finished ? (best?.entityIds ?? []) : run.selectedIds
-              }
-              finished={run.finished}
-              onToggle={toggle}
-            />
             {run.finished ? (
               <div className="finished-strip">
                 Today’s Quorum is complete.{" "}
@@ -308,6 +307,16 @@ function Game({
                       <span>of {puzzle.rules.maxSelected}</span>
                     </strong>
                     <span>selected</span>
+                    <button
+                      className="clear-selection"
+                      disabled={!run.selectedIds.length}
+                      onClick={() => {
+                        setRun({ ...run, selectedIds: [] });
+                        setMessage("");
+                      }}
+                    >
+                      Clear
+                    </button>
                   </div>
                   <div className="checks-left">
                     <span className="check-dots" aria-hidden="true">
@@ -324,6 +333,12 @@ function Game({
                     <span>
                       {remaining} {remaining === 1 ? "check" : "checks"} left
                     </span>
+                    <button
+                      className="finish-button"
+                      onClick={() => setConfirm("finish")}
+                    >
+                      Finish & reveal <ArrowIcon />
+                    </button>
                   </div>
                   <button
                     className="primary-button check-button"
@@ -335,36 +350,26 @@ function Game({
                 </div>
                 <div className="selection-tray" aria-label="Selected countries">
                   {run.selectedIds.length ? (
-                    <>
-                      <span>
-                        {run.selectedIds
-                          .map(
-                            (id) =>
-                              puzzle.entities.find(
-                                (entity) => entity.id === id,
-                              )!.name,
-                          )
-                          .join(" + ")}
-                      </span>
-                      <button
-                        onClick={() => {
-                          setRun({ ...run, selectedIds: [] });
-                          setMessage("");
-                        }}
-                      >
-                        Clear
-                      </button>
-                    </>
+                    <span>
+                      {run.selectedIds
+                        .map(
+                          (id) =>
+                            puzzle.entities.find(
+                              (entity) => entity.id === id,
+                            )!.name,
+                        )
+                        .join(" + ")}
+                    </span>
                   ) : (
                     <span>Pick your first country to get started.</span>
                   )}
                 </div>
-                <p className="interaction-message" role="status">
-                  {message ||
-                    (selectionChanged
-                      ? "Selection changed. Requirement feedback still shows your last check."
-                      : "Coverage is revealed only when you check.")}
-                </p>
+                {message || selectionChanged ? (
+                  <p className="interaction-message" role="status">
+                    {message ||
+                      "Selection changed. Requirement feedback still shows your last check."}
+                  </p>
+                ) : null}
               </>
             )}
             {lastCheck && !run.finished ? (
@@ -428,14 +433,6 @@ function Game({
                   </div>
                 ))}
               </section>
-            ) : null}
-            {!run.finished ? (
-              <button
-                className="finish-button"
-                onClick={() => setConfirm("finish")}
-              >
-                Finish & reveal <ArrowIcon />
-              </button>
             ) : null}
           </div>
         </div>

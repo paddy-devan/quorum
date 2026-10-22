@@ -24,7 +24,7 @@ describe("coverage and check rules", () => {
   it("unions requirements without counting duplicate coverage", () => {
     const a = evaluate(puzzle, ["kenya"]);
     const b = evaluate(puzzle, ["kenya", "south-africa"]);
-    expect(a.coveredIds).toEqual(["africa", "equator", "left", "south"]);
+    expect(a.coveredIds).toEqual(["africa", "left", "south"]);
     expect(b.coveredIds).toEqual(a.coveredIds);
     expect(a.complete).toBe(false);
     expect(evaluate(puzzle, optimum).complete).toBe(true);

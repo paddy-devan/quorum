@@ -22,8 +22,8 @@ export function Help({ onClose }: { onClose: () => void }) {
       </p>
       <ol className="help-steps">
         <li>
-          <strong>Choose.</strong> Select up to five countries. Regional clues
-          help; the rest is yours to work out.
+          <strong>Choose.</strong> Select up to five countries. Use your
+          knowledge to work out which requirements they cover.
         </li>
         <li>
           <strong>Check.</strong> You have three checks. Each reveals the
