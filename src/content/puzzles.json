@@ -1,0 +1,113 @@
+{
+  "epoch": "2026-10-22",
+  "puzzles": [
+    {
+      "id": "countries-crossroads",
+      "version": 1,
+      "title": "A world of possibilities.",
+      "entityIds": [
+        "brazil",
+        "portugal",
+        "kenya",
+        "south-africa",
+        "japan",
+        "egypt",
+        "austria",
+        "indonesia",
+        "peru",
+        "france",
+        "nigeria",
+        "nepal"
+      ],
+      "attributeIds": [
+        "africa",
+        "equator",
+        "landlocked",
+        "portuguese",
+        "left",
+        "south",
+        "europe",
+        "euro",
+        "asia"
+      ],
+      "rules": {
+        "maxSelected": 5,
+        "maxChecks": 3,
+        "expectedOptimal": 3,
+        "clueMode": "partial"
+      }
+    },
+    {
+      "id": "countries-atlantic",
+      "version": 1,
+      "title": "A world of possibilities.",
+      "entityIds": [
+        "brazil",
+        "portugal",
+        "kenya",
+        "south-africa",
+        "japan",
+        "egypt",
+        "austria",
+        "indonesia",
+        "peru",
+        "france",
+        "nigeria",
+        "nepal"
+      ],
+      "attributeIds": [
+        "africa",
+        "equator",
+        "landlocked",
+        "portuguese",
+        "left",
+        "south",
+        "europe",
+        "euro",
+        "atlantic"
+      ],
+      "rules": {
+        "maxSelected": 5,
+        "maxChecks": 3,
+        "expectedOptimal": 3,
+        "clueMode": "partial"
+      }
+    },
+    {
+      "id": "countries-coastlines",
+      "version": 1,
+      "title": "A world of possibilities.",
+      "entityIds": [
+        "brazil",
+        "portugal",
+        "kenya",
+        "south-africa",
+        "japan",
+        "egypt",
+        "austria",
+        "indonesia",
+        "peru",
+        "france",
+        "nigeria",
+        "nepal"
+      ],
+      "attributeIds": [
+        "africa",
+        "equator",
+        "portuguese",
+        "left",
+        "south",
+        "europe",
+        "euro",
+        "mediterranean",
+        "atlantic"
+      ],
+      "rules": {
+        "maxSelected": 5,
+        "maxChecks": 3,
+        "expectedOptimal": 3,
+        "clueMode": "partial"
+      }
+    }
+  ]
+}

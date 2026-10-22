@@ -1,0 +1,883 @@
+{
+  "version": "countries-1",
+  "theme": "Countries",
+  "reviewedOn": "2026-10-22",
+  "scope": "Geographical requirements use primary territory, including integral islands but excluding overseas regions and dependencies (France means metropolitan France). Transcontinental countries can count in more than one continent. Tap a requirement for its exact definition.",
+  "sources": [
+    {
+      "id": "un-regions",
+      "title": "UN Statistics Division · geographical regions",
+      "url": "https://unstats.un.org/unsd/methodology/m49/overview/"
+    },
+    {
+      "id": "world-map",
+      "title": "United Nations · world map",
+      "url": "https://www.un.org/geospatial/content/map-world"
+    },
+    {
+      "id": "equator-guide",
+      "title": "Time and Date · countries on the equator",
+      "url": "https://www.timeanddate.com/geography/equator.html"
+    },
+    {
+      "id": "driving",
+      "title": "RAC · driving side by country",
+      "url": "https://www.rac.co.uk/drive/travel/advice/driving-on-the-left-or-right-across-the-world/"
+    },
+    {
+      "id": "euro-area",
+      "title": "European Commission · countries using the euro",
+      "url": "https://economy-finance.ec.europa.eu/euro/eu-countries-and-euro_en"
+    },
+    {
+      "id": "portuguese-languages",
+      "title": "British Council · Languages for the Future (Portuguese section)",
+      "url": "https://www.britishcouncil.org/sites/default/files/languages-for-the-future-report-v3.pdf"
+    },
+    {
+      "id": "brazil-language",
+      "title": "Brazilian Constitution · Article 13",
+      "url": "https://normas.leg.br/?urn=urn%3Alex%3Abr%3Afederal%3Aconstituicao%3A1988-10-05%3B1988%402022-04-05%21art13"
+    },
+    {
+      "id": "portugal-profile",
+      "title": "European Union · Portugal",
+      "url": "https://european-union.europa.eu/principles-countries-history/eu-countries/portugal_en"
+    },
+    {
+      "id": "kenya-geography",
+      "title": "Embassy of Kenya · geography",
+      "url": "https://www.kenyarep-jp.com/en/kenya/basic/"
+    },
+    {
+      "id": "nepal-geography",
+      "title": "Nepal Tourism Board · geography",
+      "url": "https://ntb.gov.np/plan-your-trip/about-nepal/geography"
+    },
+    {
+      "id": "austria-geography",
+      "title": "Austrian Ministry of Foreign Affairs · geography",
+      "url": "https://www.bmeia.gv.at/oev-wien/about-austria/geography"
+    },
+    {
+      "id": "egypt-geography",
+      "title": "Egypt State Information Service · geography",
+      "url": "https://sis.gov.eg/en/egypt/basic-information/"
+    }
+  ],
+  "attributes": [
+    {
+      "id": "africa",
+      "label": "In Africa",
+      "definition": "Has land in Africa in its primary geographical territory. Transcontinental countries qualify. Overseas regions and dependencies are excluded."
+    },
+    {
+      "id": "equator",
+      "label": "Crosses the equator",
+      "definition": "The equator crosses land in the country’s primary geographical territory, not merely its territorial waters."
+    },
+    {
+      "id": "landlocked",
+      "label": "Landlocked",
+      "definition": "The country has no coastline on an ocean or a sea connected to an ocean. Lakes do not count as a coast."
+    },
+    {
+      "id": "portuguese",
+      "label": "Portuguese is official",
+      "definition": "Portuguese is an official language at national level, not simply a widely spoken or regional language."
+    },
+    {
+      "id": "left",
+      "label": "Drives on the left",
+      "definition": "Normal road traffic keeps to the left side of the road."
+    },
+    {
+      "id": "south",
+      "label": "Southern Hemisphere",
+      "definition": "Some land in the country’s primary geographical territory lies south of the equator. Overseas regions and dependencies are excluded; France means metropolitan France."
+    },
+    {
+      "id": "europe",
+      "label": "In Europe",
+      "definition": "Has land in Europe in its primary geographical territory. Transcontinental countries qualify. Overseas regions and dependencies are excluded."
+    },
+    {
+      "id": "euro",
+      "label": "Uses the euro",
+      "definition": "The euro is the country’s official national currency, not merely accepted by some businesses."
+    },
+    {
+      "id": "asia",
+      "label": "In Asia",
+      "definition": "Has land in Asia in its primary geographical territory. Transcontinental countries qualify. Overseas regions and dependencies are excluded."
+    },
+    {
+      "id": "atlantic",
+      "label": "Atlantic coastline",
+      "definition": "The primary geographical territory has a coast on the Atlantic Ocean, including the Gulf of Guinea. The Mediterranean Sea is excluded."
+    },
+    {
+      "id": "mediterranean",
+      "label": "Mediterranean coast",
+      "definition": "The primary geographical territory has a coast directly on the Mediterranean Sea."
+    }
+  ],
+  "entities": [
+    {
+      "id": "brazil",
+      "name": "Brazil",
+      "symbol": "🇧🇷",
+      "clue": "South America",
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Brazil does not have land in Africa within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "equator": {
+          "value": true,
+          "explanation": "Brazil spans the equator in South America and has a long Atlantic coast.",
+          "sourceIds": ["equator-guide", "world-map"]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Brazil spans the equator in South America and has a long Atlantic coast.",
+          "sourceIds": ["world-map"]
+        },
+        "portuguese": {
+          "value": true,
+          "explanation": "Portuguese is an official national language of Brazil.",
+          "sourceIds": ["brazil-language"]
+        },
+        "left": {
+          "value": false,
+          "explanation": "Normal road traffic in Brazil keeps to the right.",
+          "sourceIds": ["driving"]
+        },
+        "south": {
+          "value": true,
+          "explanation": "Brazil spans the equator in South America and has a long Atlantic coast.",
+          "sourceIds": ["world-map"]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "Brazil does not have land in Europe within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "Brazil does not use the euro as its official national currency.",
+          "sourceIds": ["euro-area"]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "Brazil does not have land in Asia within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "atlantic": {
+          "value": true,
+          "explanation": "Brazil spans the equator in South America and has a long Atlantic coast.",
+          "sourceIds": ["world-map"]
+        },
+        "mediterranean": {
+          "value": false,
+          "explanation": "Brazil spans the equator in South America and has a long Atlantic coast.",
+          "sourceIds": ["world-map"]
+        }
+      }
+    },
+    {
+      "id": "portugal",
+      "name": "Portugal",
+      "symbol": "🇵🇹",
+      "clue": "Southern Europe",
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Portugal does not have land in Africa within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Portugal is in Europe, north of the equator, and its mainland coast faces the Atlantic, not the Mediterranean.",
+          "sourceIds": ["equator-guide", "world-map"]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Portugal is in Europe, north of the equator, and its mainland coast faces the Atlantic, not the Mediterranean.",
+          "sourceIds": ["world-map"]
+        },
+        "portuguese": {
+          "value": true,
+          "explanation": "Portuguese is an official national language of Portugal.",
+          "sourceIds": ["portugal-profile"]
+        },
+        "left": {
+          "value": false,
+          "explanation": "Normal road traffic in Portugal keeps to the right.",
+          "sourceIds": ["driving"]
+        },
+        "south": {
+          "value": false,
+          "explanation": "Portugal is in Europe, north of the equator, and its mainland coast faces the Atlantic, not the Mediterranean.",
+          "sourceIds": ["world-map"]
+        },
+        "europe": {
+          "value": true,
+          "explanation": "Portugal has land in Europe within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "euro": {
+          "value": true,
+          "explanation": "Portugal uses the euro as its official national currency.",
+          "sourceIds": ["euro-area"]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "Portugal does not have land in Asia within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "atlantic": {
+          "value": true,
+          "explanation": "Portugal is in Europe, north of the equator, and its mainland coast faces the Atlantic, not the Mediterranean.",
+          "sourceIds": ["world-map"]
+        },
+        "mediterranean": {
+          "value": false,
+          "explanation": "Portugal is in Europe, north of the equator, and its mainland coast faces the Atlantic, not the Mediterranean.",
+          "sourceIds": ["world-map"]
+        }
+      }
+    },
+    {
+      "id": "kenya",
+      "name": "Kenya",
+      "symbol": "🇰🇪",
+      "clue": "East Africa",
+      "facts": {
+        "africa": {
+          "value": true,
+          "explanation": "Kenya has land in Africa within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "equator": {
+          "value": true,
+          "explanation": "Kenya straddles the equator in East Africa and has an Indian Ocean coast.",
+          "sourceIds": ["equator-guide", "world-map", "kenya-geography"]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Kenya straddles the equator in East Africa and has an Indian Ocean coast.",
+          "sourceIds": ["world-map", "kenya-geography"]
+        },
+        "portuguese": {
+          "value": false,
+          "explanation": "Portuguese is not an official national language of Kenya.",
+          "sourceIds": ["portuguese-languages"]
+        },
+        "left": {
+          "value": true,
+          "explanation": "Normal road traffic in Kenya keeps to the left.",
+          "sourceIds": ["driving"]
+        },
+        "south": {
+          "value": true,
+          "explanation": "Kenya straddles the equator in East Africa and has an Indian Ocean coast.",
+          "sourceIds": ["world-map", "kenya-geography"]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "Kenya does not have land in Europe within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "Kenya does not use the euro as its official national currency.",
+          "sourceIds": ["euro-area"]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "Kenya does not have land in Asia within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "atlantic": {
+          "value": false,
+          "explanation": "Kenya straddles the equator in East Africa and has an Indian Ocean coast.",
+          "sourceIds": ["world-map"]
+        },
+        "mediterranean": {
+          "value": false,
+          "explanation": "Kenya straddles the equator in East Africa and has an Indian Ocean coast.",
+          "sourceIds": ["world-map"]
+        }
+      }
+    },
+    {
+      "id": "south-africa",
+      "name": "South Africa",
+      "symbol": "🇿🇦",
+      "clue": "Southern Africa",
+      "facts": {
+        "africa": {
+          "value": true,
+          "explanation": "South Africa has land in Africa within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "South Africa is entirely south of the equator, with Atlantic and Indian Ocean coasts.",
+          "sourceIds": ["equator-guide", "world-map"]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "South Africa is entirely south of the equator, with Atlantic and Indian Ocean coasts.",
+          "sourceIds": ["world-map"]
+        },
+        "portuguese": {
+          "value": false,
+          "explanation": "Portuguese is not an official national language of South Africa.",
+          "sourceIds": ["portuguese-languages"]
+        },
+        "left": {
+          "value": true,
+          "explanation": "Normal road traffic in South Africa keeps to the left.",
+          "sourceIds": ["driving"]
+        },
+        "south": {
+          "value": true,
+          "explanation": "South Africa is entirely south of the equator, with Atlantic and Indian Ocean coasts.",
+          "sourceIds": ["world-map"]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "South Africa does not have land in Europe within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "South Africa does not use the euro as its official national currency.",
+          "sourceIds": ["euro-area"]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "South Africa does not have land in Asia within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "atlantic": {
+          "value": true,
+          "explanation": "South Africa is entirely south of the equator, with Atlantic and Indian Ocean coasts.",
+          "sourceIds": ["world-map"]
+        },
+        "mediterranean": {
+          "value": false,
+          "explanation": "South Africa is entirely south of the equator, with Atlantic and Indian Ocean coasts.",
+          "sourceIds": ["world-map"]
+        }
+      }
+    },
+    {
+      "id": "japan",
+      "name": "Japan",
+      "symbol": "🇯🇵",
+      "clue": "East Asia",
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Japan does not have land in Africa within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Japan is an island country in East Asia, north of the equator, with Pacific coasts.",
+          "sourceIds": ["equator-guide", "world-map"]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Japan is an island country in East Asia, north of the equator, with Pacific coasts.",
+          "sourceIds": ["world-map"]
+        },
+        "portuguese": {
+          "value": false,
+          "explanation": "Portuguese is not an official national language of Japan.",
+          "sourceIds": ["portuguese-languages"]
+        },
+        "left": {
+          "value": true,
+          "explanation": "Normal road traffic in Japan keeps to the left.",
+          "sourceIds": ["driving"]
+        },
+        "south": {
+          "value": false,
+          "explanation": "Japan is an island country in East Asia, north of the equator, with Pacific coasts.",
+          "sourceIds": ["world-map"]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "Japan does not have land in Europe within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "Japan does not use the euro as its official national currency.",
+          "sourceIds": ["euro-area"]
+        },
+        "asia": {
+          "value": true,
+          "explanation": "Japan has land in Asia within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "atlantic": {
+          "value": false,
+          "explanation": "Japan is an island country in East Asia, north of the equator, with Pacific coasts.",
+          "sourceIds": ["world-map"]
+        },
+        "mediterranean": {
+          "value": false,
+          "explanation": "Japan is an island country in East Asia, north of the equator, with Pacific coasts.",
+          "sourceIds": ["world-map"]
+        }
+      }
+    },
+    {
+      "id": "egypt",
+      "name": "Egypt",
+      "symbol": "🇪🇬",
+      "clue": "North Africa",
+      "facts": {
+        "africa": {
+          "value": true,
+          "explanation": "Egypt has land in both Africa and Asia: most of the country is in Africa, while the Sinai Peninsula is in Asia.",
+          "sourceIds": ["egypt-geography"]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Egypt is classified in Africa by UN M49. It is north of the equator and has Mediterranean and Red Sea coasts; Sinai is geographically in Asia.",
+          "sourceIds": ["equator-guide", "world-map"]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Egypt is classified in Africa by UN M49. It is north of the equator and has Mediterranean and Red Sea coasts; Sinai is geographically in Asia.",
+          "sourceIds": ["world-map", "egypt-geography"]
+        },
+        "portuguese": {
+          "value": false,
+          "explanation": "Portuguese is not an official national language of Egypt.",
+          "sourceIds": ["portuguese-languages"]
+        },
+        "left": {
+          "value": false,
+          "explanation": "Normal road traffic in Egypt keeps to the right.",
+          "sourceIds": ["driving"]
+        },
+        "south": {
+          "value": false,
+          "explanation": "Egypt is classified in Africa by UN M49. It is north of the equator and has Mediterranean and Red Sea coasts; Sinai is geographically in Asia.",
+          "sourceIds": ["world-map", "egypt-geography"]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "Egypt has land in both Africa and Asia: most of the country is in Africa, while the Sinai Peninsula is in Asia.",
+          "sourceIds": ["egypt-geography"]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "Egypt does not use the euro as its official national currency.",
+          "sourceIds": ["euro-area"]
+        },
+        "asia": {
+          "value": true,
+          "explanation": "Egypt has land in both Africa and Asia: most of the country is in Africa, while the Sinai Peninsula is in Asia.",
+          "sourceIds": ["egypt-geography"]
+        },
+        "atlantic": {
+          "value": false,
+          "explanation": "Egypt is classified in Africa by UN M49. It is north of the equator and has Mediterranean and Red Sea coasts; Sinai is geographically in Asia.",
+          "sourceIds": ["world-map"]
+        },
+        "mediterranean": {
+          "value": true,
+          "explanation": "Egypt is classified in Africa by UN M49. It is north of the equator and has Mediterranean and Red Sea coasts; Sinai is geographically in Asia.",
+          "sourceIds": ["world-map", "egypt-geography"]
+        }
+      }
+    },
+    {
+      "id": "austria",
+      "name": "Austria",
+      "symbol": "🇦🇹",
+      "clue": "Central Europe",
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Austria does not have land in Africa within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Austria is landlocked in Central Europe, north of the equator.",
+          "sourceIds": ["equator-guide", "world-map"]
+        },
+        "landlocked": {
+          "value": true,
+          "explanation": "Austria is landlocked in Central Europe, north of the equator.",
+          "sourceIds": ["world-map", "austria-geography"]
+        },
+        "portuguese": {
+          "value": false,
+          "explanation": "Portuguese is not an official national language of Austria.",
+          "sourceIds": ["portuguese-languages"]
+        },
+        "left": {
+          "value": false,
+          "explanation": "Normal road traffic in Austria keeps to the right.",
+          "sourceIds": ["driving"]
+        },
+        "south": {
+          "value": false,
+          "explanation": "Austria is landlocked in Central Europe, north of the equator.",
+          "sourceIds": ["world-map"]
+        },
+        "europe": {
+          "value": true,
+          "explanation": "Austria has land in Europe within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "euro": {
+          "value": true,
+          "explanation": "Austria uses the euro as its official national currency.",
+          "sourceIds": ["euro-area"]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "Austria does not have land in Asia within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "atlantic": {
+          "value": false,
+          "explanation": "Austria is landlocked in Central Europe, north of the equator.",
+          "sourceIds": ["world-map"]
+        },
+        "mediterranean": {
+          "value": false,
+          "explanation": "Austria is landlocked in Central Europe, north of the equator.",
+          "sourceIds": ["world-map"]
+        }
+      }
+    },
+    {
+      "id": "indonesia",
+      "name": "Indonesia",
+      "symbol": "🇮🇩",
+      "clue": "Southeast Asia",
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Indonesia does not have land in Africa within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "equator": {
+          "value": true,
+          "explanation": "Indonesia is classified in Asia by UN M49. The equator crosses its islands, which have Indian and Pacific Ocean coasts.",
+          "sourceIds": ["equator-guide", "world-map"]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Indonesia is classified in Asia by UN M49. The equator crosses its islands, which have Indian and Pacific Ocean coasts.",
+          "sourceIds": ["world-map"]
+        },
+        "portuguese": {
+          "value": false,
+          "explanation": "Portuguese is not an official national language of Indonesia.",
+          "sourceIds": ["portuguese-languages"]
+        },
+        "left": {
+          "value": true,
+          "explanation": "Normal road traffic in Indonesia keeps to the left.",
+          "sourceIds": ["driving"]
+        },
+        "south": {
+          "value": true,
+          "explanation": "Indonesia is classified in Asia by UN M49. The equator crosses its islands, which have Indian and Pacific Ocean coasts.",
+          "sourceIds": ["world-map"]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "Indonesia does not have land in Europe within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "Indonesia does not use the euro as its official national currency.",
+          "sourceIds": ["euro-area"]
+        },
+        "asia": {
+          "value": true,
+          "explanation": "Indonesia has land in Asia within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "atlantic": {
+          "value": false,
+          "explanation": "Indonesia is classified in Asia by UN M49. The equator crosses its islands, which have Indian and Pacific Ocean coasts.",
+          "sourceIds": ["world-map"]
+        },
+        "mediterranean": {
+          "value": false,
+          "explanation": "Indonesia is classified in Asia by UN M49. The equator crosses its islands, which have Indian and Pacific Ocean coasts.",
+          "sourceIds": ["world-map"]
+        }
+      }
+    },
+    {
+      "id": "peru",
+      "name": "Peru",
+      "symbol": "🇵🇪",
+      "clue": "South America",
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Peru does not have land in Africa within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Peru is south of the equator in South America, with a Pacific coast.",
+          "sourceIds": ["equator-guide", "world-map"]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Peru is south of the equator in South America, with a Pacific coast.",
+          "sourceIds": ["world-map"]
+        },
+        "portuguese": {
+          "value": false,
+          "explanation": "Portuguese is not an official national language of Peru.",
+          "sourceIds": ["portuguese-languages"]
+        },
+        "left": {
+          "value": false,
+          "explanation": "Normal road traffic in Peru keeps to the right.",
+          "sourceIds": ["driving"]
+        },
+        "south": {
+          "value": true,
+          "explanation": "Peru is south of the equator in South America, with a Pacific coast.",
+          "sourceIds": ["world-map"]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "Peru does not have land in Europe within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "Peru does not use the euro as its official national currency.",
+          "sourceIds": ["euro-area"]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "Peru does not have land in Asia within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "atlantic": {
+          "value": false,
+          "explanation": "Peru is south of the equator in South America, with a Pacific coast.",
+          "sourceIds": ["world-map"]
+        },
+        "mediterranean": {
+          "value": false,
+          "explanation": "Peru is south of the equator in South America, with a Pacific coast.",
+          "sourceIds": ["world-map"]
+        }
+      }
+    },
+    {
+      "id": "france",
+      "name": "France",
+      "symbol": "🇫🇷",
+      "clue": "Western Europe",
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "France does not have land in Africa within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Metropolitan France is north of the equator in Europe, with Atlantic and Mediterranean coasts. Overseas regions are excluded from these geographical requirements.",
+          "sourceIds": ["equator-guide", "world-map"]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Metropolitan France is north of the equator in Europe, with Atlantic and Mediterranean coasts. Overseas regions are excluded from these geographical requirements.",
+          "sourceIds": ["world-map"]
+        },
+        "portuguese": {
+          "value": false,
+          "explanation": "Portuguese is not an official national language of France.",
+          "sourceIds": ["portuguese-languages"]
+        },
+        "left": {
+          "value": false,
+          "explanation": "Normal road traffic in France keeps to the right.",
+          "sourceIds": ["driving"]
+        },
+        "south": {
+          "value": false,
+          "explanation": "Metropolitan France is north of the equator in Europe, with Atlantic and Mediterranean coasts. Overseas regions are excluded from these geographical requirements.",
+          "sourceIds": ["world-map"]
+        },
+        "europe": {
+          "value": true,
+          "explanation": "France has land in Europe within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "euro": {
+          "value": true,
+          "explanation": "France uses the euro as its official national currency.",
+          "sourceIds": ["euro-area"]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "France does not have land in Asia within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "atlantic": {
+          "value": true,
+          "explanation": "Metropolitan France is north of the equator in Europe, with Atlantic and Mediterranean coasts. Overseas regions are excluded from these geographical requirements.",
+          "sourceIds": ["world-map"]
+        },
+        "mediterranean": {
+          "value": true,
+          "explanation": "Metropolitan France is north of the equator in Europe, with Atlantic and Mediterranean coasts. Overseas regions are excluded from these geographical requirements.",
+          "sourceIds": ["world-map"]
+        }
+      }
+    },
+    {
+      "id": "nigeria",
+      "name": "Nigeria",
+      "symbol": "🇳🇬",
+      "clue": "West Africa",
+      "facts": {
+        "africa": {
+          "value": true,
+          "explanation": "Nigeria has land in Africa within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Nigeria is in West Africa, north of the equator, with a coast on the Gulf of Guinea in the Atlantic Ocean.",
+          "sourceIds": ["equator-guide", "world-map"]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Nigeria is in West Africa, north of the equator, with a coast on the Gulf of Guinea in the Atlantic Ocean.",
+          "sourceIds": ["world-map"]
+        },
+        "portuguese": {
+          "value": false,
+          "explanation": "Portuguese is not an official national language of Nigeria.",
+          "sourceIds": ["portuguese-languages"]
+        },
+        "left": {
+          "value": false,
+          "explanation": "Normal road traffic in Nigeria keeps to the right.",
+          "sourceIds": ["driving"]
+        },
+        "south": {
+          "value": false,
+          "explanation": "Nigeria is in West Africa, north of the equator, with a coast on the Gulf of Guinea in the Atlantic Ocean.",
+          "sourceIds": ["world-map"]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "Nigeria does not have land in Europe within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "Nigeria does not use the euro as its official national currency.",
+          "sourceIds": ["euro-area"]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "Nigeria does not have land in Asia within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "atlantic": {
+          "value": true,
+          "explanation": "Nigeria is in West Africa, north of the equator, with a coast on the Gulf of Guinea in the Atlantic Ocean.",
+          "sourceIds": ["world-map"]
+        },
+        "mediterranean": {
+          "value": false,
+          "explanation": "Nigeria is in West Africa, north of the equator, with a coast on the Gulf of Guinea in the Atlantic Ocean.",
+          "sourceIds": ["world-map"]
+        }
+      }
+    },
+    {
+      "id": "nepal",
+      "name": "Nepal",
+      "symbol": "🇳🇵",
+      "clue": "South Asia",
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Nepal does not have land in Africa within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Nepal is landlocked in South Asia between India and China, north of the equator.",
+          "sourceIds": ["equator-guide", "world-map"]
+        },
+        "landlocked": {
+          "value": true,
+          "explanation": "Nepal is landlocked in South Asia between India and China, north of the equator.",
+          "sourceIds": ["world-map", "nepal-geography"]
+        },
+        "portuguese": {
+          "value": false,
+          "explanation": "Portuguese is not an official national language of Nepal.",
+          "sourceIds": ["portuguese-languages"]
+        },
+        "left": {
+          "value": true,
+          "explanation": "Normal road traffic in Nepal keeps to the left.",
+          "sourceIds": ["driving"]
+        },
+        "south": {
+          "value": false,
+          "explanation": "Nepal is landlocked in South Asia between India and China, north of the equator.",
+          "sourceIds": ["world-map", "nepal-geography"]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "Nepal does not have land in Europe within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "Nepal does not use the euro as its official national currency.",
+          "sourceIds": ["euro-area"]
+        },
+        "asia": {
+          "value": true,
+          "explanation": "Nepal has land in Asia within its primary geographical territory.",
+          "sourceIds": ["world-map", "un-regions"]
+        },
+        "atlantic": {
+          "value": false,
+          "explanation": "Nepal is landlocked in South Asia between India and China, north of the equator.",
+          "sourceIds": ["world-map"]
+        },
+        "mediterranean": {
+          "value": false,
+          "explanation": "Nepal is landlocked in South Asia between India and China, north of the equator.",
+          "sourceIds": ["world-map"]
+        }
+      }
+    }
+  ]
+}

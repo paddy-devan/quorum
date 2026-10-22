@@ -1,0 +1,9 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "quorum",
+  "compatibility_date": "2026-10-22",
+  "workers_dev": true,
+  "preview_urls": true,
+  "previews": {},
+  "assets": { "directory": "./dist" },
+}
