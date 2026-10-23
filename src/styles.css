@@ -155,9 +155,10 @@ p {
   margin: 16px 0 20px;
 }
 .intro > p {
-  color: #5c6b62;
-  font-size: 16px;
-  line-height: 1.6;
+  color: var(--ink);
+  font-size: 23px;
+  font-weight: 400;
+  line-height: 1.25;
   margin-bottom: 0;
 }
 .game-layout {
@@ -187,15 +188,18 @@ p {
   color: var(--muted);
   white-space: nowrap;
 }
+.requirements .section-heading h2 {
+  font-size: 16px;
+}
 .requirement-list {
   list-style: none;
   margin: 0;
   padding: 0;
-  display: grid;
-  gap: 4px;
+  border-top: 1px solid var(--line);
 }
 .requirement-list li {
   min-width: 0;
+  border-bottom: 1px solid var(--line);
 }
 .requirement {
   display: flex;
@@ -203,29 +207,28 @@ p {
   gap: 10px;
   width: 100%;
   text-align: left;
-  background: #fafaf6;
-  border: 1px solid #dfe3d9;
-  border-radius: 7px;
-  padding: 9px 10px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  padding: 9px 2px;
   min-height: 48px;
-  font-size: 13px;
+  font-size: 12px;
   line-height: 1.4;
 }
 .requirement:hover {
-  border-color: #a5b49d;
+  background: #eef0e8;
 }
-.requirement-number {
+.requirement-checkbox {
   display: grid;
   place-items: center;
-  width: 23px;
-  height: 23px;
-  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #9aa997;
+  border-radius: 3px;
   flex: none;
-  background: #e9ece3;
-  color: #4a5e4a;
-  font-size: 11px;
+  background: transparent;
 }
-.requirement-number svg {
+.requirement-checkbox svg {
   width: 16px;
   height: 16px;
 }
@@ -237,28 +240,13 @@ p {
   color: #80907c;
   opacity: 0.7;
 }
-.requirement-status {
-  margin-left: auto;
-  font-size: 9px;
-  color: var(--muted);
-}
 .covered .requirement {
   background: #edf3e5;
-  border-color: #d5e0c9;
 }
-.covered .requirement-number {
+.covered .requirement-checkbox {
+  border-color: var(--accent);
   background: var(--accent);
   color: white;
-}
-.covered .requirement-status {
-  color: #356329;
-}
-.uncovered .requirement-number {
-  color: #7d6545;
-  background: #ede8dc;
-}
-.uncovered .requirement-status {
-  color: #7a6243;
 }
 .has-feedback li {
   animation: reveal 0.32s ease both;
@@ -310,7 +298,7 @@ p {
 }
 .country-flag {
   font-family: "Apple Color Emoji", "Segoe UI Emoji", sans-serif;
-  font-size: 25px;
+  font-size: 28px;
   line-height: 1.2;
   flex: none;
 }
@@ -321,7 +309,7 @@ p {
 }
 .country-name {
   font-family: var(--serif);
-  font-size: 17px;
+  font-size: 19px;
   font-weight: 700;
   letter-spacing: -0.5px;
   line-height: 1.2;
@@ -976,7 +964,7 @@ dialog::backdrop {
     padding: 10px;
   }
   .country-name {
-    font-size: 16px;
+    font-size: 17px;
   }
   .check-bar {
     gap: 12px;
@@ -1026,9 +1014,8 @@ dialog::backdrop {
     margin: 10px 0 14px;
   }
   .intro > p {
-    font-size: 12px;
-    line-height: 1.5;
-    max-width: 420px;
+    font-size: clamp(15px, 4.1vw, 18px);
+    line-height: 1.25;
   }
   .game-layout {
     grid-template-columns: minmax(0, 1fr);
@@ -1040,15 +1027,11 @@ dialog::backdrop {
   .section-heading h2 {
     font-size: 13px;
   }
+  .requirements .section-heading h2 {
+    font-size: 15px;
+  }
   .section-heading > span {
     font-size: 10px;
-  }
-  .requirement-list {
-    display: block;
-    border-top: 1px solid var(--line);
-  }
-  .requirement-list li {
-    border-bottom: 1px solid var(--line);
   }
   .requirement {
     min-height: clamp(32px, 5.5svh, 44px);
@@ -1056,23 +1039,15 @@ dialog::backdrop {
     border: 0;
     border-radius: 0;
     background: transparent;
-    font-size: 12px;
+    font-size: 11.5px;
     gap: 6px;
   }
-  .requirement-number {
+  .requirement-checkbox {
     width: 18px;
     height: 18px;
-    font-size: 10px;
   }
   .definition-hint {
     margin-right: 1px;
-  }
-  .covered .requirement {
-    background: #edf3e580;
-  }
-  .requirement-status {
-    font-size: 10px;
-    padding-right: 3px;
   }
   .requirements-note {
     font-size: 10px;
@@ -1094,10 +1069,10 @@ dialog::backdrop {
     text-align: center;
   }
   .country-flag {
-    font-size: 20px;
+    font-size: 23px;
   }
   .country-name {
-    font-size: 13px;
+    font-size: 14px;
     letter-spacing: -0.4px;
   }
   .selected-mark {
@@ -1232,7 +1207,7 @@ dialog::backdrop {
     padding-inline: 10px;
   }
   .country-name {
-    font-size: 13px;
+    font-size: 14px;
   }
   .check-bar {
     padding-inline: 13px;
@@ -1251,9 +1226,6 @@ dialog::backdrop {
   .intro {
     margin: 5px 0 4px;
   }
-  .intro > p {
-    line-height: 1.4;
-  }
   .game-layout {
     gap: 8px;
   }
@@ -1267,7 +1239,7 @@ dialog::backdrop {
     padding-block: 4px;
   }
   .country-name {
-    font-size: 12px;
+    font-size: 13px;
   }
   .requirements-note {
     margin-top: 4px;
@@ -1290,10 +1262,10 @@ dialog::backdrop {
     text-align: center;
   }
   .country-flag {
-    font-size: 18px;
+    font-size: 20px;
   }
   .country-name {
-    font-size: 12px;
+    font-size: 13px;
   }
   .requirement {
     min-height: 30px;

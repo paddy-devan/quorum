@@ -95,10 +95,6 @@ function Game({
   const lastCheck = run.checks.at(-1);
   const best = bestCheck(run.checks);
   const displayCheck = run.finished ? best : lastCheck;
-  const selectionChanged =
-    lastCheck &&
-    [...lastCheck.entityIds].sort().join("|") !==
-      [...run.selectedIds].sort().join("|");
 
   function track(
     type: AnalyticsEvent["type"],
@@ -261,7 +257,7 @@ function Game({
       <main>
         <div className="intro">
           <p>
-            Can you cover all requirements with as few countries as possible?
+            How few countries can tick every box?
           </p>
         </div>
         {saveProblem ? (
@@ -347,10 +343,9 @@ function Game({
                     Check selection
                   </button>
                 </div>
-                {message || selectionChanged ? (
+                {message ? (
                   <p className="interaction-message" role="status">
-                    {message ||
-                      "Selection changed. Requirement feedback still shows your last check."}
+                    {message}
                   </p>
                 ) : null}
               </>

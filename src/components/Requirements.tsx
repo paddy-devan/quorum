@@ -13,11 +13,11 @@ export function Requirements({
   onDefinition: (attribute: Attribute) => void;
 }) {
   return (
-    <section className="requirements" aria-labelledby="requirements-heading">
+    <section className="requirements" aria-label="Requirements">
       <div className="section-heading">
         <h2 id="requirements-heading">Requirements</h2>
       </div>
-      <ol
+      <ul
         key={check?.id ?? "unchecked"}
         className={`requirement-list ${check ? "has-feedback" : ""}`}
       >
@@ -36,24 +36,18 @@ export function Requirements({
                 onClick={() => onDefinition(attribute)}
                 aria-label={`${attribute.label}${check ? (covered ? ", covered" : ", not covered") : ""}. View definition`}
               >
-                <span className="requirement-number">
-                  {check && covered ? <TickIcon /> : index + 1}
+                <span className="requirement-checkbox" aria-hidden="true">
+                  {check && covered ? <TickIcon /> : null}
                 </span>
                 <span>{attribute.label}</span>
-                {check ? (
-                  <span className="requirement-status">
-                    {covered ? "Met" : "Missing"}
-                  </span>
-                ) : (
-                  <span className="definition-hint" aria-hidden="true">
-                    i
-                  </span>
-                )}
+                <span className="definition-hint" aria-hidden="true">
+                  i
+                </span>
               </button>
             </li>
           );
         })}
-      </ol>
+      </ul>
       {check ? (
         <p className="requirements-note">
           Coverage from your {finished ? "best" : "last"} check.
