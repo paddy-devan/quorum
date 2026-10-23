@@ -13,11 +13,7 @@ export function CountryGrid({
   onToggle: (id: string) => void;
 }) {
   return (
-    <section aria-labelledby="countries-heading" className="countries">
-      <div className="section-heading">
-        <h2 id="countries-heading">Your countries</h2>
-        <span>Choose up to {puzzle.rules.maxSelected}</span>
-      </div>
+    <section aria-label="Countries" className="countries">
       <div className="country-grid">
         {puzzle.entities.map((entity) => {
           const selected = selectedIds.includes(entity.id);
@@ -35,9 +31,6 @@ export function CountryGrid({
               </span>
               <span className="country-copy">
                 <span className="country-name">{entity.name}</span>
-                {puzzle.rules.clueMode !== "hidden" ? (
-                  <span className="country-clue">{entity.clue}</span>
-                ) : null}
                 {puzzle.rules.clueMode === "full" ? (
                   <span className="full-clues">
                     {puzzle.attributes

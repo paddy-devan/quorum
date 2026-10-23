@@ -24,7 +24,7 @@ describe("coverage and check rules", () => {
   it("unions requirements without counting duplicate coverage", () => {
     const a = evaluate(puzzle, ["kenya"]);
     const b = evaluate(puzzle, ["kenya", "south-africa"]);
-    expect(a.coveredIds).toEqual(["africa", "equator", "left", "south"]);
+    expect(a.coveredIds).toEqual(["africa", "left", "south"]);
     expect(b.coveredIds).toEqual(a.coveredIds);
     expect(a.complete).toBe(false);
     expect(evaluate(puzzle, optimum).complete).toBe(true);
@@ -34,7 +34,7 @@ describe("coverage and check rules", () => {
       [],
       ["missing"],
       ["kenya", "kenya"],
-      puzzle.entities.slice(0, 6).map((entity) => entity.id),
+      puzzle.entities.slice(0, 7).map((entity) => entity.id),
     ].map((ids) => [ids]),
   )("rejects invalid selections: %j", (ids) => {
     expect(() => evaluate(puzzle, ids)).toThrow();
@@ -76,6 +76,22 @@ describe("coverage and check rules", () => {
 });
 
 describe("ranking and sharing", () => {
+  it("accepts six countries and improves a complete Quorum down to three", () => {
+    const extras = puzzle.entities
+      .filter((entity) => !optimum.includes(entity.id))
+      .slice(0, 3)
+      .map((entity) => entity.id);
+    let run = newRun(daily, "p");
+    for (const ids of [[...optimum, ...extras], [...optimum, extras[0]], optimum]) {
+      run = submitCheck(puzzle, { ...run, selectedIds: ids });
+      expect(bestCheck(run.checks)?.entityIds).toEqual(ids);
+      expect(bestCheck(run.checks)?.complete).toBe(true);
+    }
+    expect(run.checks.map((check) => check.entityIds.length)).toEqual([6, 4, 3]);
+    expect(resultLabel(puzzle, run.checks[0])).toBe("Complete Quorum");
+    expect(resultLabel(puzzle, bestCheck(run.checks))).toBe("Perfect Quorum");
+    expect(run.finished).toBe(true);
+  });
   it("keeps a complete result after a later failed check", () => {
     const complete = attempt([
       ...optimum,

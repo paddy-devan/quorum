@@ -13,16 +13,11 @@ export function Requirements({
   onDefinition: (attribute: Attribute) => void;
 }) {
   return (
-    <section className="requirements" aria-labelledby="requirements-heading">
+    <section className="requirements" aria-label="Requirements">
       <div className="section-heading">
         <h2 id="requirements-heading">Requirements</h2>
-        <span>
-          {check
-            ? `${check.coveredIds.length} of ${puzzle.attributes.length}`
-            : `${puzzle.attributes.length} to cover`}
-        </span>
       </div>
-      <ol
+      <ul
         key={check?.id ?? "unchecked"}
         className={`requirement-list ${check ? "has-feedback" : ""}`}
       >
@@ -41,29 +36,23 @@ export function Requirements({
                 onClick={() => onDefinition(attribute)}
                 aria-label={`${attribute.label}${check ? (covered ? ", covered" : ", not covered") : ""}. View definition`}
               >
-                <span className="requirement-number">
-                  {check && covered ? <TickIcon /> : index + 1}
+                <span className="requirement-checkbox" aria-hidden="true">
+                  {check && covered ? <TickIcon /> : null}
                 </span>
                 <span>{attribute.label}</span>
-                {check ? (
-                  <span className="requirement-status">
-                    {covered ? "Met" : "Missing"}
-                  </span>
-                ) : (
-                  <span className="definition-hint" aria-hidden="true">
-                    i
-                  </span>
-                )}
+                <span className="definition-hint" aria-hidden="true">
+                  i
+                </span>
               </button>
             </li>
           );
         })}
-      </ol>
-      <p className="requirements-note">
-        {check
-          ? `Coverage from your ${finished ? "best" : "last"} check.`
-          : "Tap any requirement for its definition."}
-      </p>
+      </ul>
+      {check ? (
+        <p className="requirements-note">
+          Coverage from your {finished ? "best" : "last"} check.
+        </p>
+      ) : null}
     </section>
   );
 }

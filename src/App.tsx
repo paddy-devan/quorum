@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { dailyPuzzle, utcDate } from "./content/loader";
+import { dailyPuzzle, puzzles, utcDate } from "./content/loader";
 import { bestCheck, resultLabel, submitCheck } from "./game/engine";
 import type { Attribute, DailyPuzzle } from "./game/types";
 import {
@@ -85,22 +85,16 @@ function Game({
   const { storage, person } = local;
   const [run, setRun] = useState(() => loadRun(storage, daily, person.id));
   const [help, setHelp] = useState(false);
+  const [localTesting, setLocalTesting] = useState(false);
   const [definition, setDefinition] = useState<Attribute | null>(null);
   const [confirm, setConfirm] = useState<"finish" | "reset" | null>(null);
   const [message, setMessage] = useState("");
   const [saveProblem, setSaveProblem] = useState(!local.persistent);
-  const [showIntro, setShowIntro] = useState(
-    () => !storage.getItem("quorum:v1:tutorial-seen"),
-  );
   const resultRef = useRef<HTMLDivElement>(null);
   const remaining = puzzle.rules.maxChecks - run.checks.length;
   const lastCheck = run.checks.at(-1);
   const best = bestCheck(run.checks);
   const displayCheck = run.finished ? best : lastCheck;
-  const selectionChanged =
-    lastCheck &&
-    [...lastCheck.entityIds].sort().join("|") !==
-      [...run.selectedIds].sort().join("|");
 
   function track(
     type: AnalyticsEvent["type"],
@@ -190,16 +184,6 @@ function Game({
     );
   }
 
-  function closeHelp() {
-    setHelp(false);
-    setShowIntro(false);
-    try {
-      storage.setItem("quorum:v1:tutorial-seen", "true");
-    } catch {
-      /* Optional preference. */
-    }
-  }
-
   function reset() {
     storage.removeItem(runKey(daily, person.id));
     window.location.reload();
@@ -220,39 +204,60 @@ function Game({
   return (
     <div className="app-shell">
       <header className="masthead">
-        <a
-          href={window.location.pathname}
-          className="wordmark"
-          aria-label="Quorum, today’s puzzle"
-        >
-          Quorum<span className="wordmark-dot">.</span>
-        </a>
-        <button className="help-button" onClick={() => setHelp(true)}>
-          How to play <span aria-hidden="true">?</span>
-        </button>
+        <div className="header-brand">
+          <h1 className="wordmark">
+            <a
+              href={window.location.pathname}
+              aria-label="Quorum, today’s puzzle"
+            >
+              Quorum<span className="wordmark-dot">.</span>
+            </a>
+          </h1>
+          <div className="puzzle-meta">
+            <span>
+              {new Intl.DateTimeFormat("en-GB", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+                timeZone: "UTC",
+              }).format(new Date(`${daily.date}T12:00:00Z`))}
+            </span>
+            <span className="meta-dot" aria-hidden="true">
+              ·
+            </span>
+            <span>Puzzle #{String(daily.number).padStart(3, "0")}</span>
+          </div>
+        </div>
+        <div className="header-actions">
+          {isLocal ? (
+            <button
+              className="icon-button local-testing-button"
+              aria-label="Local testing"
+              aria-haspopup="dialog"
+              title="Local testing"
+              onClick={() => setLocalTesting(true)}
+            >
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M9 3h6m-5 0v6l-5 8a2 2 0 0 0 1.7 3h10.6A2 2 0 0 0 19 17l-5-8V3M8 14h8"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          ) : null}
+          <button className="help-button" aria-label="How to play" onClick={() => setHelp(true)}>
+            <span className="help-label">How to play</span>
+            <span className="help-symbol" aria-hidden="true">?</span>
+          </button>
+        </div>
       </header>
       <main>
-        <div className="puzzle-meta">
-          <span>
-            {new Intl.DateTimeFormat("en-GB", {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-              timeZone: "UTC",
-            }).format(new Date(`${daily.date}T12:00:00Z`))}
-          </span>
-          <span className="meta-dot" aria-hidden="true">
-            ·
-          </span>
-          <span>Puzzle #{String(daily.number).padStart(3, "0")}</span>
-          <span className="theme-label">{puzzle.theme}</span>
-        </div>
         <div className="intro">
-          <h1>{puzzle.title}</h1>
           <p>
-            Choose countries that together meet all {puzzle.attributes.length}{" "}
-            requirements.{" "}
-            <span>Can you do it in {puzzle.rules.expectedOptimal}?</span>
+            How few countries can tick every box?
           </p>
         </div>
         {saveProblem ? (
@@ -261,18 +266,15 @@ function Game({
             lost when you leave this page.
           </p>
         ) : null}
-        {showIntro && !run.finished && !run.checks.length ? (
-          <div className="first-play">
-            <p>
-              <strong>A country can cover more than one requirement.</strong>{" "}
-              Your selection works as a team.
-            </p>
-            <button onClick={() => setHelp(true)}>
-              Try an example <ArrowIcon />
-            </button>
-          </div>
-        ) : null}
         <div className="game-layout">
+          <CountryGrid
+            puzzle={puzzle}
+            selectedIds={
+              run.finished ? (best?.entityIds ?? []) : run.selectedIds
+            }
+            finished={run.finished}
+            onToggle={toggle}
+          />
           <Requirements
             puzzle={puzzle}
             check={displayCheck}
@@ -280,14 +282,6 @@ function Game({
             onDefinition={setDefinition}
           />
           <div className="play-area">
-            <CountryGrid
-              puzzle={puzzle}
-              selectedIds={
-                run.finished ? (best?.entityIds ?? []) : run.selectedIds
-              }
-              finished={run.finished}
-              onToggle={toggle}
-            />
             {run.finished ? (
               <div className="finished-strip">
                 Today’s Quorum is complete.{" "}
@@ -308,6 +302,16 @@ function Game({
                       <span>of {puzzle.rules.maxSelected}</span>
                     </strong>
                     <span>selected</span>
+                    <button
+                      className="clear-selection"
+                      disabled={!run.selectedIds.length}
+                      onClick={() => {
+                        setRun({ ...run, selectedIds: [] });
+                        setMessage("");
+                      }}
+                    >
+                      Clear
+                    </button>
                   </div>
                   <div className="checks-left">
                     <span className="check-dots" aria-hidden="true">
@@ -324,6 +328,12 @@ function Game({
                     <span>
                       {remaining} {remaining === 1 ? "check" : "checks"} left
                     </span>
+                    <button
+                      className="finish-button"
+                      onClick={() => setConfirm("finish")}
+                    >
+                      Finish & reveal <ArrowIcon />
+                    </button>
                   </div>
                   <button
                     className="primary-button check-button"
@@ -333,38 +343,11 @@ function Game({
                     Check selection
                   </button>
                 </div>
-                <div className="selection-tray" aria-label="Selected countries">
-                  {run.selectedIds.length ? (
-                    <>
-                      <span>
-                        {run.selectedIds
-                          .map(
-                            (id) =>
-                              puzzle.entities.find(
-                                (entity) => entity.id === id,
-                              )!.name,
-                          )
-                          .join(" + ")}
-                      </span>
-                      <button
-                        onClick={() => {
-                          setRun({ ...run, selectedIds: [] });
-                          setMessage("");
-                        }}
-                      >
-                        Clear
-                      </button>
-                    </>
-                  ) : (
-                    <span>Pick your first country to get started.</span>
-                  )}
-                </div>
-                <p className="interaction-message" role="status">
-                  {message ||
-                    (selectionChanged
-                      ? "Selection changed. Requirement feedback still shows your last check."
-                      : "Coverage is revealed only when you check.")}
-                </p>
+                {message ? (
+                  <p className="interaction-message" role="status">
+                    {message}
+                  </p>
+                ) : null}
               </>
             )}
             {lastCheck && !run.finished ? (
@@ -429,14 +412,6 @@ function Game({
                 ))}
               </section>
             ) : null}
-            {!run.finished ? (
-              <button
-                className="finish-button"
-                onClick={() => setConfirm("finish")}
-              >
-                Finish & reveal <ArrowIcon />
-              </button>
-            ) : null}
           </div>
         </div>
         {run.finished ? (
@@ -444,16 +419,13 @@ function Game({
             <Results daily={daily} run={run} onShare={() => track("share")} />
           </div>
         ) : null}
-        <footer>
-          <p>A little knowledge. A little logic. A smaller Quorum.</p>
-          <span>Local edition · Progress stays in this browser</span>
-        </footer>
-        {isLocal ? (
-          <details className="local-tools">
-            <summary>Local testing</summary>
+      </main>
+      {isLocal && localTesting ? (
+        <Modal title="Local testing" onClose={() => setLocalTesting(false)}>
+          <div className="local-tools">
             <p>
-              Three authored fixtures rotate by UTC date. These controls are
-              available on localhost only.
+              {puzzles.length} authored puzzles rotate by UTC date. These
+              controls are available on localhost only.
             </p>
             <label>
               Preview a day{" "}
@@ -469,7 +441,10 @@ function Game({
             <div>
               <button
                 className="text-button"
-                onClick={() => setConfirm("reset")}
+                onClick={() => {
+                  setLocalTesting(false);
+                  setConfirm("reset");
+                }}
               >
                 Reset this day’s progress
               </button>
@@ -480,10 +455,12 @@ function Game({
             <p className="muted">
               Facts: {puzzle.contentVersion} · {puzzle.id} v{puzzle.version}
             </p>
-          </details>
-        ) : null}
-      </main>
-      {help ? <Help onClose={closeHelp} /> : null}
+          </div>
+        </Modal>
+      ) : null}
+      {help ? (
+        <Help maxSelected={puzzle.rules.maxSelected} onClose={() => setHelp(false)} />
+      ) : null}
       {definition ? (
         <Modal title={definition.label} onClose={() => setDefinition(null)}>
           <p>{definition.definition}</p>

@@ -12,10 +12,11 @@ import { validatePuzzle } from "../game/validator";
 
 describe("authored content integrity", () => {
   it.each(puzzles.map((puzzle) => [puzzle.id, puzzle] as const))(
-    "%s has twelve verified candidates, nine requirements and a three-country optimum",
+    "%s has twelve verified candidates, six requirements and a three-country optimum",
     (_, puzzle) => {
       expect(puzzle.entities).toHaveLength(12);
-      expect(puzzle.attributes).toHaveLength(9);
+      expect(puzzle.attributes).toHaveLength(6);
+      expect(puzzle.rules.maxSelected).toBe(6);
       const report = validatePuzzle(puzzle);
       expect(report.solvable).toBe(true);
       expect(report.minimum).toBe(3);
@@ -24,6 +25,11 @@ describe("authored content integrity", () => {
       expect(report.validBySize[2] ?? 0).toBe(0);
       expect(
         Object.values(report.attributeFrequency).every((count) => count > 0),
+      ).toBe(true);
+      expect(
+        puzzle.entities.every((entity) =>
+          puzzle.attributes.some((attribute) => entity.facts[attribute.id].value),
+        ),
       ).toBe(true);
     },
   );
@@ -71,7 +77,12 @@ describe("authored content integrity", () => {
     expect(dailyPuzzle("2026-10-23").puzzle.id).not.toBe(
       dailyPuzzle("2026-10-22").puzzle.id,
     );
-    expect(dailyPuzzle("2026-10-25").puzzle.id).toBe(
+    const cycleEnd = new Date("2026-10-22T00:00:00Z");
+    for (const puzzle of puzzles) {
+      expect(dailyPuzzle(utcDate(cycleEnd)).puzzle.id).toBe(puzzle.id);
+      cycleEnd.setUTCDate(cycleEnd.getUTCDate() + 1);
+    }
+    expect(dailyPuzzle(utcDate(cycleEnd)).puzzle.id).toBe(
       dailyPuzzle("2026-10-22").puzzle.id,
     );
     expect(dailyPuzzle("2026-10-22")).toEqual(dailyPuzzle("2026-10-22"));

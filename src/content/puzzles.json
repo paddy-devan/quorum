@@ -3,7 +3,7 @@
   "puzzles": [
     {
       "id": "countries-crossroads",
-      "version": 1,
+      "version": 3,
       "title": "A world of possibilities.",
       "entityIds": [
         "brazil",
@@ -21,17 +21,14 @@
       ],
       "attributeIds": [
         "africa",
-        "equator",
         "landlocked",
         "portuguese",
         "left",
         "south",
-        "europe",
-        "euro",
-        "asia"
+        "europe"
       ],
       "rules": {
-        "maxSelected": 5,
+        "maxSelected": 6,
         "maxChecks": 3,
         "expectedOptimal": 3,
         "clueMode": "partial"
@@ -39,8 +36,74 @@
     },
     {
       "id": "countries-atlantic",
-      "version": 1,
+      "version": 3,
       "title": "A world of possibilities.",
+      "entityIds": [
+        "brazil",
+        "portugal",
+        "kenya",
+        "south-africa",
+        "japan",
+        "egypt",
+        "austria",
+        "indonesia",
+        "peru",
+        "france",
+        "nigeria",
+        "nepal"
+      ],
+      "attributeIds": [
+        "africa",
+        "landlocked",
+        "portuguese",
+        "left",
+        "south",
+        "atlantic"
+      ],
+      "rules": {
+        "maxSelected": 6,
+        "maxChecks": 3,
+        "expectedOptimal": 3,
+        "clueMode": "partial"
+      }
+    },
+    {
+      "id": "countries-coastlines",
+      "version": 3,
+      "title": "A world of possibilities.",
+      "entityIds": [
+        "brazil",
+        "portugal",
+        "kenya",
+        "south-africa",
+        "japan",
+        "egypt",
+        "austria",
+        "indonesia",
+        "peru",
+        "france",
+        "nigeria",
+        "nepal"
+      ],
+      "attributeIds": [
+        "portuguese",
+        "left",
+        "south",
+        "euro",
+        "mediterranean",
+        "atlantic"
+      ],
+      "rules": {
+        "maxSelected": 6,
+        "maxChecks": 3,
+        "expectedOptimal": 3,
+        "clueMode": "partial"
+      }
+    },
+    {
+      "id": "countries-equator",
+      "version": 2,
+      "title": "Across the equator.",
       "entityIds": [
         "brazil",
         "portugal",
@@ -59,24 +122,54 @@
         "africa",
         "equator",
         "landlocked",
-        "portuguese",
-        "left",
         "south",
-        "europe",
         "euro",
-        "atlantic"
+        "asia"
       ],
       "rules": {
-        "maxSelected": 5,
+        "maxSelected": 6,
         "maxChecks": 3,
         "expectedOptimal": 3,
         "clueMode": "partial"
       }
     },
     {
-      "id": "countries-coastlines",
-      "version": 1,
-      "title": "A world of possibilities.",
+      "id": "countries-land-and-sea",
+      "version": 2,
+      "title": "From land to sea.",
+      "entityIds": [
+        "brazil",
+        "portugal",
+        "kenya",
+        "south-africa",
+        "japan",
+        "egypt",
+        "austria",
+        "indonesia",
+        "peru",
+        "france",
+        "nigeria",
+        "nepal"
+      ],
+      "attributeIds": [
+        "equator",
+        "landlocked",
+        "south",
+        "asia",
+        "atlantic",
+        "mediterranean"
+      ],
+      "rules": {
+        "maxSelected": 6,
+        "maxChecks": 3,
+        "expectedOptimal": 3,
+        "clueMode": "partial"
+      }
+    },
+    {
+      "id": "countries-continents",
+      "version": 2,
+      "title": "Continental connections.",
       "entityIds": [
         "brazil",
         "portugal",
@@ -93,17 +186,14 @@
       ],
       "attributeIds": [
         "africa",
-        "equator",
+        "landlocked",
         "portuguese",
-        "left",
         "south",
         "europe",
-        "euro",
-        "mediterranean",
-        "atlantic"
+        "asia"
       ],
       "rules": {
-        "maxSelected": 5,
+        "maxSelected": 6,
         "maxChecks": 3,
         "expectedOptimal": 3,
         "clueMode": "partial"
