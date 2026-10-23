@@ -1,5 +1,7 @@
 import catalogJson from "./countries.json";
 import scheduleJson from "./puzzles.json";
+import demoJson from "./demos.json";
+import { resolveCatalog } from "./requirements";
 import type {
   Catalog,
   DailyPuzzle,
@@ -103,7 +105,7 @@ export function loadPuzzle(
   return puzzle;
 }
 
-export const catalog: Catalog = catalogJson;
+export const catalog = resolveCatalog(catalogJson as Catalog);
 export const definitions = scheduleJson.puzzles as PuzzleDefinition[];
 unique(
   definitions.map((definition) => definition.id),
@@ -112,6 +114,17 @@ unique(
 export const puzzles = definitions.map((definition) =>
   loadPuzzle(catalog, definition),
 );
+
+export const demoDefinitions = demoJson.puzzles as PuzzleDefinition[];
+unique(demoDefinitions.map((definition) => definition.id), "demo");
+export const demoPuzzles = demoDefinitions.map((definition) => loadPuzzle(catalog, definition));
+
+export function demoPuzzle(id: string): DailyPuzzle | null {
+  const index = demoPuzzles.findIndex((puzzle) => puzzle.id === id);
+  if (index < 0) return null;
+  // A fixed date keeps each demo's progress independent of the daily rotation.
+  return { date: demoJson.snapshotDate, number: index + 1, puzzle: demoPuzzles[index], demoId: id };
+}
 
 export function utcDate(now = new Date()): string {
   return now.toISOString().slice(0, 10);

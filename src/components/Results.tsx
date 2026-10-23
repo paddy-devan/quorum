@@ -79,7 +79,7 @@ export function Results({
                 {best?.coveredIds.length ?? 0} of {puzzle.attributes.length}{" "}
                 requirements.
               </strong>{" "}
-              There’s always a new angle tomorrow.
+              {daily.demoId ? "Try another angle in the next demo." : "There’s always a new angle tomorrow."}
             </>
           )}
         </p>
@@ -205,7 +205,9 @@ export function Results({
           </details>
         ))}
       </details>
-      <p className="next-puzzle">A new daily puzzle arrives at 00:00 UTC.</p>
+      {daily.demoId ? (
+        <p className="next-puzzle">Try another board or restart this one from Demos.</p>
+      ) : <p className="next-puzzle">A new daily puzzle arrives at 00:00 UTC.</p>}
     </section>
   );
 }

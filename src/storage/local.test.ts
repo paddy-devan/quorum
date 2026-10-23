@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { dailyPuzzle } from "../content/loader";
+import { dailyPuzzle, demoPuzzle } from "../content/loader";
 import { bestCheck, submitCheck } from "../game/engine";
 import {
   loadRun,
@@ -27,6 +27,15 @@ beforeEach(() => {
 });
 
 describe("local persistence", () => {
+  it("keeps demo progress separate from other demos and the daily puzzle", () => {
+    const demo = demoPuzzle("demo-crossroads")!;
+    const other = demoPuzzle("demo-world-stage")!;
+    const run = { ...newRun(demo, "p"), selectedIds: ["brazil"] };
+    saveRun(storage, demo, run);
+    expect(loadRun(storage, demo, "p")).toEqual(run);
+    expect(loadRun(storage, other, "p").selectedIds).toEqual([]);
+    expect(loadRun(storage, dailyPuzzle(demo.date), "p").selectedIds).toEqual([]);
+  });
   it("keeps a stable anonymous identity and a separate run per day", () => {
     const person = participant(storage);
     expect(participant(storage)).toEqual(person);

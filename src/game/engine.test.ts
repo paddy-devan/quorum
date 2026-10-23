@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { dailyPuzzle, puzzles } from "../content/loader";
+import { dailyPuzzle, demoPuzzle, puzzles } from "../content/loader";
 import {
   bestCheck,
   evaluate,
@@ -137,6 +137,12 @@ describe("ranking and sharing", () => {
       expect(text).not.toContain(entity.name);
     for (const attribute of puzzle.attributes)
       expect(text).not.toContain(attribute.label);
+  });
+  it("identifies a shared demo separately from the daily puzzle", () => {
+    const demo = demoPuzzle("demo-crossroads")!;
+    const text = shareText(demo, newRun(demo, "p"), "https://quorum.example/?demo=demo-crossroads");
+    expect(text).toContain("Quorum demo 1 · Past lives, present scale");
+    expect(text).not.toContain("Quorum #");
   });
 });
 

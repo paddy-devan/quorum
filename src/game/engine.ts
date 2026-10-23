@@ -74,7 +74,7 @@ export function resultLabel(puzzle: Puzzle, check?: Evaluation): string {
 }
 
 export function shareText(
-  daily: { number: number; date: string; puzzle: Puzzle },
+  daily: { number: number; date: string; puzzle: Puzzle; demoId?: string },
   run: Run,
   url: string,
 ): string {
@@ -88,5 +88,6 @@ export function shareText(
         `${check.coveredIds.map(() => "🟩").join("")}${"⬜".repeat(daily.puzzle.attributes.length - check.coveredIds.length)} ${check.entityIds.length}`,
     )
     .join("\n");
-  return `Quorum #${String(daily.number).padStart(3, "0")} · ${daily.date}\n${score}\n${progression || "No checks used"}\n${run.checks.length}/${daily.puzzle.rules.maxChecks} checks\n${url}`;
+  const identity = daily.demoId ? `Quorum demo ${daily.number} · ${daily.puzzle.title}` : `Quorum #${String(daily.number).padStart(3, "0")} · ${daily.date}`;
+  return `${identity}\n${score}\n${progression || "No checks used"}\n${run.checks.length}/${daily.puzzle.rules.maxChecks} checks\n${url}`;
 }

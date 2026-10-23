@@ -3,6 +3,8 @@ import {
   authoredFixtureGenerator,
   catalog,
   dailyPuzzle,
+  demoPuzzle,
+  demoPuzzles,
   definitions,
   loadPuzzle,
   puzzles,
@@ -11,7 +13,7 @@ import {
 import { validatePuzzle } from "../game/validator";
 
 describe("authored content integrity", () => {
-  it.each(puzzles.map((puzzle) => [puzzle.id, puzzle] as const))(
+  it.each([...puzzles, ...demoPuzzles].map((puzzle) => [puzzle.id, puzzle] as const))(
     "%s has twelve verified candidates, six requirements and a three-country optimum",
     (_, puzzle) => {
       expect(puzzle.entities).toHaveLength(12);
@@ -57,12 +59,16 @@ describe("authored content integrity", () => {
       }),
     ).toThrow("optimum");
   });
-  it("has evidence and definitions for the complete starter matrix", () => {
+  it("keeps unreviewed relationships unknown and supplies evidence for every verified fact", () => {
     for (const entity of catalog.entities)
       for (const attribute of catalog.attributes) {
         const fact = entity.facts[attribute.id];
-        expect(typeof fact.value).toBe("boolean");
         expect(fact.explanation.length).toBeGreaterThan(20);
+        if (fact.value === null) {
+          expect(fact.sourceIds).toEqual([]);
+          continue;
+        }
+        expect(typeof fact.value).toBe("boolean");
         expect(fact.sourceIds.length).toBeGreaterThan(0);
         expect(
           fact.sourceIds.every((id) =>
@@ -70,6 +76,30 @@ describe("authored content integrity", () => {
           ),
         ).toBe(true);
       }
+  });
+  it.each(demoPuzzles.map((puzzle) => [puzzle.id, puzzle] as const))(
+    "%s offers alternatives and gives every requirement an independent role",
+    (_, puzzle) => {
+      const report = validatePuzzle(puzzle);
+      expect(report.optimalSolutions.length).toBeGreaterThan(1);
+      expect(report.validBySize[4]).toBeGreaterThan(0);
+      expect(Object.values(report.attributeFrequency).every((n) => n >= 2 && n <= 7)).toBe(true);
+      for (const first of puzzle.attributes)
+        for (const second of puzzle.attributes) {
+          if (first.id === second.id) continue;
+          // If every answer to A also answers B, B adds no decision to a complete solution.
+          expect(puzzle.entities.some((entity) =>
+            entity.facts[first.id].value && !entity.facts[second.id].value,
+          ), `${first.id} should not automatically satisfy ${second.id}`).toBe(true);
+        }
+    },
+  );
+  it("resolves stable demo links without changing the daily rotation", () => {
+    const demo = demoPuzzle(demoPuzzles[0].id)!;
+    expect(demo.demoId).toBe(demoPuzzles[0].id);
+    expect(demo.date).toBe("2026-10-23");
+    expect(demoPuzzle("absent")).toBeNull();
+    expect(dailyPuzzle("2026-10-23").demoId).toBeUndefined();
   });
   it("uses UTC boundaries and deterministic shared fixtures", () => {
     expect(utcDate(new Date("2026-10-22T00:30:00+01:00"))).toBe("2026-10-21");

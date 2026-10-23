@@ -1,8 +1,8 @@
 {
-  "version": "countries-1",
+  "version": "countries-2-rich-demo",
   "theme": "Countries",
-  "reviewedOn": "2026-10-22",
-  "scope": "Geographical requirements use primary territory, including integral islands but excluding overseas regions and dependencies (France means metropolitan France). Transcontinental countries can count in more than one continent. Tap a requirement for its exact definition.",
+  "reviewedOn": "2026-10-23",
+  "scope": "Geographical requirements use primary territory, excluding overseas regions and dependencies (France means metropolitan France). Statistical comparisons use the World Bank’s reporting territory and 2023 data. Capital points are fixed to the demo’s 2023 convention: Jakarta for Indonesia and Pretoria for South Africa. Historical and cultural requirements state their own date range. Tap any requirement for its exact definition.",
   "sources": [
     {
       "id": "un-regions",
@@ -63,6 +63,65 @@
       "id": "egypt-geography",
       "title": "Egypt State Information Service · geography",
       "url": "https://sis.gov.eg/en/egypt/basic-information/"
+    },
+    {
+      "id": "wb-population",
+      "title": "World Bank · Population, total · 2023 snapshot",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/SP.POP.TOTL?date=2023&format=json&per_page=400",
+      "retrievedOn": "2026-10-23",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "wb-gdpUsd",
+      "title": "World Bank · GDP, current US$ · 2023 snapshot",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/NY.GDP.MKTP.CD?date=2023&format=json&per_page=400",
+      "retrievedOn": "2026-10-23",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "wb-surfaceAreaKm2",
+      "title": "World Bank · Surface area, km² · 2023 snapshot",
+      "url": "https://api.worldbank.org/v2/country/all/indicator/AG.SRF.TOTL.K2?date=2023&format=json&per_page=400",
+      "retrievedOn": "2026-10-23",
+      "license": "CC BY 4.0"
+    },
+    {
+      "id": "natural-earth-capitals",
+      "title": "Natural Earth · populated places · v5.1.2 city points",
+      "url": "https://www.naturalearthdata.com/downloads/10m-cultural-vectors/10m-populated-places/",
+      "retrievedOn": "2026-10-23",
+      "license": "Public domain"
+    },
+    {
+      "id": "regimes-owid",
+      "title": "V-Dem v16 (2026) · Regimes of the World · processed by Our World in Data",
+      "url": "https://ourworldindata.org/grapher/political-regime",
+      "retrievedOn": "2026-10-23",
+      "license": "V-Dem data CC BY-SA 4.0; OWID processing CC BY 4.0"
+    },
+    {
+      "id": "olympic-hosts",
+      "title": "International Olympic Committee · hosts of the Olympic Games · through 2024",
+      "url": "https://gstatic.olympics.com/s3/mc2026/documents/Education%20Programme/OVEP/English%20Toolkit/OVEP-Fundamentals-2023%20-%20English.pdf",
+      "retrievedOn": "2026-10-23"
+    },
+    {
+      "id": "fifa-winners",
+      "title": "FIFA · World Cup champions · 1982–2026 (demo stops at 2022)",
+      "url": "https://www.fifa.com/en/tournaments/mens/worldcup/articles/world-cup-champions-1982-2026-italy-argentina-germany-brazil-france-spain",
+      "retrievedOn": "2026-10-23"
+    },
+    {
+      "id": "fifa-early-winners",
+      "title": "FIFA · World Cup champions · 1930–1978",
+      "url": "https://www.fifa.com/en/de/mens/worldcup/articles/world-cup-champions-1930-1978-uruguay-italy-germany-brazil-england-argentina",
+      "retrievedOn": "2026-10-23"
+    },
+    {
+      "id": "unesco-diet",
+      "title": "UNESCO · Mediterranean diet · inscription 00884",
+      "url": "https://ich.unesco.org/en/RL/mediterranean-diet-00884",
+      "retrievedOn": "2026-10-23"
     }
   ],
   "attributes": [
@@ -120,6 +179,209 @@
       "id": "mediterranean",
       "label": "Mediterranean coast",
       "definition": "The primary geographical territory has a coast directly on the Mediterranean Sea."
+    },
+    {
+      "id": "gdp-above-austria",
+      "label": "GDP greater than Austria’s",
+      "definition": "Total nominal GDP in current US dollars, not GDP per person or purchasing-power parity. Uses World Bank 2023 figures for both countries, with strict comparisons on unrounded data. Statistical reporting territories may include overseas territory.",
+      "rule": {
+        "kind": "comparison",
+        "metric": "gdpUsd",
+        "year": 2023,
+        "operator": "greater",
+        "referenceId": "austria"
+      }
+    },
+    {
+      "id": "people-above-japan",
+      "label": "More people than Japan",
+      "definition": "Total resident population, not the population of the capital. Uses World Bank 2023 figures for both countries, with strict comparisons on unrounded data. Statistical reporting territories may include overseas territory.",
+      "rule": {
+        "kind": "comparison",
+        "metric": "population",
+        "year": 2023,
+        "operator": "greater",
+        "referenceId": "japan"
+      }
+    },
+    {
+      "id": "people-below-australia",
+      "label": "Fewer people than Australia",
+      "definition": "Total resident population, not population density. Uses World Bank 2023 figures for both countries, with strict comparisons on unrounded data. Statistical reporting territories may include overseas territory.",
+      "rule": {
+        "kind": "comparison",
+        "metric": "population",
+        "year": 2023,
+        "operator": "less",
+        "referenceId": "australia"
+      }
+    },
+    {
+      "id": "area-below-japan",
+      "label": "Smaller than Japan",
+      "definition": "Surface area including inland water, measured in square kilometres. Uses World Bank 2023 figures for both countries, with strict comparisons on unrounded data. Statistical reporting territories may include overseas territory.",
+      "rule": {
+        "kind": "comparison",
+        "metric": "surfaceAreaKm2",
+        "year": 2023,
+        "operator": "less",
+        "referenceId": "japan"
+      }
+    },
+    {
+      "id": "area-above-india",
+      "label": "Larger than India",
+      "definition": "Surface area including inland water, measured in square kilometres. Uses World Bank 2023 figures for both countries, with strict comparisons on unrounded data. Statistical reporting territories may include overseas territory.",
+      "rule": {
+        "kind": "comparison",
+        "metric": "surfaceAreaKm2",
+        "year": 2023,
+        "operator": "greater",
+        "referenceId": "india"
+      }
+    },
+    {
+      "id": "people-above-germany",
+      "label": "More people than Germany",
+      "definition": "Total resident population. Uses World Bank 2023 figures for both countries, with strict comparisons on unrounded data. Statistical reporting territories may include overseas territory.",
+      "rule": {
+        "kind": "comparison",
+        "metric": "population",
+        "year": 2023,
+        "operator": "greater",
+        "referenceId": "germany"
+      }
+    },
+    {
+      "id": "gdp-person-above-portugal",
+      "label": "GDP per person above Portugal’s",
+      "definition": "Nominal GDP divided by population, in current US dollars. This is an economic average, not personal income. Uses World Bank 2023 figures for both countries, with strict comparisons on unrounded data. Statistical reporting territories may include overseas territory.",
+      "rule": {
+        "kind": "comparison",
+        "metric": "gdpPerPerson",
+        "year": 2023,
+        "operator": "greater",
+        "referenceId": "portugal"
+      }
+    },
+    {
+      "id": "denser-than-germany",
+      "label": "More densely populated than Germany",
+      "definition": "Population divided by total surface area, including inland water. This differs from measures that use land area only. Uses World Bank 2023 figures for both countries, with strict comparisons on unrounded data. Statistical reporting territories may include overseas territory.",
+      "rule": {
+        "kind": "comparison",
+        "metric": "density",
+        "year": 2023,
+        "operator": "greater",
+        "referenceId": "germany"
+      }
+    },
+    {
+      "id": "capital-near-cairo",
+      "label": "Capital within 2,000 miles of Cairo",
+      "definition": "The fixed capital point is no more than 2,000 statute miles from Cairo, measured along a great circle on a spherical Earth (mean radius 3,958.7613 miles). This is city-to-city distance, not distance from the nearest border. Answers use unrounded distances. Capital points follow the demo’s 2023 convention, using Pretoria for South Africa and Jakarta for Indonesia.",
+      "rule": {
+        "kind": "distance",
+        "placeId": "cairo",
+        "maxMiles": 2000
+      }
+    },
+    {
+      "id": "capital-near-paris",
+      "label": "Capital within 1,500 miles of Paris",
+      "definition": "The fixed capital point is no more than 1,500 statute miles from Paris, measured along a great circle on a spherical Earth (mean radius 3,958.7613 miles). This is city-to-city distance, not distance from the nearest border. Answers use unrounded distances. Capital points follow the demo’s 2023 convention, using Pretoria for South Africa and Jakarta for Indonesia.",
+      "rule": {
+        "kind": "distance",
+        "placeId": "paris",
+        "maxMiles": 1500
+      }
+    },
+    {
+      "id": "capital-near-tokyo",
+      "label": "Capital within 3,500 miles of Tokyo",
+      "definition": "The fixed capital point is no more than 3,500 statute miles from Tokyo, measured along a great circle on a spherical Earth (mean radius 3,958.7613 miles). This is city-to-city distance, not distance from the nearest border. Answers use unrounded distances. Capital points follow the demo’s 2023 convention, using Pretoria for South Africa and Jakarta for Indonesia.",
+      "rule": {
+        "kind": "distance",
+        "placeId": "tokyo",
+        "maxMiles": 3500
+      }
+    },
+    {
+      "id": "closer-cairo-than-paris",
+      "label": "Capital closer to Cairo than Paris",
+      "definition": "Compare great-circle distances from the fixed capital point to Cairo and Paris. Cairo must be strictly closer; ties do not qualify. Uses the demo’s 2023 capital convention, with Pretoria for South Africa and Jakarta for Indonesia.",
+      "rule": {
+        "kind": "closer",
+        "firstPlaceId": "cairo",
+        "secondPlaceId": "paris"
+      }
+    },
+    {
+      "id": "closer-tokyo-than-paris",
+      "label": "Capital closer to Tokyo than Paris",
+      "definition": "Compare great-circle distances from the fixed capital point to Tokyo and Paris. Tokyo must be strictly closer; ties do not qualify. Uses the demo’s 2023 capital convention, with Pretoria for South Africa and Jakarta for Indonesia.",
+      "rule": {
+        "kind": "closer",
+        "firstPlaceId": "tokyo",
+        "secondPlaceId": "paris"
+      }
+    },
+    {
+      "id": "summer-host",
+      "label": "Has hosted the Summer Olympics",
+      "definition": "Had a main host city for a Summer Olympic Games edition from 1896 through 2024 inclusive. Excludes cancelled editions, Youth Games, bids and satellite venues. Tokyo’s 2020 edition counts although held in 2021. West German hosts count for Germany.",
+      "rule": {
+        "kind": "event",
+        "collectionId": "summer-olympics",
+        "fromYear": 1896,
+        "toYear": 2024
+      }
+    },
+    {
+      "id": "winter-host",
+      "label": "Has hosted the Winter Olympics",
+      "definition": "Had a main host city for a Winter Olympic Games edition from 1924 through 2024 inclusive. Excludes cancelled editions, Youth Games, bids and satellite venues. Later editions are outside this fixed snapshot.",
+      "rule": {
+        "kind": "event",
+        "collectionId": "winter-olympics",
+        "fromYear": 1924,
+        "toYear": 2024
+      }
+    },
+    {
+      "id": "world-cup-winner",
+      "label": "Has won the men’s football World Cup",
+      "definition": "Won the senior men’s FIFA World Cup at least once from 1930 through 2022 inclusive. West Germany’s titles count for Germany. Women’s, youth and club competitions are separate events.",
+      "rule": {
+        "kind": "event",
+        "collectionId": "world-cup",
+        "fromYear": 1930,
+        "toYear": 2022
+      }
+    },
+    {
+      "id": "mediterranean-diet",
+      "label": "UNESCO Mediterranean diet heritage",
+      "definition": "Is a named participant in UNESCO’s shared Mediterranean diet inscription by the end of 2024. This is a specific cultural heritage record, not a judgement about national eating habits or whether the country borders the Mediterranean.",
+      "rule": {
+        "kind": "event",
+        "collectionId": "mediterranean-diet",
+        "fromYear": 2010,
+        "toYear": 2024
+      }
+    },
+    {
+      "id": "autocracy-1980",
+      "label": "Autocratic rule in 1980",
+      "definition": "Classified as a closed or electoral autocracy in 1980 by V-Dem’s Regimes of the World (v16), as processed by Our World in Data. This is a classification of political institutions, not whether a particular leader is called a dictator. Historical country units follow the dataset; missing records remain unknown.",
+      "rule": {
+        "kind": "regime",
+        "year": 1980,
+        "categories": [
+          0,
+          1
+        ]
+      }
     }
   ],
   "entities": [
@@ -132,59 +394,132 @@
         "africa": {
           "value": false,
           "explanation": "Brazil does not have land in Africa within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "equator": {
           "value": true,
           "explanation": "Brazil spans the equator in South America and has a long Atlantic coast.",
-          "sourceIds": ["equator-guide", "world-map"]
+          "sourceIds": [
+            "equator-guide",
+            "world-map"
+          ]
         },
         "landlocked": {
           "value": false,
           "explanation": "Brazil spans the equator in South America and has a long Atlantic coast.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "portuguese": {
           "value": true,
           "explanation": "Portuguese is an official national language of Brazil.",
-          "sourceIds": ["brazil-language"]
+          "sourceIds": [
+            "brazil-language"
+          ]
         },
         "left": {
           "value": false,
           "explanation": "Normal road traffic in Brazil keeps to the right.",
-          "sourceIds": ["driving"]
+          "sourceIds": [
+            "driving"
+          ]
         },
         "south": {
           "value": true,
           "explanation": "Brazil spans the equator in South America and has a long Atlantic coast.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "europe": {
           "value": false,
           "explanation": "Brazil does not have land in Europe within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "euro": {
           "value": false,
           "explanation": "Brazil does not use the euro as its official national currency.",
-          "sourceIds": ["euro-area"]
+          "sourceIds": [
+            "euro-area"
+          ]
         },
         "asia": {
           "value": false,
           "explanation": "Brazil does not have land in Asia within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "atlantic": {
           "value": true,
           "explanation": "Brazil spans the equator in South America and has a long Atlantic coast.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "mediterranean": {
           "value": false,
           "explanation": "Brazil spans the equator in South America and has a long Atlantic coast.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         }
-      }
+      },
+      "statistics": {
+        "population": {
+          "value": 211140729,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 2191131765684.63,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 8510420,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Brasília",
+        "latitude": -15.781394,
+        "longitude": -47.917998,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 1,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 2,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
     },
     {
       "id": "portugal",
@@ -195,59 +530,132 @@
         "africa": {
           "value": false,
           "explanation": "Portugal does not have land in Africa within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "equator": {
           "value": false,
           "explanation": "Portugal is in Europe, north of the equator, and its mainland coast faces the Atlantic, not the Mediterranean.",
-          "sourceIds": ["equator-guide", "world-map"]
+          "sourceIds": [
+            "equator-guide",
+            "world-map"
+          ]
         },
         "landlocked": {
           "value": false,
           "explanation": "Portugal is in Europe, north of the equator, and its mainland coast faces the Atlantic, not the Mediterranean.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "portuguese": {
           "value": true,
           "explanation": "Portuguese is an official national language of Portugal.",
-          "sourceIds": ["portugal-profile"]
+          "sourceIds": [
+            "portugal-profile"
+          ]
         },
         "left": {
           "value": false,
           "explanation": "Normal road traffic in Portugal keeps to the right.",
-          "sourceIds": ["driving"]
+          "sourceIds": [
+            "driving"
+          ]
         },
         "south": {
           "value": false,
           "explanation": "Portugal is in Europe, north of the equator, and its mainland coast faces the Atlantic, not the Mediterranean.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "europe": {
           "value": true,
           "explanation": "Portugal has land in Europe within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "euro": {
           "value": true,
           "explanation": "Portugal uses the euro as its official national currency.",
-          "sourceIds": ["euro-area"]
+          "sourceIds": [
+            "euro-area"
+          ]
         },
         "asia": {
           "value": false,
           "explanation": "Portugal does not have land in Asia within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "atlantic": {
           "value": true,
           "explanation": "Portugal is in Europe, north of the equator, and its mainland coast faces the Atlantic, not the Mediterranean.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "mediterranean": {
           "value": false,
           "explanation": "Portugal is in Europe, north of the equator, and its mainland coast faces the Atlantic, not the Mediterranean.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         }
-      }
+      },
+      "statistics": {
+        "population": {
+          "value": 10578174,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 292323800948.839,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 92230,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Lisbon",
+        "latitude": 38.724669,
+        "longitude": -9.146812,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 3,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 2,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
     },
     {
       "id": "kenya",
@@ -258,59 +666,135 @@
         "africa": {
           "value": true,
           "explanation": "Kenya has land in Africa within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "equator": {
           "value": true,
           "explanation": "Kenya straddles the equator in East Africa and has an Indian Ocean coast.",
-          "sourceIds": ["equator-guide", "world-map", "kenya-geography"]
+          "sourceIds": [
+            "equator-guide",
+            "world-map",
+            "kenya-geography"
+          ]
         },
         "landlocked": {
           "value": false,
           "explanation": "Kenya straddles the equator in East Africa and has an Indian Ocean coast.",
-          "sourceIds": ["world-map", "kenya-geography"]
+          "sourceIds": [
+            "world-map",
+            "kenya-geography"
+          ]
         },
         "portuguese": {
           "value": false,
           "explanation": "Portuguese is not an official national language of Kenya.",
-          "sourceIds": ["portuguese-languages"]
+          "sourceIds": [
+            "portuguese-languages"
+          ]
         },
         "left": {
           "value": true,
           "explanation": "Normal road traffic in Kenya keeps to the left.",
-          "sourceIds": ["driving"]
+          "sourceIds": [
+            "driving"
+          ]
         },
         "south": {
           "value": true,
           "explanation": "Kenya straddles the equator in East Africa and has an Indian Ocean coast.",
-          "sourceIds": ["world-map", "kenya-geography"]
+          "sourceIds": [
+            "world-map",
+            "kenya-geography"
+          ]
         },
         "europe": {
           "value": false,
           "explanation": "Kenya does not have land in Europe within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "euro": {
           "value": false,
           "explanation": "Kenya does not use the euro as its official national currency.",
-          "sourceIds": ["euro-area"]
+          "sourceIds": [
+            "euro-area"
+          ]
         },
         "asia": {
           "value": false,
           "explanation": "Kenya does not have land in Asia within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "atlantic": {
           "value": false,
           "explanation": "Kenya straddles the equator in East Africa and has an Indian Ocean coast.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "mediterranean": {
           "value": false,
           "explanation": "Kenya straddles the equator in East Africa and has an Indian Ocean coast.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         }
-      }
+      },
+      "statistics": {
+        "population": {
+          "value": 55339003,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 107500884685.013,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 591969,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Nairobi",
+        "latitude": -1.281401,
+        "longitude": 36.814711,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 1,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 2,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
     },
     {
       "id": "south-africa",
@@ -321,59 +805,132 @@
         "africa": {
           "value": true,
           "explanation": "South Africa has land in Africa within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "equator": {
           "value": false,
           "explanation": "South Africa is entirely south of the equator, with Atlantic and Indian Ocean coasts.",
-          "sourceIds": ["equator-guide", "world-map"]
+          "sourceIds": [
+            "equator-guide",
+            "world-map"
+          ]
         },
         "landlocked": {
           "value": false,
           "explanation": "South Africa is entirely south of the equator, with Atlantic and Indian Ocean coasts.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "portuguese": {
           "value": false,
           "explanation": "Portuguese is not an official national language of South Africa.",
-          "sourceIds": ["portuguese-languages"]
+          "sourceIds": [
+            "portuguese-languages"
+          ]
         },
         "left": {
           "value": true,
           "explanation": "Normal road traffic in South Africa keeps to the left.",
-          "sourceIds": ["driving"]
+          "sourceIds": [
+            "driving"
+          ]
         },
         "south": {
           "value": true,
           "explanation": "South Africa is entirely south of the equator, with Atlantic and Indian Ocean coasts.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "europe": {
           "value": false,
           "explanation": "South Africa does not have land in Europe within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "euro": {
           "value": false,
           "explanation": "South Africa does not use the euro as its official national currency.",
-          "sourceIds": ["euro-area"]
+          "sourceIds": [
+            "euro-area"
+          ]
         },
         "asia": {
           "value": false,
           "explanation": "South Africa does not have land in Asia within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "atlantic": {
           "value": true,
           "explanation": "South Africa is entirely south of the equator, with Atlantic and Indian Ocean coasts.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "mediterranean": {
           "value": false,
           "explanation": "South Africa is entirely south of the equator, with Atlantic and Indian Ocean coasts.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         }
-      }
+      },
+      "statistics": {
+        "population": {
+          "value": 63212384,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 381440724491.232,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 1219090,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Pretoria",
+        "latitude": -25.704975,
+        "longitude": 28.227483,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 1,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 2,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
     },
     {
       "id": "japan",
@@ -384,59 +941,132 @@
         "africa": {
           "value": false,
           "explanation": "Japan does not have land in Africa within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "equator": {
           "value": false,
           "explanation": "Japan is an island country in East Asia, north of the equator, with Pacific coasts.",
-          "sourceIds": ["equator-guide", "world-map"]
+          "sourceIds": [
+            "equator-guide",
+            "world-map"
+          ]
         },
         "landlocked": {
           "value": false,
           "explanation": "Japan is an island country in East Asia, north of the equator, with Pacific coasts.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "portuguese": {
           "value": false,
           "explanation": "Portuguese is not an official national language of Japan.",
-          "sourceIds": ["portuguese-languages"]
+          "sourceIds": [
+            "portuguese-languages"
+          ]
         },
         "left": {
           "value": true,
           "explanation": "Normal road traffic in Japan keeps to the left.",
-          "sourceIds": ["driving"]
+          "sourceIds": [
+            "driving"
+          ]
         },
         "south": {
           "value": false,
           "explanation": "Japan is an island country in East Asia, north of the equator, with Pacific coasts.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "europe": {
           "value": false,
           "explanation": "Japan does not have land in Europe within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "euro": {
           "value": false,
           "explanation": "Japan does not use the euro as its official national currency.",
-          "sourceIds": ["euro-area"]
+          "sourceIds": [
+            "euro-area"
+          ]
         },
         "asia": {
           "value": true,
           "explanation": "Japan has land in Asia within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "atlantic": {
           "value": false,
           "explanation": "Japan is an island country in East Asia, north of the equator, with Pacific coasts.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "mediterranean": {
           "value": false,
           "explanation": "Japan is an island country in East Asia, north of the equator, with Pacific coasts.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         }
-      }
+      },
+      "statistics": {
+        "population": {
+          "value": 124516650,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 4384854269961.93,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 377969.3,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Tokyo",
+        "latitude": 35.686963,
+        "longitude": 139.749462,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 3,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 3,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
     },
     {
       "id": "egypt",
@@ -447,59 +1077,132 @@
         "africa": {
           "value": true,
           "explanation": "Egypt has land in both Africa and Asia: most of the country is in Africa, while the Sinai Peninsula is in Asia.",
-          "sourceIds": ["egypt-geography"]
+          "sourceIds": [
+            "egypt-geography"
+          ]
         },
         "equator": {
           "value": false,
           "explanation": "Egypt is classified in Africa by UN M49. It is north of the equator and has Mediterranean and Red Sea coasts; Sinai is geographically in Asia.",
-          "sourceIds": ["equator-guide", "world-map"]
+          "sourceIds": [
+            "equator-guide",
+            "world-map"
+          ]
         },
         "landlocked": {
           "value": false,
           "explanation": "Egypt is classified in Africa by UN M49. It is north of the equator and has Mediterranean and Red Sea coasts; Sinai is geographically in Asia.",
-          "sourceIds": ["world-map", "egypt-geography"]
+          "sourceIds": [
+            "world-map",
+            "egypt-geography"
+          ]
         },
         "portuguese": {
           "value": false,
           "explanation": "Portuguese is not an official national language of Egypt.",
-          "sourceIds": ["portuguese-languages"]
+          "sourceIds": [
+            "portuguese-languages"
+          ]
         },
         "left": {
           "value": false,
           "explanation": "Normal road traffic in Egypt keeps to the right.",
-          "sourceIds": ["driving"]
+          "sourceIds": [
+            "driving"
+          ]
         },
         "south": {
           "value": false,
           "explanation": "Egypt is classified in Africa by UN M49. It is north of the equator and has Mediterranean and Red Sea coasts; Sinai is geographically in Asia.",
-          "sourceIds": ["world-map", "egypt-geography"]
+          "sourceIds": [
+            "world-map",
+            "egypt-geography"
+          ]
         },
         "europe": {
           "value": false,
           "explanation": "Egypt has land in both Africa and Asia: most of the country is in Africa, while the Sinai Peninsula is in Asia.",
-          "sourceIds": ["egypt-geography"]
+          "sourceIds": [
+            "egypt-geography"
+          ]
         },
         "euro": {
           "value": false,
           "explanation": "Egypt does not use the euro as its official national currency.",
-          "sourceIds": ["euro-area"]
+          "sourceIds": [
+            "euro-area"
+          ]
         },
         "asia": {
           "value": true,
           "explanation": "Egypt has land in both Africa and Asia: most of the country is in Africa, while the Sinai Peninsula is in Asia.",
-          "sourceIds": ["egypt-geography"]
+          "sourceIds": [
+            "egypt-geography"
+          ]
         },
         "atlantic": {
           "value": false,
           "explanation": "Egypt is classified in Africa by UN M49. It is north of the equator and has Mediterranean and Red Sea coasts; Sinai is geographically in Asia.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "mediterranean": {
           "value": true,
           "explanation": "Egypt is classified in Africa by UN M49. It is north of the equator and has Mediterranean and Red Sea coasts; Sinai is geographically in Asia.",
-          "sourceIds": ["world-map", "egypt-geography"]
+          "sourceIds": [
+            "world-map",
+            "egypt-geography"
+          ]
         }
-      }
+      },
+      "statistics": {
+        "population": {
+          "value": 114535772,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 395926071447.591,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 1001450,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Cairo",
+        "latitude": 30.051906,
+        "longitude": 31.248022,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 1,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 1,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
     },
     {
       "id": "austria",
@@ -510,59 +1213,133 @@
         "africa": {
           "value": false,
           "explanation": "Austria does not have land in Africa within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "equator": {
           "value": false,
           "explanation": "Austria is landlocked in Central Europe, north of the equator.",
-          "sourceIds": ["equator-guide", "world-map"]
+          "sourceIds": [
+            "equator-guide",
+            "world-map"
+          ]
         },
         "landlocked": {
           "value": true,
           "explanation": "Austria is landlocked in Central Europe, north of the equator.",
-          "sourceIds": ["world-map", "austria-geography"]
+          "sourceIds": [
+            "world-map",
+            "austria-geography"
+          ]
         },
         "portuguese": {
           "value": false,
           "explanation": "Portuguese is not an official national language of Austria.",
-          "sourceIds": ["portuguese-languages"]
+          "sourceIds": [
+            "portuguese-languages"
+          ]
         },
         "left": {
           "value": false,
           "explanation": "Normal road traffic in Austria keeps to the right.",
-          "sourceIds": ["driving"]
+          "sourceIds": [
+            "driving"
+          ]
         },
         "south": {
           "value": false,
           "explanation": "Austria is landlocked in Central Europe, north of the equator.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "europe": {
           "value": true,
           "explanation": "Austria has land in Europe within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "euro": {
           "value": true,
           "explanation": "Austria uses the euro as its official national currency.",
-          "sourceIds": ["euro-area"]
+          "sourceIds": [
+            "euro-area"
+          ]
         },
         "asia": {
           "value": false,
           "explanation": "Austria does not have land in Asia within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "atlantic": {
           "value": false,
           "explanation": "Austria is landlocked in Central Europe, north of the equator.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "mediterranean": {
           "value": false,
           "explanation": "Austria is landlocked in Central Europe, north of the equator.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         }
-      }
+      },
+      "statistics": {
+        "population": {
+          "value": 9131761,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 516670509628.876,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 83879,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Vienna",
+        "latitude": 48.201961,
+        "longitude": 16.364693,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 3,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 3,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
     },
     {
       "id": "indonesia",
@@ -573,59 +1350,132 @@
         "africa": {
           "value": false,
           "explanation": "Indonesia does not have land in Africa within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "equator": {
           "value": true,
           "explanation": "Indonesia is classified in Asia by UN M49. The equator crosses its islands, which have Indian and Pacific Ocean coasts.",
-          "sourceIds": ["equator-guide", "world-map"]
+          "sourceIds": [
+            "equator-guide",
+            "world-map"
+          ]
         },
         "landlocked": {
           "value": false,
           "explanation": "Indonesia is classified in Asia by UN M49. The equator crosses its islands, which have Indian and Pacific Ocean coasts.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "portuguese": {
           "value": false,
           "explanation": "Portuguese is not an official national language of Indonesia.",
-          "sourceIds": ["portuguese-languages"]
+          "sourceIds": [
+            "portuguese-languages"
+          ]
         },
         "left": {
           "value": true,
           "explanation": "Normal road traffic in Indonesia keeps to the left.",
-          "sourceIds": ["driving"]
+          "sourceIds": [
+            "driving"
+          ]
         },
         "south": {
           "value": true,
           "explanation": "Indonesia is classified in Asia by UN M49. The equator crosses its islands, which have Indian and Pacific Ocean coasts.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "europe": {
           "value": false,
           "explanation": "Indonesia does not have land in Europe within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "euro": {
           "value": false,
           "explanation": "Indonesia does not use the euro as its official national currency.",
-          "sourceIds": ["euro-area"]
+          "sourceIds": [
+            "euro-area"
+          ]
         },
         "asia": {
           "value": true,
           "explanation": "Indonesia has land in Asia within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "atlantic": {
           "value": false,
           "explanation": "Indonesia is classified in Asia by UN M49. The equator crosses its islands, which have Indian and Pacific Ocean coasts.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "mediterranean": {
           "value": false,
           "explanation": "Indonesia is classified in Asia by UN M49. The equator crosses its islands, which have Indian and Pacific Ocean coasts.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         }
-      }
+      },
+      "statistics": {
+        "population": {
+          "value": 281190067,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 1371166925749.88,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 1916906.8,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Jakarta",
+        "latitude": -6.172472,
+        "longitude": 106.827492,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 1,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 1,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
     },
     {
       "id": "peru",
@@ -636,59 +1486,132 @@
         "africa": {
           "value": false,
           "explanation": "Peru does not have land in Africa within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "equator": {
           "value": false,
           "explanation": "Peru is south of the equator in South America, with a Pacific coast.",
-          "sourceIds": ["equator-guide", "world-map"]
+          "sourceIds": [
+            "equator-guide",
+            "world-map"
+          ]
         },
         "landlocked": {
           "value": false,
           "explanation": "Peru is south of the equator in South America, with a Pacific coast.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "portuguese": {
           "value": false,
           "explanation": "Portuguese is not an official national language of Peru.",
-          "sourceIds": ["portuguese-languages"]
+          "sourceIds": [
+            "portuguese-languages"
+          ]
         },
         "left": {
           "value": false,
           "explanation": "Normal road traffic in Peru keeps to the right.",
-          "sourceIds": ["driving"]
+          "sourceIds": [
+            "driving"
+          ]
         },
         "south": {
           "value": true,
           "explanation": "Peru is south of the equator in South America, with a Pacific coast.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "europe": {
           "value": false,
           "explanation": "Peru does not have land in Europe within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "euro": {
           "value": false,
           "explanation": "Peru does not use the euro as its official national currency.",
-          "sourceIds": ["euro-area"]
+          "sourceIds": [
+            "euro-area"
+          ]
         },
         "asia": {
           "value": false,
           "explanation": "Peru does not have land in Asia within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "atlantic": {
           "value": false,
           "explanation": "Peru is south of the equator in South America, with a Pacific coast.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "mediterranean": {
           "value": false,
           "explanation": "Peru is south of the equator in South America, with a Pacific coast.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         }
-      }
+      },
+      "statistics": {
+        "population": {
+          "value": 33845617,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 268025009709.319,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 1285215.6,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Lima",
+        "latitude": -12.046067,
+        "longitude": -77.052008,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 1,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 2,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
     },
     {
       "id": "france",
@@ -699,59 +1622,132 @@
         "africa": {
           "value": false,
           "explanation": "France does not have land in Africa within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "equator": {
           "value": false,
           "explanation": "Metropolitan France is north of the equator in Europe, with Atlantic and Mediterranean coasts. Overseas regions are excluded from these geographical requirements.",
-          "sourceIds": ["equator-guide", "world-map"]
+          "sourceIds": [
+            "equator-guide",
+            "world-map"
+          ]
         },
         "landlocked": {
           "value": false,
           "explanation": "Metropolitan France is north of the equator in Europe, with Atlantic and Mediterranean coasts. Overseas regions are excluded from these geographical requirements.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "portuguese": {
           "value": false,
           "explanation": "Portuguese is not an official national language of France.",
-          "sourceIds": ["portuguese-languages"]
+          "sourceIds": [
+            "portuguese-languages"
+          ]
         },
         "left": {
           "value": false,
           "explanation": "Normal road traffic in France keeps to the right.",
-          "sourceIds": ["driving"]
+          "sourceIds": [
+            "driving"
+          ]
         },
         "south": {
           "value": false,
           "explanation": "Metropolitan France is north of the equator in Europe, with Atlantic and Mediterranean coasts. Overseas regions are excluded from these geographical requirements.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "europe": {
           "value": true,
           "explanation": "France has land in Europe within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "euro": {
           "value": true,
           "explanation": "France uses the euro as its official national currency.",
-          "sourceIds": ["euro-area"]
+          "sourceIds": [
+            "euro-area"
+          ]
         },
         "asia": {
           "value": false,
           "explanation": "France does not have land in Asia within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "atlantic": {
           "value": true,
           "explanation": "Metropolitan France is north of the equator in Europe, with Atlantic and Mediterranean coasts. Overseas regions are excluded from these geographical requirements.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "mediterranean": {
           "value": true,
           "explanation": "Metropolitan France is north of the equator in Europe, with Atlantic and Mediterranean coasts. Overseas regions are excluded from these geographical requirements.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         }
-      }
+      },
+      "statistics": {
+        "population": {
+          "value": 68372286,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 3056250648138.29,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 606410,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Paris",
+        "latitude": 48.858092,
+        "longitude": 2.352992,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 3,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 3,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
     },
     {
       "id": "nigeria",
@@ -762,59 +1758,132 @@
         "africa": {
           "value": true,
           "explanation": "Nigeria has land in Africa within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "equator": {
           "value": false,
           "explanation": "Nigeria is in West Africa, north of the equator, with a coast on the Gulf of Guinea in the Atlantic Ocean.",
-          "sourceIds": ["equator-guide", "world-map"]
+          "sourceIds": [
+            "equator-guide",
+            "world-map"
+          ]
         },
         "landlocked": {
           "value": false,
           "explanation": "Nigeria is in West Africa, north of the equator, with a coast on the Gulf of Guinea in the Atlantic Ocean.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "portuguese": {
           "value": false,
           "explanation": "Portuguese is not an official national language of Nigeria.",
-          "sourceIds": ["portuguese-languages"]
+          "sourceIds": [
+            "portuguese-languages"
+          ]
         },
         "left": {
           "value": false,
           "explanation": "Normal road traffic in Nigeria keeps to the right.",
-          "sourceIds": ["driving"]
+          "sourceIds": [
+            "driving"
+          ]
         },
         "south": {
           "value": false,
           "explanation": "Nigeria is in West Africa, north of the equator, with a coast on the Gulf of Guinea in the Atlantic Ocean.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "europe": {
           "value": false,
           "explanation": "Nigeria does not have land in Europe within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "euro": {
           "value": false,
           "explanation": "Nigeria does not use the euro as its official national currency.",
-          "sourceIds": ["euro-area"]
+          "sourceIds": [
+            "euro-area"
+          ]
         },
         "asia": {
           "value": false,
           "explanation": "Nigeria does not have land in Asia within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "atlantic": {
           "value": true,
           "explanation": "Nigeria is in West Africa, north of the equator, with a coast on the Gulf of Guinea in the Atlantic Ocean.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "mediterranean": {
           "value": false,
           "explanation": "Nigeria is in West Africa, north of the equator, with a coast on the Gulf of Guinea in the Atlantic Ocean.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         }
-      }
+      },
+      "statistics": {
+        "population": {
+          "value": 227882945,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 487387801877.803,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 923770,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Abuja",
+        "latitude": 9.05462,
+        "longitude": 7.489505,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 1,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 1,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
     },
     {
       "id": "nepal",
@@ -825,59 +1894,1268 @@
         "africa": {
           "value": false,
           "explanation": "Nepal does not have land in Africa within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "equator": {
           "value": false,
           "explanation": "Nepal is landlocked in South Asia between India and China, north of the equator.",
-          "sourceIds": ["equator-guide", "world-map"]
+          "sourceIds": [
+            "equator-guide",
+            "world-map"
+          ]
         },
         "landlocked": {
           "value": true,
           "explanation": "Nepal is landlocked in South Asia between India and China, north of the equator.",
-          "sourceIds": ["world-map", "nepal-geography"]
+          "sourceIds": [
+            "world-map",
+            "nepal-geography"
+          ]
         },
         "portuguese": {
           "value": false,
           "explanation": "Portuguese is not an official national language of Nepal.",
-          "sourceIds": ["portuguese-languages"]
+          "sourceIds": [
+            "portuguese-languages"
+          ]
         },
         "left": {
           "value": true,
           "explanation": "Normal road traffic in Nepal keeps to the left.",
-          "sourceIds": ["driving"]
+          "sourceIds": [
+            "driving"
+          ]
         },
         "south": {
           "value": false,
           "explanation": "Nepal is landlocked in South Asia between India and China, north of the equator.",
-          "sourceIds": ["world-map", "nepal-geography"]
+          "sourceIds": [
+            "world-map",
+            "nepal-geography"
+          ]
         },
         "europe": {
           "value": false,
           "explanation": "Nepal does not have land in Europe within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "euro": {
           "value": false,
           "explanation": "Nepal does not use the euro as its official national currency.",
-          "sourceIds": ["euro-area"]
+          "sourceIds": [
+            "euro-area"
+          ]
         },
         "asia": {
           "value": true,
           "explanation": "Nepal has land in Asia within its primary geographical territory.",
-          "sourceIds": ["world-map", "un-regions"]
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
         },
         "atlantic": {
           "value": false,
           "explanation": "Nepal is landlocked in South Asia between India and China, north of the equator.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         },
         "mediterranean": {
           "value": false,
           "explanation": "Nepal is landlocked in South Asia between India and China, north of the equator.",
-          "sourceIds": ["world-map"]
+          "sourceIds": [
+            "world-map"
+          ]
         }
-      }
+      },
+      "statistics": {
+        "population": {
+          "value": 29694614,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 41049329851.0546,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 147181,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Kathmandu",
+        "latitude": 27.718638,
+        "longitude": 85.314696,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 0,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 2,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "argentina",
+      "name": "Argentina",
+      "symbol": "🇦🇷",
+      "clue": "South America",
+      "facts": {},
+      "statistics": {
+        "population": {
+          "value": 45538401,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 649461687959.174,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 2780400,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Buenos Aires",
+        "latitude": -34.610715,
+        "longitude": -58.432513,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 0,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 2,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "chile",
+      "name": "Chile",
+      "symbol": "🇨🇱",
+      "clue": "South America",
+      "facts": {},
+      "statistics": {
+        "population": {
+          "value": 19658835,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 335802745366.38,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 757244.88,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Santiago",
+        "latitude": -33.440205,
+        "longitude": -70.650504,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 0,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 3,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "italy",
+      "name": "Italy",
+      "symbol": "🇮🇹",
+      "clue": "Europe",
+      "facts": {},
+      "statistics": {
+        "population": {
+          "value": 58984216,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 2316882296366.32,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 302070,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Rome",
+        "latitude": 41.897902,
+        "longitude": 12.481313,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 3,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 3,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "greece",
+      "name": "Greece",
+      "symbol": "🇬🇷",
+      "clue": "Europe",
+      "facts": {},
+      "statistics": {
+        "population": {
+          "value": 10407351,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 242946187738.269,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 131960,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Athens",
+        "latitude": 37.985272,
+        "longitude": 23.731375,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 3,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 2,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "spain",
+      "name": "Spain",
+      "symbol": "🇪🇸",
+      "clue": "Europe",
+      "facts": {},
+      "statistics": {
+        "population": {
+          "value": 48352528,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 1619481980719.64,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 505975.98,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Madrid",
+        "latitude": 40.401972,
+        "longitude": -3.685297,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 2,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 3,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "turkey",
+      "name": "Turkey",
+      "symbol": "🇹🇷",
+      "clue": "Europe and Asia",
+      "facts": {},
+      "statistics": {
+        "population": {
+          "value": 85325965,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 1141242864657.45,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 785350,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Ankara",
+        "latitude": 39.929184,
+        "longitude": 32.862446,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 1,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 1,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "germany",
+      "name": "Germany",
+      "symbol": "🇩🇪",
+      "clue": "Europe",
+      "facts": {},
+      "statistics": {
+        "population": {
+          "value": 83287273,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 4562207532490.28,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 357680,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Berlin",
+        "latitude": 52.523764,
+        "longitude": 13.399603,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 2024,
+          "category": 3,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "australia",
+      "name": "Australia",
+      "symbol": "🇦🇺",
+      "clue": "Oceania",
+      "facts": {},
+      "statistics": {
+        "population": {
+          "value": 26659922,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 1734451264655.6,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 7741220,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Canberra",
+        "latitude": -35.283029,
+        "longitude": 149.129026,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 3,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 3,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "mexico",
+      "name": "Mexico",
+      "symbol": "🇲🇽",
+      "clue": "North America",
+      "facts": {},
+      "statistics": {
+        "population": {
+          "value": 129739759,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 1794410347718.25,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 1957193.9,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Mexico City",
+        "latitude": 19.444388,
+        "longitude": -99.132934,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 1,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 1,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "south-korea",
+      "name": "South Korea",
+      "symbol": "🇰🇷",
+      "clue": "Asia",
+      "facts": {},
+      "statistics": {
+        "population": {
+          "value": 51712619,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 1844800934391.54,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 100450,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Seoul",
+        "latitude": 37.568295,
+        "longitude": 126.997785,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 1,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 2,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "thailand",
+      "name": "Thailand",
+      "symbol": "🇹🇭",
+      "clue": "Asia",
+      "facts": {},
+      "statistics": {
+        "population": {
+          "value": 71702435,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 517013369475.121,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 513115.021,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Bangkok",
+        "latitude": 13.751945,
+        "longitude": 100.514699,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 1,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 1,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "india",
+      "name": "India",
+      "symbol": "🇮🇳",
+      "clue": "Asia",
+      "facts": {},
+      "statistics": {
+        "population": {
+          "value": 1438069596,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 3500906030644.76,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 3287263,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "New Delhi",
+        "latitude": 28.600023,
+        "longitude": 77.19998,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 2,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 1,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "netherlands",
+      "name": "Netherlands",
+      "symbol": "🇳🇱",
+      "clue": "Europe",
+      "facts": {},
+      "statistics": {
+        "population": {
+          "value": 17877117,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 1135475867551,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 41540,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Amsterdam",
+        "latitude": 52.351914,
+        "longitude": 4.914694,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "regimes": [
+        {
+          "year": 1980,
+          "category": 3,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        },
+        {
+          "year": 2024,
+          "category": 3,
+          "sourceIds": [
+            "regimes-owid"
+          ]
+        }
+      ]
+    }
+  ],
+  "places": [
+    {
+      "id": "tokyo",
+      "name": "Tokyo",
+      "latitude": 35.686963,
+      "longitude": 139.749462,
+      "sourceIds": [
+        "natural-earth-capitals"
+      ]
+    },
+    {
+      "id": "cairo",
+      "name": "Cairo",
+      "latitude": 30.051906,
+      "longitude": 31.248022,
+      "sourceIds": [
+        "natural-earth-capitals"
+      ]
+    },
+    {
+      "id": "paris",
+      "name": "Paris",
+      "latitude": 48.858092,
+      "longitude": 2.352992,
+      "sourceIds": [
+        "natural-earth-capitals"
+      ]
+    }
+  ],
+  "eventCollections": [
+    {
+      "id": "summer-olympics",
+      "name": "Summer Olympic main-host cities",
+      "fromYear": 1896,
+      "toYear": 2024,
+      "reviewedEntityIds": [
+        "brazil",
+        "portugal",
+        "kenya",
+        "south-africa",
+        "japan",
+        "egypt",
+        "austria",
+        "indonesia",
+        "peru",
+        "france",
+        "nigeria",
+        "nepal",
+        "argentina",
+        "chile",
+        "italy",
+        "greece",
+        "spain",
+        "turkey",
+        "germany",
+        "australia",
+        "mexico",
+        "south-korea",
+        "thailand",
+        "india",
+        "netherlands"
+      ],
+      "sourceIds": [
+        "olympic-hosts"
+      ],
+      "events": [
+        {
+          "entityId": "brazil",
+          "year": 2016,
+          "description": "Rio de Janeiro hosted the Summer Olympics"
+        },
+        {
+          "entityId": "france",
+          "year": 1900,
+          "description": "Paris hosted the Summer Olympics"
+        },
+        {
+          "entityId": "france",
+          "year": 1924,
+          "description": "Paris hosted the Summer Olympics"
+        },
+        {
+          "entityId": "france",
+          "year": 2024,
+          "description": "Paris hosted the Summer Olympics"
+        },
+        {
+          "entityId": "japan",
+          "year": 1964,
+          "description": "Tokyo hosted the Summer Olympics"
+        },
+        {
+          "entityId": "japan",
+          "year": 2020,
+          "description": "Tokyo hosted the 2020 Summer Olympics, held in 2021"
+        },
+        {
+          "entityId": "germany",
+          "year": 1936,
+          "description": "Berlin hosted the Summer Olympics"
+        },
+        {
+          "entityId": "germany",
+          "year": 1972,
+          "description": "Munich hosted the Summer Olympics in West Germany"
+        },
+        {
+          "entityId": "italy",
+          "year": 1960,
+          "description": "Rome hosted the Summer Olympics"
+        },
+        {
+          "entityId": "greece",
+          "year": 1896,
+          "description": "Athens hosted the Summer Olympics"
+        },
+        {
+          "entityId": "greece",
+          "year": 2004,
+          "description": "Athens hosted the Summer Olympics"
+        },
+        {
+          "entityId": "spain",
+          "year": 1992,
+          "description": "Barcelona hosted the Summer Olympics"
+        },
+        {
+          "entityId": "australia",
+          "year": 1956,
+          "description": "Melbourne hosted the Summer Olympics"
+        },
+        {
+          "entityId": "australia",
+          "year": 2000,
+          "description": "Sydney hosted the Summer Olympics"
+        },
+        {
+          "entityId": "mexico",
+          "year": 1968,
+          "description": "Mexico City hosted the Summer Olympics"
+        },
+        {
+          "entityId": "south-korea",
+          "year": 1988,
+          "description": "Seoul hosted the Summer Olympics"
+        },
+        {
+          "entityId": "netherlands",
+          "year": 1928,
+          "description": "Amsterdam hosted the Summer Olympics"
+        }
+      ]
+    },
+    {
+      "id": "winter-olympics",
+      "name": "Winter Olympic main-host cities",
+      "fromYear": 1924,
+      "toYear": 2024,
+      "reviewedEntityIds": [
+        "brazil",
+        "portugal",
+        "kenya",
+        "south-africa",
+        "japan",
+        "egypt",
+        "austria",
+        "indonesia",
+        "peru",
+        "france",
+        "nigeria",
+        "nepal",
+        "argentina",
+        "chile",
+        "italy",
+        "greece",
+        "spain",
+        "turkey",
+        "germany",
+        "australia",
+        "mexico",
+        "south-korea",
+        "thailand",
+        "india",
+        "netherlands"
+      ],
+      "sourceIds": [
+        "olympic-hosts"
+      ],
+      "events": [
+        {
+          "entityId": "austria",
+          "year": 1964,
+          "description": "Innsbruck hosted the Winter Olympics"
+        },
+        {
+          "entityId": "austria",
+          "year": 1976,
+          "description": "Innsbruck hosted the Winter Olympics"
+        },
+        {
+          "entityId": "france",
+          "year": 1924,
+          "description": "Chamonix hosted the Winter Olympics"
+        },
+        {
+          "entityId": "france",
+          "year": 1968,
+          "description": "Grenoble hosted the Winter Olympics"
+        },
+        {
+          "entityId": "france",
+          "year": 1992,
+          "description": "Albertville hosted the Winter Olympics"
+        },
+        {
+          "entityId": "italy",
+          "year": 1956,
+          "description": "Cortina d’Ampezzo hosted the Winter Olympics"
+        },
+        {
+          "entityId": "italy",
+          "year": 2006,
+          "description": "Turin hosted the Winter Olympics"
+        },
+        {
+          "entityId": "germany",
+          "year": 1936,
+          "description": "Garmisch-Partenkirchen hosted the Winter Olympics"
+        },
+        {
+          "entityId": "japan",
+          "year": 1972,
+          "description": "Sapporo hosted the Winter Olympics"
+        },
+        {
+          "entityId": "japan",
+          "year": 1998,
+          "description": "Nagano hosted the Winter Olympics"
+        },
+        {
+          "entityId": "south-korea",
+          "year": 2018,
+          "description": "PyeongChang hosted the Winter Olympics"
+        }
+      ]
+    },
+    {
+      "id": "world-cup",
+      "name": "men’s FIFA World Cup champions",
+      "fromYear": 1930,
+      "toYear": 2022,
+      "reviewedEntityIds": [
+        "brazil",
+        "portugal",
+        "kenya",
+        "south-africa",
+        "japan",
+        "egypt",
+        "austria",
+        "indonesia",
+        "peru",
+        "france",
+        "nigeria",
+        "nepal",
+        "argentina",
+        "chile",
+        "italy",
+        "greece",
+        "spain",
+        "turkey",
+        "germany",
+        "australia",
+        "mexico",
+        "south-korea",
+        "thailand",
+        "india",
+        "netherlands"
+      ],
+      "sourceIds": [
+        "fifa-winners",
+        "fifa-early-winners"
+      ],
+      "events": [
+        {
+          "entityId": "brazil",
+          "year": 1958,
+          "description": "Won the men’s FIFA World Cup"
+        },
+        {
+          "entityId": "brazil",
+          "year": 1962,
+          "description": "Won the men’s FIFA World Cup"
+        },
+        {
+          "entityId": "brazil",
+          "year": 1970,
+          "description": "Won the men’s FIFA World Cup"
+        },
+        {
+          "entityId": "brazil",
+          "year": 1994,
+          "description": "Won the men’s FIFA World Cup"
+        },
+        {
+          "entityId": "brazil",
+          "year": 2002,
+          "description": "Won the men’s FIFA World Cup"
+        },
+        {
+          "entityId": "italy",
+          "year": 1934,
+          "description": "Won the men’s FIFA World Cup"
+        },
+        {
+          "entityId": "italy",
+          "year": 1938,
+          "description": "Won the men’s FIFA World Cup"
+        },
+        {
+          "entityId": "italy",
+          "year": 1982,
+          "description": "Won the men’s FIFA World Cup"
+        },
+        {
+          "entityId": "italy",
+          "year": 2006,
+          "description": "Won the men’s FIFA World Cup"
+        },
+        {
+          "entityId": "germany",
+          "year": 1954,
+          "description": "Won the men’s FIFA World Cup as West Germany"
+        },
+        {
+          "entityId": "germany",
+          "year": 1974,
+          "description": "Won the men’s FIFA World Cup as West Germany"
+        },
+        {
+          "entityId": "germany",
+          "year": 1990,
+          "description": "Won the men’s FIFA World Cup as West Germany"
+        },
+        {
+          "entityId": "germany",
+          "year": 2014,
+          "description": "Won the men’s FIFA World Cup"
+        },
+        {
+          "entityId": "argentina",
+          "year": 1978,
+          "description": "Won the men’s FIFA World Cup"
+        },
+        {
+          "entityId": "argentina",
+          "year": 1986,
+          "description": "Won the men’s FIFA World Cup"
+        },
+        {
+          "entityId": "argentina",
+          "year": 2022,
+          "description": "Won the men’s FIFA World Cup"
+        },
+        {
+          "entityId": "france",
+          "year": 1998,
+          "description": "Won the men’s FIFA World Cup"
+        },
+        {
+          "entityId": "france",
+          "year": 2018,
+          "description": "Won the men’s FIFA World Cup"
+        },
+        {
+          "entityId": "spain",
+          "year": 2010,
+          "description": "Won the men’s FIFA World Cup"
+        }
+      ]
+    },
+    {
+      "id": "mediterranean-diet",
+      "name": "UNESCO Mediterranean diet inscription",
+      "fromYear": 2010,
+      "toYear": 2024,
+      "reviewedEntityIds": [
+        "brazil",
+        "portugal",
+        "kenya",
+        "south-africa",
+        "japan",
+        "egypt",
+        "austria",
+        "indonesia",
+        "peru",
+        "france",
+        "nigeria",
+        "nepal",
+        "argentina",
+        "chile",
+        "italy",
+        "greece",
+        "spain",
+        "turkey",
+        "germany",
+        "australia",
+        "mexico",
+        "south-korea",
+        "thailand",
+        "india",
+        "netherlands"
+      ],
+      "sourceIds": [
+        "unesco-diet"
+      ],
+      "events": [
+        {
+          "entityId": "italy",
+          "year": 2010,
+          "description": "Named in UNESCO’s shared Mediterranean diet inscription"
+        },
+        {
+          "entityId": "greece",
+          "year": 2010,
+          "description": "Named in UNESCO’s shared Mediterranean diet inscription"
+        },
+        {
+          "entityId": "spain",
+          "year": 2010,
+          "description": "Named in UNESCO’s shared Mediterranean diet inscription"
+        },
+        {
+          "entityId": "portugal",
+          "year": 2013,
+          "description": "Joined UNESCO’s shared Mediterranean diet inscription, despite having an Atlantic coastline"
+        }
+      ]
     }
   ]
 }
