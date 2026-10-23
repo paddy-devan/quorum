@@ -16,11 +16,6 @@ export function Requirements({
     <section className="requirements" aria-labelledby="requirements-heading">
       <div className="section-heading">
         <h2 id="requirements-heading">Requirements</h2>
-        <span>
-          {check
-            ? `${check.coveredIds.length} of ${puzzle.attributes.length}`
-            : `${puzzle.attributes.length} to cover`}
-        </span>
       </div>
       <ol
         key={check?.id ?? "unchecked"}
@@ -59,11 +54,11 @@ export function Requirements({
           );
         })}
       </ol>
-      <p className="requirements-note">
-        {check
-          ? `Coverage from your ${finished ? "best" : "last"} check.`
-          : "Tap for definitions. Check to reveal coverage."}
-      </p>
+      {check ? (
+        <p className="requirements-note">
+          Coverage from your {finished ? "best" : "last"} check.
+        </p>
+      ) : null}
     </section>
   );
 }

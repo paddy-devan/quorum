@@ -85,13 +85,11 @@ function Game({
   const { storage, person } = local;
   const [run, setRun] = useState(() => loadRun(storage, daily, person.id));
   const [help, setHelp] = useState(false);
+  const [localTesting, setLocalTesting] = useState(false);
   const [definition, setDefinition] = useState<Attribute | null>(null);
   const [confirm, setConfirm] = useState<"finish" | "reset" | null>(null);
   const [message, setMessage] = useState("");
   const [saveProblem, setSaveProblem] = useState(!local.persistent);
-  const [showIntro, setShowIntro] = useState(
-    () => !storage.getItem("quorum:v1:tutorial-seen"),
-  );
   const resultRef = useRef<HTMLDivElement>(null);
   const remaining = puzzle.rules.maxChecks - run.checks.length;
   const lastCheck = run.checks.at(-1);
@@ -190,16 +188,6 @@ function Game({
     );
   }
 
-  function closeHelp() {
-    setHelp(false);
-    setShowIntro(false);
-    try {
-      storage.setItem("quorum:v1:tutorial-seen", "true");
-    } catch {
-      /* Optional preference. */
-    }
-  }
-
   function reset() {
     storage.removeItem(runKey(daily, person.id));
     window.location.reload();
@@ -221,39 +209,59 @@ function Game({
     <div className="app-shell">
       <header className="masthead">
         <div className="header-brand">
-          <a
-            href={window.location.pathname}
-            className="wordmark"
-            aria-label="Quorum, today’s puzzle"
-          >
-            Quorum<span className="wordmark-dot">.</span>
-          </a>
-          <h1 className="header-title">{puzzle.title}</h1>
+          <h1 className="wordmark">
+            <a
+              href={window.location.pathname}
+              aria-label="Quorum, today’s puzzle"
+            >
+              Quorum<span className="wordmark-dot">.</span>
+            </a>
+          </h1>
+          <div className="puzzle-meta">
+            <span>
+              {new Intl.DateTimeFormat("en-GB", {
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+                timeZone: "UTC",
+              }).format(new Date(`${daily.date}T12:00:00Z`))}
+            </span>
+            <span className="meta-dot" aria-hidden="true">
+              ·
+            </span>
+            <span>Puzzle #{String(daily.number).padStart(3, "0")}</span>
+          </div>
         </div>
-        <button className="help-button" onClick={() => setHelp(true)}>
-          How to play <span aria-hidden="true">?</span>
-        </button>
+        <div className="header-actions">
+          {isLocal ? (
+            <button
+              className="icon-button local-testing-button"
+              aria-label="Local testing"
+              aria-haspopup="dialog"
+              title="Local testing"
+              onClick={() => setLocalTesting(true)}
+            >
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="M9 3h6m-5 0v6l-5 8a2 2 0 0 0 1.7 3h10.6A2 2 0 0 0 19 17l-5-8V3M8 14h8"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </button>
+          ) : null}
+          <button className="help-button" aria-label="How to play" onClick={() => setHelp(true)}>
+            <span className="help-label">How to play</span>
+            <span className="help-symbol" aria-hidden="true">?</span>
+          </button>
+        </div>
       </header>
       <main>
-        <div className="puzzle-meta">
-          <span>
-            {new Intl.DateTimeFormat("en-GB", {
-              day: "numeric",
-              month: "long",
-              year: "numeric",
-              timeZone: "UTC",
-            }).format(new Date(`${daily.date}T12:00:00Z`))}
-          </span>
-          <span className="meta-dot" aria-hidden="true">
-            ·
-          </span>
-          <span>Puzzle #{String(daily.number).padStart(3, "0")}</span>
-          <span className="theme-label">{puzzle.theme}</span>
-        </div>
         <div className="intro">
           <p>
-            Meet all {puzzle.attributes.length} requirements.{" "}
-            <span>Aim for {puzzle.rules.expectedOptimal} countries.</span>
+            Can you cover all requirements with as few countries as possible?
           </p>
         </div>
         {saveProblem ? (
@@ -261,17 +269,6 @@ function Game({
             Browser storage is unavailable. You can play, but progress may be
             lost when you leave this page.
           </p>
-        ) : null}
-        {showIntro && !run.finished && !run.checks.length ? (
-          <div className="first-play">
-            <p>
-              <strong>A country can cover more than one requirement.</strong>{" "}
-              Your selection works as a team.
-            </p>
-            <button onClick={() => setHelp(true)}>
-              Try an example <ArrowIcon />
-            </button>
-          </div>
         ) : null}
         <div className="game-layout">
           <CountryGrid
@@ -350,22 +347,6 @@ function Game({
                     Check selection
                   </button>
                 </div>
-                <div className="selection-tray" aria-label="Selected countries">
-                  {run.selectedIds.length ? (
-                    <span>
-                      {run.selectedIds
-                        .map(
-                          (id) =>
-                            puzzle.entities.find(
-                              (entity) => entity.id === id,
-                            )!.name,
-                        )
-                        .join(" + ")}
-                    </span>
-                  ) : (
-                    <span>Pick your first country to get started.</span>
-                  )}
-                </div>
                 {message || selectionChanged ? (
                   <p className="interaction-message" role="status">
                     {message ||
@@ -443,9 +424,10 @@ function Game({
             <Results daily={daily} run={run} onShare={() => track("share")} />
           </div>
         ) : null}
-        {isLocal ? (
-          <details className="local-tools">
-            <summary>Local testing</summary>
+      </main>
+      {isLocal && localTesting ? (
+        <Modal title="Local testing" onClose={() => setLocalTesting(false)}>
+          <div className="local-tools">
             <p>
               {puzzles.length} authored puzzles rotate by UTC date. These
               controls are available on localhost only.
@@ -464,7 +446,10 @@ function Game({
             <div>
               <button
                 className="text-button"
-                onClick={() => setConfirm("reset")}
+                onClick={() => {
+                  setLocalTesting(false);
+                  setConfirm("reset");
+                }}
               >
                 Reset this day’s progress
               </button>
@@ -475,10 +460,12 @@ function Game({
             <p className="muted">
               Facts: {puzzle.contentVersion} · {puzzle.id} v{puzzle.version}
             </p>
-          </details>
-        ) : null}
-      </main>
-      {help ? <Help maxSelected={puzzle.rules.maxSelected} onClose={closeHelp} /> : null}
+          </div>
+        </Modal>
+      ) : null}
+      {help ? (
+        <Help maxSelected={puzzle.rules.maxSelected} onClose={() => setHelp(false)} />
+      ) : null}
       {definition ? (
         <Modal title={definition.label} onClose={() => setDefinition(null)}>
           <p>{definition.definition}</p>
