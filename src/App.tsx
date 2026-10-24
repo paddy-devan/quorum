@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { dailyPuzzle, puzzles, utcDate } from "./content/loader";
+import { adjacentPuzzle, dailyPuzzle, puzzles, utcDate } from "./content/loader";
 import { bestCheck, resultLabel, submitCheck } from "./game/engine";
 import type { Attribute, DailyPuzzle } from "./game/types";
 import {
@@ -21,13 +21,11 @@ import { Results } from "./components/Results";
 const isLocal = ["localhost", "127.0.0.1", "[::1]"].includes(
   window.location.hostname,
 );
-const testDate = isLocal
-  ? new URLSearchParams(window.location.search).get("date")
-  : null;
+const requestedDate = new URLSearchParams(window.location.search).get("date");
 
 function startingDaily() {
   try {
-    return dailyPuzzle(testDate || utcDate());
+    return dailyPuzzle(requestedDate || utcDate());
   } catch {
     return dailyPuzzle();
   }
@@ -54,7 +52,7 @@ export default function App() {
     return { storage, persistent, person: participant(storage) };
   });
   useEffect(() => {
-    if (testDate) return;
+    if (requestedDate === daily.date) return;
     function rollover() {
       setDaily((previous) =>
         previous.date === utcDate() ? previous : dailyPuzzle(),
@@ -66,8 +64,8 @@ export default function App() {
       window.clearInterval(timer);
       document.removeEventListener("visibilitychange", rollover);
     };
-  }, []);
-  return <Game key={daily.date} daily={daily} local={local} />;
+  }, [daily.date]);
+  return <Game key={`${daily.date}:${daily.puzzle.id}`} daily={daily} local={local} />;
 }
 
 function Game({
@@ -222,10 +220,21 @@ function Game({
                 timeZone: "UTC",
               }).format(new Date(`${daily.date}T12:00:00Z`))}
             </span>
-            <span className="meta-dot" aria-hidden="true">
-              ·
-            </span>
-            <span>Puzzle #{String(daily.number).padStart(3, "0")}</span>
+            <nav className="puzzle-navigation" aria-label={`Browse ${puzzles.length} test puzzles`}>
+              <a
+                className="puzzle-arrow"
+                href={`?date=${adjacentPuzzle(daily.date, -1).date}`}
+                aria-label="Previous puzzle"
+                title="Previous puzzle"
+              ><span aria-hidden="true">‹</span></a>
+              <span className="puzzle-number">Puzzle #{String(daily.number).padStart(3, "0")}</span>
+              <a
+                className="puzzle-arrow"
+                href={`?date=${adjacentPuzzle(daily.date, 1).date}`}
+                aria-label="Next puzzle"
+                title="Next puzzle"
+              ><span aria-hidden="true">›</span></a>
+            </nav>
           </div>
         </div>
         <div className="header-actions">
@@ -284,7 +293,7 @@ function Game({
           <div className="play-area">
             {run.finished ? (
               <div className="finished-strip">
-                Today’s Quorum is complete.{" "}
+                This day’s Quorum is complete.{" "}
                 <button
                   onClick={() =>
                     resultRef.current?.scrollIntoView({ behavior: "smooth" })

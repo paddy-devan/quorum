@@ -88,5 +88,6 @@ export function shareText(
         `${check.coveredIds.map(() => "🟩").join("")}${"⬜".repeat(daily.puzzle.attributes.length - check.coveredIds.length)} ${check.entityIds.length}`,
     )
     .join("\n");
-  return `Quorum #${String(daily.number).padStart(3, "0")} · ${daily.date}\n${score}\n${progression || "No checks used"}\n${run.checks.length}/${daily.puzzle.rules.maxChecks} checks\n${url}`;
+  const identity = `Quorum #${String(daily.number).padStart(3, "0")} · ${daily.date}`;
+  return `${identity}\n${score}\n${progression || "No checks used"}\n${run.checks.length}/${daily.puzzle.rules.maxChecks} checks\n${url}`;
 }

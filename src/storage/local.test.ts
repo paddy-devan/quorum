@@ -1,5 +1,5 @@
 import { beforeEach, describe, expect, it } from "vitest";
-import { dailyPuzzle } from "../content/loader";
+import { adjacentPuzzle, dailyPuzzle } from "../content/loader";
 import { bestCheck, submitCheck } from "../game/engine";
 import {
   loadRun,
@@ -13,6 +13,7 @@ import {
 
 let storage: StoragePort;
 const daily = dailyPuzzle("2026-10-22");
+const country = daily.puzzle.entities[0].id;
 beforeEach(() => {
   const memory = new Map<string, string>();
   storage = {
@@ -27,6 +28,16 @@ beforeEach(() => {
 });
 
 describe("local persistence", () => {
+  it("restores a day's checks after browsing away and back", () => {
+    const other = adjacentPuzzle(daily.date, 1);
+    const run = submitCheck(daily.puzzle, { ...newRun(daily, "p"), selectedIds: [country] });
+    saveRun(storage, daily, run);
+    expect(loadRun(storage, other, "p").selectedIds).toEqual([]);
+    expect(loadRun(storage, adjacentPuzzle(other.date, -1), "p")).toEqual(run);
+    const repeat = dailyPuzzle("2026-10-29");
+    expect(repeat.puzzle.id).toBe(daily.puzzle.id);
+    expect(loadRun(storage, repeat, "p").selectedIds).toEqual([]);
+  });
   it("keeps a stable anonymous identity and a separate run per day", () => {
     const person = participant(storage);
     expect(participant(storage)).toEqual(person);
@@ -41,7 +52,7 @@ describe("local persistence", () => {
     const run = {
       ...submitCheck(daily.puzzle, {
         ...newRun(daily, "p"),
-        selectedIds: ["kenya"],
+        selectedIds: [country],
       }),
       finished: true,
     };
@@ -54,8 +65,9 @@ describe("local persistence", () => {
   it("recalculates persisted coverage instead of trusting stored scores", () => {
     const run = submitCheck(daily.puzzle, {
       ...newRun(daily, "p"),
-      selectedIds: ["kenya"],
+      selectedIds: [country],
     });
+    const expectedCoverage = [...run.checks[0].coveredIds];
     run.checks[0].complete = true;
     run.checks[0].coveredIds = daily.puzzle.attributes.map(
       (attribute) => attribute.id,
@@ -63,14 +75,14 @@ describe("local persistence", () => {
     saveRun(storage, daily, run);
     const loaded = loadRun(storage, daily, "p");
     expect(bestCheck(loaded.checks)?.complete).toBe(false);
-    expect(bestCheck(loaded.checks)?.coveredIds).toHaveLength(3);
+    expect(bestCheck(loaded.checks)?.coveredIds).toEqual(expectedCoverage);
   });
   it("recovers from corrupt JSON, invalid IDs and excessive attempts", () => {
     storage.setItem(runKey(daily, "p"), "{broken");
     expect(loadRun(storage, daily, "p").checks).toEqual([]);
     const run = submitCheck(daily.puzzle, {
       ...newRun(daily, "p"),
-      selectedIds: ["kenya"],
+      selectedIds: [country],
     });
     run.checks[0].entityIds = ["absent"];
     saveRun(storage, daily, run);
@@ -81,7 +93,7 @@ describe("local persistence", () => {
   });
   it("retains the check limit even when stored completion was cleared", () => {
     let run = newRun(daily, "p");
-    for (const id of ["kenya", "brazil", "japan"])
+    for (const id of daily.puzzle.entities.slice(0, 3).map((entity) => entity.id))
       run = submitCheck(daily.puzzle, { ...run, selectedIds: [id] });
     saveRun(storage, daily, { ...run, finished: false });
     expect(loadRun(storage, daily, "p").finished).toBe(true);

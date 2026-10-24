@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { dailyPuzzle, puzzles } from "../content/loader";
+import { catalog, dailyPuzzle, loadPuzzle, puzzles } from "../content/loader";
 import {
   bestCheck,
   evaluate,
@@ -11,8 +11,14 @@ import { validatePuzzle } from "./validator";
 import { newRun } from "../storage/local";
 import type { Check, Puzzle } from "./types";
 
-const daily = dailyPuzzle("2026-10-22");
-const puzzle = daily.puzzle;
+// Keep rule tests independent of editorial changes to the daily boards.
+const puzzle = loadPuzzle(catalog, {
+  id: "engine-test", version: 1, title: "Rule fixture",
+  entityIds: ["brazil", "portugal", "kenya", "south-africa", "japan", "egypt", "austria", "indonesia", "peru", "france", "nigeria", "nepal"],
+  attributeIds: ["africa", "landlocked", "portuguese", "left", "south", "europe"],
+  rules: { maxSelected: 6, maxChecks: 3, expectedOptimal: 3, clueMode: "hidden" },
+});
+const daily = { ...dailyPuzzle("2026-10-22"), puzzle };
 const optimum = validatePuzzle(puzzle).optimalSolutions[0];
 const attempt = (ids: string[], id = "check"): Check => ({
   ...evaluate(puzzle, ids),
@@ -138,6 +144,13 @@ describe("ranking and sharing", () => {
     for (const attribute of puzzle.attributes)
       expect(text).not.toContain(attribute.label);
   });
+  it("identifies a browsed day with its puzzle number and date", () => {
+    const otherDay = dailyPuzzle("2026-10-28");
+    const text = shareText(otherDay, newRun(otherDay, "p"), "https://quorum.example/?date=2026-10-28");
+    expect(text).toContain("Quorum #007 · 2026-10-28");
+    expect(text).toContain("?date=2026-10-28");
+    expect(text).not.toContain("demo");
+  });
 });
 
 describe("exhaustive solver", () => {
@@ -174,6 +187,40 @@ describe("exhaustive solver", () => {
     expect(result.validBySize).toEqual({ 2: 1, 3: 3 });
     expect(result.validSolutionCount).toBe(4);
     expect(result.nearOptimalSolutionCount).toBe(3);
+    expect(result.combinationsBySize).toEqual({ 1: 4, 2: 6, 3: 4 });
+    expect(result.completionRates[3]).toBe(3 / 4);
+    // 0,1,2 is an irreducible triple, although 2,3 is the smaller optimum.
+    expect(result.irreducibleBySize).toEqual({ 2: 1, 3: 1 });
+    expect(result.irreducibleExamples[3]).toEqual([["0", "1", "2"]]);
+    expect(result.prunableRates[3]).toBeCloseTo(2 / 3);
+    expect(result.implications).toEqual([]);
+  });
+  it("agrees with gameplay evaluation for every playable subset", () => {
+    const result = validatePuzzle(abstract);
+    const complete: Record<number, number> = {};
+    const irreducible: Record<number, number> = {};
+    for (let mask = 1; mask < 1 << abstract.entities.length; mask++) {
+      const ids = abstract.entities.filter((_, i) => mask & (1 << i)).map((e) => e.id);
+      if (ids.length > abstract.rules.maxSelected || !evaluate(abstract, ids).complete) continue;
+      complete[ids.length] = (complete[ids.length] ?? 0) + 1;
+      if (ids.every((id) => ids.length === 1 || !evaluate(abstract, ids.filter((other) => other !== id)).complete))
+        irreducible[ids.length] = (irreducible[ids.length] ?? 0) + 1;
+    }
+    expect(result.validBySize).toEqual(complete);
+    expect(result.irreducibleBySize).toEqual(irreducible);
+  });
+  it("supports more than 32 requirements and identifies implications", () => {
+    const wide: Puzzle = {
+      ...abstract,
+      attributes: Array.from({ length: 33 }, (_, i) => ({ id: `a${i}`, label: `a${i}`, definition: "Abstract requirement" })),
+      entities: abstract.entities.map((e) => ({ ...e, facts: Object.fromEntries(Array.from({ length: 33 }, (_, i) =>
+        [`a${i}`, { ...e.facts[["a", "b", "c"][i % 3]] }])) })),
+    };
+    const result = validatePuzzle(wide);
+    expect(result.minimum).toBe(2);
+    expect(result.validBySize).toEqual({ 2: 1, 3: 3 });
+    expect(result.implications).toContainEqual({ from: "a0", to: "a3" });
+    expect(result.implications).not.toContainEqual({ from: "a0", to: "a1" });
   });
   it("recognises impossibility and solutions outside the selection limit", () => {
     expect(
