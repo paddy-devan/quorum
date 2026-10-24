@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { adjacentPuzzle, dailyPuzzle, puzzles, utcDate } from "./content/loader";
-import { bestCheck, resultLabel, submitCheck } from "./game/engine";
+import { bestCheck, expireRun, resultLabel, startRun, submitCheck, timeExpired } from "./game/engine";
 import type { Attribute, DailyPuzzle } from "./game/types";
 import {
   loadRun,
@@ -16,6 +16,7 @@ import { CountryGrid } from "./components/CountryGrid";
 import { Help } from "./components/Help";
 import { ArrowIcon, Modal } from "./components/Modal";
 import { Requirements } from "./components/Requirements";
+import { PuzzleTimer } from "./components/PuzzleTimer";
 import { Results } from "./components/Results";
 
 const isLocal = ["localhost", "127.0.0.1", "[::1]"].includes(
@@ -82,6 +83,9 @@ function Game({
   const { puzzle } = daily;
   const { storage, person } = local;
   const [run, setRun] = useState(() => loadRun(storage, daily, person.id));
+  const [timerEnabled, setTimerEnabled] = useState(true);
+  // Resume games saved before the welcome screen was introduced as untimed.
+  const started = run.startedAt !== undefined || run.finished || run.checks.length > 0 || run.selectedIds.length > 0;
   const [help, setHelp] = useState(false);
   const [localTesting, setLocalTesting] = useState(false);
   const [definition, setDefinition] = useState<Attribute | null>(null);
@@ -128,7 +132,7 @@ function Game({
   }, []); // One event per run, deduplicated in the repository.
 
   function toggle(id: string) {
-    if (run.finished) return;
+    if (!canPlay()) return;
     setMessage("");
     if (
       !run.selectedIds.includes(id) &&
@@ -147,6 +151,7 @@ function Game({
   }
 
   function check() {
+    if (!canPlay()) return;
     try {
       const next = submitCheck(puzzle, run);
       setRun(next);
@@ -163,10 +168,33 @@ function Game({
     }
   }
 
+  function start() {
+    const next = startRun(run, timerEnabled);
+    // Save the deadline immediately, before the first countdown tick or navigation.
+    try {
+      saveRun(storage, daily, next);
+    } catch {
+      setSaveProblem(true);
+    }
+    setRun(next);
+    track("start", next);
+  }
+
+  function canPlay() {
+    if (!started || run.finished) return false;
+    if (timeExpired(run)) {
+      finish(run);
+      return false;
+    }
+    return true;
+  }
+
   function finish(current = run) {
-    const next = { ...current, finished: true };
+    const next = { ...expireRun(current), finished: true };
     setRun(next);
     setConfirm(null);
+    setHelp(false);
+    setDefinition(null);
     setMessage("");
     track("finish", next, resultLabel(puzzle, bestCheck(next.checks)));
     window.setTimeout(
@@ -264,170 +292,202 @@ function Game({
         </div>
       </header>
       <main>
-        <div className="intro">
-          <p>
-            How few countries can tick every box?
-          </p>
-        </div>
+        {started ? (
+          <div className="intro">
+            <p>How few countries can tick every box?</p>
+          </div>
+        ) : null}
         {saveProblem ? (
           <p className="storage-warning" role="status">
             Browser storage is unavailable. You can play, but progress may be
             lost when you leave this page.
           </p>
         ) : null}
-        <div className="game-layout">
-          <CountryGrid
-            puzzle={puzzle}
-            selectedIds={
-              run.finished ? (best?.entityIds ?? []) : run.selectedIds
-            }
-            finished={run.finished}
-            onToggle={toggle}
-          />
-          <Requirements
-            puzzle={puzzle}
-            check={displayCheck}
-            finished={run.finished}
-            onDefinition={setDefinition}
-          />
-          <div className="play-area">
+        {!started ? (
+          <section className="welcome" aria-labelledby="welcome-heading">
+            <p className="welcome-eyebrow">Your daily country puzzle</p>
+            <h2 id="welcome-heading">How few can<br />cover it all?</h2>
+            <ol className="welcome-steps">
+              <li><strong>Choose</strong> up to six countries that together meet all six requirements.</li>
+              <li><strong>Check</strong> your selection to see which requirements it covers.</li>
+              <li><strong>Refine</strong> with three checks in total. Fewer countries make a better Quorum; your best checked result counts.</li>
+            </ol>
+            <nav className="welcome-navigation" aria-label="Choose a puzzle">
+              <a className="puzzle-arrow" href={`?date=${adjacentPuzzle(daily.date, -1).date}`} aria-label="Play previous puzzle"><span aria-hidden="true">‹</span></a>
+              <span>Puzzle #{String(daily.number).padStart(3, "0")}<small>{puzzles.length} puzzles to try · browse with the arrows</small></span>
+              <a className="puzzle-arrow" href={`?date=${adjacentPuzzle(daily.date, 1).date}`} aria-label="Play next puzzle"><span aria-hidden="true">›</span></a>
+            </nav>
+            <button className="primary-button start-button" aria-describedby="timer-rules" onClick={start}>Let’s Play <ArrowIcon /></button>
+            <label className="timer-option">
+              <span><strong>5-minute timer</strong><small>Playtest option · choose before you start</small></span>
+              <input type="checkbox" role="switch" checked={timerEnabled}
+                onChange={(event) => setTimerEnabled(event.target.checked)} />
+            </label>
+            <p className="welcome-rules" id="timer-rules">{timerEnabled
+              ? "The clock starts when you play and keeps running if you leave. When time runs out, your best checked result counts."
+              : "Take your time. Your three checks and best checked result work just as usual."}</p>
+          </section>
+        ) : (
+          <>
+              {run.deadline !== undefined ? (
+                <PuzzleTimer deadline={run.deadline} finished={run.finished} timedOut={run.timedOut ?? false} onExpire={() => finish()} />
+              ) : <p className="mode-label">Untimed puzzle</p>}
+            <div className="game-layout">
+              <CountryGrid
+                puzzle={puzzle}
+                selectedIds={
+                  run.finished ? (best?.entityIds ?? []) : run.selectedIds
+                }
+                finished={run.finished}
+                onToggle={toggle}
+              />
+              <Requirements
+                puzzle={puzzle}
+                check={displayCheck}
+                finished={run.finished}
+                onDefinition={setDefinition}
+              />
+              <div className="play-area">
+                {run.finished ? (
+                  <div className="finished-strip">
+                    {run.timedOut ? "Time’s up. Your best checked result is saved." : "This day’s Quorum is complete."}{" "}
+                    <button
+                      onClick={() =>
+                        resultRef.current?.scrollIntoView({ behavior: "smooth" })
+                      }
+                    >
+                      See your result
+                    </button>
+                  </div>
+                ) : (
+                  <>
+                    <div className="check-bar">
+                      <div className="selection-count">
+                        <strong>
+                          {run.selectedIds.length}{" "}
+                          <span>of {puzzle.rules.maxSelected}</span>
+                        </strong>
+                        <span>selected</span>
+                        <button
+                          className="clear-selection"
+                          disabled={!run.selectedIds.length}
+                          onClick={() => {
+                            if (!canPlay()) return;
+                            setRun({ ...run, selectedIds: [] });
+                            setMessage("");
+                          }}
+                        >
+                          Clear
+                        </button>
+                      </div>
+                      <div className="checks-left">
+                        <span className="check-dots" aria-hidden="true">
+                          {Array.from(
+                            { length: puzzle.rules.maxChecks },
+                            (_, index) => (
+                              <i
+                                key={index}
+                                className={index < remaining ? "available" : ""}
+                              />
+                            ),
+                          )}
+                        </span>
+                        <span>
+                          {remaining} {remaining === 1 ? "check" : "checks"} left
+                        </span>
+                        <button
+                          className="finish-button"
+                          onClick={() => setConfirm("finish")}
+                        >
+                          Finish & reveal <ArrowIcon />
+                        </button>
+                      </div>
+                      <button
+                        className="primary-button check-button"
+                        onClick={check}
+                        disabled={!run.selectedIds.length}
+                      >
+                        Check selection
+                      </button>
+                    </div>
+                    {message ? (
+                      <p className="interaction-message" role="status">
+                        {message}
+                      </p>
+                    ) : null}
+                  </>
+                )}
+                {lastCheck && !run.finished ? (
+                  <div className="check-feedback" key={lastCheck.id} role="status">
+                    <div>
+                      <strong>
+                        {lastCheck.complete
+                          ? "All requirements covered."
+                          : `${lastCheck.coveredIds.length} of ${puzzle.attributes.length} covered.`}
+                      </strong>
+                      <p>
+                        {lastCheck.complete
+                          ? lastCheck.entityIds.length ===
+                            puzzle.rules.expectedOptimal
+                            ? "A perfect Quorum. Finish to explore the facts."
+                            : `Your ${lastCheck.entityIds.length}-country solution is safe. Can you make it smaller?`
+                          : "Look for countries that fill the missing requirements."}
+                      </p>
+                    </div>
+                    {best?.complete && !lastCheck.complete ? (
+                      <p className="saved-best">
+                        Your complete {best.entityIds.length}-country Quorum is
+                        still saved.
+                      </p>
+                    ) : null}
+                  </div>
+                ) : null}
+                {run.checks.length ? (
+                  <section className="history" aria-labelledby="history-heading">
+                    <div className="section-heading">
+                      <h2 id="history-heading">Your checks</h2>
+                      {best?.complete ? (
+                        <span>Best: {best.entityIds.length} countries</span>
+                      ) : null}
+                    </div>
+                    {run.checks.map((attempt, index) => (
+                      <div className="history-row" key={attempt.id}>
+                        <span>#{index + 1}</span>
+                        <span
+                          className="history-squares"
+                          aria-label={`${attempt.coveredIds.length} of ${puzzle.attributes.length} requirements covered`}
+                        >
+                          {puzzle.attributes.map((attribute) => (
+                            <i
+                              key={attribute.id}
+                              className={
+                                attempt.coveredIds.includes(attribute.id)
+                                  ? "filled"
+                                  : ""
+                              }
+                            />
+                          ))}
+                        </span>
+                        <span>
+                          {attempt.coveredIds.length}/{puzzle.attributes.length}
+                        </span>
+                        <span>
+                          {attempt.entityIds.length}{" "}
+                          {attempt.entityIds.length === 1 ? "country" : "countries"}
+                        </span>
+                      </div>
+                    ))}
+                  </section>
+                ) : null}
+              </div>
+            </div>
             {run.finished ? (
-              <div className="finished-strip">
-                This day’s Quorum is complete.{" "}
-                <button
-                  onClick={() =>
-                    resultRef.current?.scrollIntoView({ behavior: "smooth" })
-                  }
-                >
-                  See your result
-                </button>
-              </div>
-            ) : (
-              <>
-                <div className="check-bar">
-                  <div className="selection-count">
-                    <strong>
-                      {run.selectedIds.length}{" "}
-                      <span>of {puzzle.rules.maxSelected}</span>
-                    </strong>
-                    <span>selected</span>
-                    <button
-                      className="clear-selection"
-                      disabled={!run.selectedIds.length}
-                      onClick={() => {
-                        setRun({ ...run, selectedIds: [] });
-                        setMessage("");
-                      }}
-                    >
-                      Clear
-                    </button>
-                  </div>
-                  <div className="checks-left">
-                    <span className="check-dots" aria-hidden="true">
-                      {Array.from(
-                        { length: puzzle.rules.maxChecks },
-                        (_, index) => (
-                          <i
-                            key={index}
-                            className={index < remaining ? "available" : ""}
-                          />
-                        ),
-                      )}
-                    </span>
-                    <span>
-                      {remaining} {remaining === 1 ? "check" : "checks"} left
-                    </span>
-                    <button
-                      className="finish-button"
-                      onClick={() => setConfirm("finish")}
-                    >
-                      Finish & reveal <ArrowIcon />
-                    </button>
-                  </div>
-                  <button
-                    className="primary-button check-button"
-                    onClick={check}
-                    disabled={!run.selectedIds.length}
-                  >
-                    Check selection
-                  </button>
-                </div>
-                {message ? (
-                  <p className="interaction-message" role="status">
-                    {message}
-                  </p>
-                ) : null}
-              </>
-            )}
-            {lastCheck && !run.finished ? (
-              <div className="check-feedback" key={lastCheck.id} role="status">
-                <div>
-                  <strong>
-                    {lastCheck.complete
-                      ? "All requirements covered."
-                      : `${lastCheck.coveredIds.length} of ${puzzle.attributes.length} covered.`}
-                  </strong>
-                  <p>
-                    {lastCheck.complete
-                      ? lastCheck.entityIds.length ===
-                        puzzle.rules.expectedOptimal
-                        ? "A perfect Quorum. Finish to explore the facts."
-                        : `Your ${lastCheck.entityIds.length}-country solution is safe. Can you make it smaller?`
-                      : "Look for countries that fill the missing requirements."}
-                  </p>
-                </div>
-                {best?.complete && !lastCheck.complete ? (
-                  <p className="saved-best">
-                    Your complete {best.entityIds.length}-country Quorum is
-                    still saved.
-                  </p>
-                ) : null}
+              <div ref={resultRef} className="result-anchor">
+                <Results daily={daily} run={run} onShare={() => track("share")} />
               </div>
             ) : null}
-            {run.checks.length ? (
-              <section className="history" aria-labelledby="history-heading">
-                <div className="section-heading">
-                  <h2 id="history-heading">Your checks</h2>
-                  {best?.complete ? (
-                    <span>Best: {best.entityIds.length} countries</span>
-                  ) : null}
-                </div>
-                {run.checks.map((attempt, index) => (
-                  <div className="history-row" key={attempt.id}>
-                    <span>#{index + 1}</span>
-                    <span
-                      className="history-squares"
-                      aria-label={`${attempt.coveredIds.length} of ${puzzle.attributes.length} requirements covered`}
-                    >
-                      {puzzle.attributes.map((attribute) => (
-                        <i
-                          key={attribute.id}
-                          className={
-                            attempt.coveredIds.includes(attribute.id)
-                              ? "filled"
-                              : ""
-                          }
-                        />
-                      ))}
-                    </span>
-                    <span>
-                      {attempt.coveredIds.length}/{puzzle.attributes.length}
-                    </span>
-                    <span>
-                      {attempt.entityIds.length}{" "}
-                      {attempt.entityIds.length === 1 ? "country" : "countries"}
-                    </span>
-                  </div>
-                ))}
-              </section>
-            ) : null}
-          </div>
-        </div>
-        {run.finished ? (
-          <div ref={resultRef} className="result-anchor">
-            <Results daily={daily} run={run} onShare={() => track("share")} />
-          </div>
-        ) : null}
+          </>
+        )}
       </main>
       {isLocal && localTesting ? (
         <Modal title="Local testing" onClose={() => setLocalTesting(false)}>

@@ -1339,3 +1339,105 @@ dialog::backdrop {
     scroll-behavior: auto !important;
   }
 }
+
+.welcome {
+  max-width: 480px;
+  margin: 40px auto;
+  text-align: center;
+  padding: 26px 20px;
+}
+.welcome-eyebrow {
+  color: var(--accent);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+.welcome h2 {
+  font-family: var(--serif);
+  font-size: clamp(34px, 6vw, 48px);
+  line-height: 1.12;
+  letter-spacing: -1.5px;
+  margin: 18px 0;
+}
+.welcome > p {
+  font-size: 13px;
+  line-height: 1.8;
+  color: var(--muted);
+}
+.timer-option {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  text-align: left;
+  border-block: 1px solid var(--line);
+  padding: 18px 0;
+  margin-top: 30px;
+}
+.timer-option strong { display: block; font-size: 14px; }
+.timer-option small { display: block; color: var(--muted); font-size: 11px; margin-top: 6px; }
+.timer-option input {
+  appearance: none;
+  flex: none;
+  width: 44px;
+  height: 26px;
+  padding: 3px;
+  border-radius: 20px;
+  background: #bdc6b5;
+  cursor: pointer;
+}
+.timer-option input::before {
+  content: "";
+  display: block;
+  width: 20px;
+  height: 20px;
+  background: white;
+  border-radius: 50%;
+}
+.timer-option input:checked { background: var(--accent); }
+.timer-option input:checked::before { transform: translateX(18px); }
+.welcome .welcome-rules { font-size: 12px; min-height: 65px; margin: 16px 0; }
+.start-button { width: 100%; min-height: 56px; font-size: 16px; }
+.welcome-steps {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.7;
+  margin: 24px 0;
+}
+.welcome-steps li { margin: 10px 0; }
+.welcome-steps strong { color: var(--ink); }
+.welcome-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin: 20px 0;
+  font-size: 13px;
+}
+.welcome-navigation small { display: block; font-size: 10px; color: var(--muted); margin-top: 6px; }
+.welcome-navigation .puzzle-arrow { width: 44px; min-height: 44px; }
+.puzzle-timer {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px 12px;
+  margin: 0 0 14px;
+  color: var(--muted);
+  font-size: 11px;
+}
+.puzzle-timer strong {
+  color: var(--ink);
+  font-variant-numeric: tabular-nums;
+  font-size: 20px;
+}
+.puzzle-timer.is-urgent, .puzzle-timer.is-urgent strong { color: #95451f; }
+.mode-label { color: var(--muted); font-size: 11px; margin: 0 0 14px; }
+@media (max-width: 720px) {
+  .welcome { margin: 12px auto; padding: 16px 6px; }
+  .puzzle-timer { position: sticky; top: 0; z-index: 9; background: var(--paper); padding-block: 5px; margin-bottom: 6px; }
+  .puzzle-timer strong { font-size: 17px; }
+  .timer-notice { font-size: 10px; }
+}

@@ -143,4 +143,7 @@ export interface Run {
   selectedIds: string[];
   checks: Check[];
   finished: boolean;
+  startedAt?: number;
+  deadline?: number;
+  timedOut?: boolean;
 }

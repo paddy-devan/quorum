@@ -6,11 +6,15 @@ Quorum is a browser-based daily knowledge and optimisation puzzle. The first ite
 
 ## Gameplay
 
+Each unstarted day opens on a welcome screen with a brief Choose / Check / Refine summary, previous/next links to browse available puzzles, and a prominent “Let’s Play” button as its primary action. Countries and requirements stay hidden until play starts. During playtesting, a 5-minute timer switch is available here on all hosts, including preview deployments, and defaults to on. The choice is fixed for that run; returning to an active or finished day resumes it directly. Existing saved games with selections or checks resume untimed.
+
 Each puzzle presents twelve countries and six requirements. Players select one to six countries and submit up to three checks. A selection meets a requirement if at least one selected country has a verified true relationship with it. A country can meet several requirements; multiple countries meeting one requirement do not increase coverage.
 
 Selection alone reveals no coverage in the daily fixtures. Cards display a flag and country name, without continent or regional clues. After a check, the requirement list marks covered and missing requirements, with a count and attempt history. Changing cards keeps the previous check’s feedback visible, with a caption identifying it as coverage from the last check. Rechecking an identical combination, regardless of order, is rejected without spending a check.
 
 A complete result ranks ahead of an incomplete result. Complete results rank by fewest countries; incomplete results rank by most requirements covered, then fewest countries. Ties keep the earliest check. A later failed check cannot replace a complete result. Three countries is a Perfect Quorum; four to six is a Complete Quorum. An unchecked selection never counts as a result.
+
+In timed mode, pressing “Let’s Play” saves a start time and a deadline five minutes later. A visible countdown warns during the final minute. Time continues through dialogs, refreshes, navigation to another day and time away from the page. Reaching zero automatically ends play and reveals the best checked result, including an incomplete result if no checks were used. Unchecked selections are not automatically submitted. Expired games reject further checks even before the next display update. Untimed mode has no deadline. Shared timed results are labelled “5-minute mode”.
 
 The third check ends play automatically. Players may finish early, including without checking, after confirming that this reveals the answers and ends the run. The result shows the best checked selection, checks used, one optimal solution, the number of optimal combinations, and expandable factual explanations with sources. All candidate relationships can be explored after completion. A spoiler-free text result includes the date, puzzle number, score, coverage progression and game URL. Sharing tries native sharing, then clipboard, then a manually copyable text area.
 
@@ -22,7 +26,7 @@ Each board has an authored conservative selection of five or six countries that 
 
 `src/content/puzzles.json` defines the UTC epoch (22 October 2026) and seven ordered, reviewed puzzle definitions produced by the offline generator. The UTC day offset determines the puzzle number and selects a fixture by cycling through this collection. Everyone using the same content build receives the same fixture on the same UTC date. Content repeats every seven days with separate dated progress; this is a testing schedule, not an unlimited daily puzzle generator. Without an explicit date, open tabs switch days at the next 15-second check or visibility change.
 
-Previous and next arrows flank the header’s puzzle number on every hostname. They browse the seven-day block containing the selected date, aligned to the epoch, wrapping at either end. They use ordinary `?date=YYYY-MM-DD` links, so refresh, sharing and browser history retain the selected day. A valid explicit date pins that day instead of rolling over at midnight. Invalid dates fall back to today. The Quorum logo returns to the unpinned daily game. Each date retains its own selection, checks and completion, including when the same fixture repeats a week later. Shared results always link to their explicit date.
+Previous and next arrows flank the header’s puzzle number on every hostname. They browse the seven-day block containing the selected date, aligned to the epoch, wrapping at either end. They use ordinary `?date=YYYY-MM-DD` links, so refresh, sharing and browser history retain the selected day. A valid explicit date pins that day instead of rolling over at midnight. Invalid dates fall back to today. The Quorum logo returns to the unpinned daily game. Each date retains its own start time, optional timer deadline, selection, checks and completion, including when the same fixture repeats a week later. Shared results always link to their explicit date.
 
 On localhost, a testing icon additionally opens a dialog with a date preview, a reset for that day’s run and an event export. These extra controls are not shown on deployed hosts. Dates before the epoch remain supported as backwards test fixtures and can have non-positive puzzle numbers.
 
@@ -32,7 +36,7 @@ The interface uses a restrained paper, forest-green and sage palette, system san
 
 Country tiles have touch targets at least 44 pixels high. Each requirement has an empty square box; a covered requirement gains a tick and green row highlighting after a check. Uncovered boxes remain empty. Coverage is included in accessible labels rather than visible Met/Missing text. The boxes indicate check feedback; clicking a requirement opens its definition. Buttons support keyboard input and visible focus; native dialogs handle focus containment and Escape. Reduced-motion preferences disable reveal animations.
 
-The header help button opens How to play, including an interactive two-island example independent of the real puzzle. No onboarding or first-play banner blocks the board.
+The header help button opens How to play, including an interactive two-island example independent of the real puzzle. Help is available before starting and during play; it does not pause a running timer.
 
 ## Content and enrichment
 

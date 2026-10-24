@@ -1,6 +1,6 @@
 import { beforeEach, describe, expect, it } from "vitest";
 import { adjacentPuzzle, dailyPuzzle } from "../content/loader";
-import { bestCheck, submitCheck } from "../game/engine";
+import { bestCheck, expireRun, startRun, submitCheck } from "../game/engine";
 import {
   loadRun,
   newRun,
@@ -112,6 +112,31 @@ describe("local persistence", () => {
     };
     expect(runKey(daily, "a")).not.toBe(runKey(revisedPuzzle, "a"));
     expect(loadRun(storage, revisedPuzzle, "a").checks).toEqual([]);
+  });
+  it("restores timed and untimed starts without resetting the deadline", () => {
+    const now = Date.parse("2026-10-22T12:00:00Z");
+    const run = startRun(newRun(daily, "p"), true, now);
+    saveRun(storage, daily, run);
+    const loaded = loadRun(storage, daily, "p");
+    expect(loaded).toEqual(run);
+    expect(startRun(loaded, true, now + 1000).deadline).toBe(run.deadline);
+    const expired = expireRun(loaded, now + 300_000);
+    saveRun(storage, daily, expired);
+    expect(loadRun(storage, daily, "p")).toEqual(expired);
+    const untimed = startRun(newRun(daily, "p"), false, now);
+    saveRun(storage, daily, untimed);
+    expect(loadRun(storage, daily, "p")).toEqual(untimed);
+    expect(loadRun(storage, adjacentPuzzle(daily.date, 1), "p").startedAt).toBeUndefined();
+  });
+  it("recovers from malformed timer metadata", () => {
+    for (const fields of [
+      { startedAt: "bad" }, { startedAt: -1 }, { deadline: 300000 },
+      { startedAt: 1000, deadline: 2000 }, { timedOut: "yes" },
+    ]) {
+      const run = { ...newRun(daily, "p"), ...fields };
+      storage.setItem(runKey(daily, "p"), JSON.stringify(run));
+      expect(loadRun(storage, daily, "p").id).not.toBe(run.id);
+    }
   });
   it("deduplicates lifecycle telemetry locally and bounds retained events", () => {
     const event = {

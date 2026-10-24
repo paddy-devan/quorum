@@ -41,6 +41,23 @@ export function bestCheck(checks: Check[]): Check | undefined {
   }, undefined);
 }
 
+export const TIMER_DURATION_MS = 5 * 60 * 1000;
+
+export function startRun(run: Run, timed: boolean, now = Date.now()): Run {
+  if (run.startedAt !== undefined || run.finished) return run;
+  return { ...run, startedAt: now, ...(timed ? { deadline: now + TIMER_DURATION_MS } : {}) };
+}
+
+export function timeExpired(run: Run, now = Date.now()): boolean {
+  return run.deadline !== undefined && now >= run.deadline;
+}
+
+export function expireRun(run: Run, now = Date.now()): Run {
+  return !run.finished && timeExpired(run, now)
+    ? { ...run, finished: true, timedOut: true }
+    : run;
+}
+
 export function submitCheck(
   puzzle: Puzzle,
   run: Run,
@@ -48,6 +65,8 @@ export function submitCheck(
 ): Run {
   if (run.finished || run.checks.length >= puzzle.rules.maxChecks)
     throw new Error("This game has finished.");
+  if (timeExpired(run, Date.parse(submittedAt)))
+    throw new Error("Time’s up. This game has finished.");
   const result = evaluate(puzzle, run.selectedIds);
   const signature = [...result.entityIds].sort().join("|");
   if (
@@ -89,5 +108,5 @@ export function shareText(
     )
     .join("\n");
   const identity = `Quorum #${String(daily.number).padStart(3, "0")} · ${daily.date}`;
-  return `${identity}\n${score}\n${progression || "No checks used"}\n${run.checks.length}/${daily.puzzle.rules.maxChecks} checks\n${url}`;
+  return `${identity}\n${score}\n${progression || "No checks used"}\n${run.checks.length}/${daily.puzzle.rules.maxChecks} checks${run.deadline !== undefined ? " · 5-minute mode" : ""}\n${url}`;
 }

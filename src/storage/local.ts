@@ -1,4 +1,4 @@
-import { evaluate } from "../game/engine";
+import { evaluate, TIMER_DURATION_MS } from "../game/engine";
 import type { DailyPuzzle, Participant, Run } from "../game/types";
 
 export interface StoragePort {
@@ -92,6 +92,11 @@ export function loadRun(
   )
     return fresh();
   try {
+    if (
+      (stored.startedAt !== undefined && (typeof stored.startedAt !== "number" || !Number.isFinite(stored.startedAt) || stored.startedAt < 0)) ||
+      (stored.deadline !== undefined && (stored.startedAt === undefined || stored.deadline !== stored.startedAt + TIMER_DURATION_MS)) ||
+      (stored.timedOut !== undefined && typeof stored.timedOut !== "boolean")
+    ) throw new Error("Invalid stored timer.");
     const signatures = new Set<string>();
     const checks = stored.checks.map((check, index) => {
       if (

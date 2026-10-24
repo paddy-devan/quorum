@@ -44,6 +44,11 @@ export function Help({
         During testing, use the arrows beside the puzzle number to try another
         day. Each day keeps its own progress. The Quorum logo returns to today.
       </p>
+      <p>
+        Choose the optional 5-minute timer on the welcome screen before you start.
+        It keeps running while you’re away or reading help. At zero, play ends
+        and only your best checked selection counts.
+      </p>
       <div className="tutorial">
         <h3>Try a tiny example</h3>
         <p>These are imaginary islands, just to show the idea.</p>
@@ -95,7 +100,7 @@ export function Help({
         early to reveal the facts.
       </p>
       <button className="primary-button wide" onClick={onClose}>
-        Let’s play
+        Got it
       </button>
     </Modal>
   );
