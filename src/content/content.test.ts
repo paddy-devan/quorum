@@ -1,19 +1,18 @@
 import { describe, expect, it } from "vitest";
 import {
-  authoredFixtureGenerator,
   catalog,
   dailyPuzzle,
-  demoPuzzle,
-  demoPuzzles,
+  adjacentPuzzle,
   definitions,
   loadPuzzle,
   puzzles,
   utcDate,
 } from "./loader";
 import { validatePuzzle } from "../game/validator";
+import { auditSchedule } from "./audit";
 
 describe("authored content integrity", () => {
-  it.each([...puzzles, ...demoPuzzles].map((puzzle) => [puzzle.id, puzzle] as const))(
+  it.each(puzzles.map((puzzle) => [puzzle.id, puzzle] as const))(
     "%s has twelve verified candidates, six requirements and a three-country optimum",
     (_, puzzle) => {
       expect(puzzle.entities).toHaveLength(12);
@@ -37,14 +36,18 @@ describe("authored content integrity", () => {
   );
   it("rejects unknown and omitted facts instead of silently treating them as false", () => {
     const unknown = structuredClone(catalog);
-    unknown.entities[0].facts.africa.value = null;
+    const countryId = definitions[0].entityIds[0];
+    const attributeId = definitions[0].attributeIds[0];
+    const country = unknown.entities.find((entity) => entity.id === countryId)!;
+    country.facts[attributeId].value = null;
     expect(() => loadPuzzle(unknown, definitions[0])).toThrow("Unverified");
-    delete unknown.entities[0].facts.africa;
+    delete country.facts[attributeId];
     expect(() => loadPuzzle(unknown, definitions[0])).toThrow("Unverified");
   });
   it("rejects missing sources, missing references, duplicates and incorrect claimed optima", () => {
     const noSources = structuredClone(catalog);
-    noSources.entities[0].facts.africa.sourceIds = ["absent"];
+    noSources.entities.find((entity) => entity.id === definitions[0].entityIds[0])!
+      .facts[definitions[0].attributeIds[0]].sourceIds = ["absent"];
     expect(() => loadPuzzle(noSources, definitions[0])).toThrow("evidence");
     expect(() =>
       loadPuzzle(catalog, { ...definitions[0], entityIds: ["absent"] }),
@@ -77,29 +80,30 @@ describe("authored content integrity", () => {
         ).toBe(true);
       }
   });
-  it.each(demoPuzzles.map((puzzle) => [puzzle.id, puzzle] as const))(
-    "%s offers alternatives and gives every requirement an independent role",
-    (_, puzzle) => {
-      const report = validatePuzzle(puzzle);
-      expect(report.optimalSolutions.length).toBeGreaterThan(1);
-      expect(report.validBySize[4]).toBeGreaterThan(0);
-      expect(Object.values(report.attributeFrequency).every((n) => n >= 2 && n <= 7)).toBe(true);
-      for (const first of puzzle.attributes)
-        for (const second of puzzle.attributes) {
-          if (first.id === second.id) continue;
-          // If every answer to A also answers B, B adds no decision to a complete solution.
-          expect(puzzle.entities.some((entity) =>
-            entity.facts[first.id].value && !entity.facts[second.id].value,
-          ), `${first.id} should not automatically satisfy ${second.id}`).toBe(true);
-        }
-    },
-  );
-  it("resolves stable demo links without changing the daily rotation", () => {
-    const demo = demoPuzzle(demoPuzzles[0].id)!;
-    expect(demo.demoId).toBe(demoPuzzles[0].id);
-    expect(demo.date).toBe("2026-10-23");
-    expect(demoPuzzle("absent")).toBeNull();
-    expect(dailyPuzzle("2026-10-23").demoId).toBeUndefined();
+  it("passes the shared publication policy for the complete looping schedule", () => {
+    const audit = auditSchedule(catalog, definitions);
+    expect(audit.issues).toEqual([]);
+    for (const { definition, report, error } of audit.puzzles) {
+      expect(error, definition.id).toBeUndefined();
+      expect(report?.issues, definition.id).toEqual([]);
+    }
+    expect(audit.accepted).toBe(true);
+    expect(puzzles).toHaveLength(7);
+  });
+  it("browses every day and wraps inside the selected seven-day testing week", () => {
+    const first = dailyPuzzle("2026-10-22");
+    let current = first;
+    const seen = new Set<string>();
+    for (let i = 0; i < puzzles.length; i++) {
+      seen.add(current.puzzle.id);
+      expect(adjacentPuzzle(adjacentPuzzle(current.date, 1).date, -1)).toEqual(current);
+      current = adjacentPuzzle(current.date, 1);
+    }
+    expect(seen.size).toBe(7);
+    expect(current).toEqual(first);
+    expect(adjacentPuzzle(first.date, -1).date).toBe("2026-10-28");
+    expect(adjacentPuzzle("2026-11-04", 1).date).toBe("2026-10-29");
+    expect(() => adjacentPuzzle("invalid", 1)).toThrow("date");
   });
   it("uses UTC boundaries and deterministic shared fixtures", () => {
     expect(utcDate(new Date("2026-10-22T00:30:00+01:00"))).toBe("2026-10-21");
@@ -117,11 +121,5 @@ describe("authored content integrity", () => {
     );
     expect(dailyPuzzle("2026-10-22")).toEqual(dailyPuzzle("2026-10-22"));
     expect(() => dailyPuzzle("2026-02-30")).toThrow();
-  });
-  it("exposes a deterministic, replaceable authored generator without mutating fixtures", () => {
-    const generated = authoredFixtureGenerator({ catalog, seed: 0 });
-    expect(generated).toEqual(definitions[0]);
-    generated.entityIds.pop();
-    expect(definitions[0].entityIds).toHaveLength(12);
   });
 });

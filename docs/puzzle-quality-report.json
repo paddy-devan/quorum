@@ -1,0 +1,4784 @@
+{
+  "algorithmVersion": "seeded-safe-route-v1",
+  "catalogVersion": "countries-4-quality",
+  "seed": 20261022,
+  "profile": {
+    "id": "daily-testing",
+    "version": 1,
+    "candidateCount": 12,
+    "requirementCount": 6,
+    "maxSelected": 6,
+    "maxPerFamily": 2,
+    "estimationCount": {
+      "min": 1,
+      "max": 2
+    },
+    "minSubjects": 3,
+    "difficultyCounts": {
+      "easy": {
+        "min": 1,
+        "max": 4
+      },
+      "medium": {
+        "min": 1,
+        "max": 4
+      },
+      "hard": {
+        "min": 1,
+        "max": 3
+      }
+    },
+    "familiarityCounts": {
+      "familiar": {
+        "min": 4,
+        "max": 8
+      },
+      "moderate": {
+        "min": 0,
+        "max": 6
+      },
+      "less-familiar": {
+        "min": 2,
+        "max": 4
+      }
+    },
+    "matchingCountries": {
+      "min": 2,
+      "max": 7
+    },
+    "optimalSize": 3,
+    "optimalCount": {
+      "min": 1,
+      "max": 4
+    },
+    "completionRates": {
+      "4": {
+        "min": 0.05,
+        "max": 0.3
+      },
+      "5": {
+        "min": 0.15,
+        "max": 0.6
+      },
+      "6": {
+        "min": 0.3,
+        "max": 0.85
+      }
+    },
+    "minIrreducibleBySize": {
+      "4": 1,
+      "5": 1
+    },
+    "safeRouteSizes": [
+      5,
+      6
+    ],
+    "preventImplications": true,
+    "maxAdjacentRequirementOverlap": 4
+  },
+  "requested": 7,
+  "maxAttempts": 100000,
+  "attempts": 4479,
+  "exhausted": false,
+  "stages": {
+    "eligibility": 1713,
+    "country-mix": 134,
+    "safe-route": 428,
+    "requirement-mix": 2003,
+    "quality": 192,
+    "accepted": 7,
+    "schedule-diversity": 2
+  },
+  "rejectionCounts": {
+    "eligible-count": 1713,
+    "familiarity-count": 134,
+    "safe-route-proposal": 428,
+    "subject-count": 567,
+    "difficulty-count": 1688,
+    "optimum": 109,
+    "implied-requirement": 153,
+    "family-count": 76,
+    "optimal-count": 112,
+    "completion-rate": 111,
+    "matching-countries": 112,
+    "irreducible-count": 11,
+    "schedule-diversity": 2
+  },
+  "trace": [
+    {
+      "attempt": 1,
+      "stage": "eligibility",
+      "requirementIds": [
+        "landlocked",
+        "atlantic",
+        "people-above-japan",
+        "gdp-person-above-portugal",
+        "tango-heritage",
+        "africa"
+      ],
+      "issues": [
+        {
+          "code": "eligible-count",
+          "message": "Only 9 verified, useful, permitted countries are available.",
+          "actual": 9,
+          "min": 12
+        }
+      ],
+      "exclusions": [
+        {
+          "id": "japan",
+          "reasons": [
+            "reference country for “More people than Japan”"
+          ]
+        },
+        {
+          "id": "portugal",
+          "reasons": [
+            "reference country for “GDP per person above Portugal’s”"
+          ]
+        }
+      ],
+      "ineligibleCountries": [
+        {
+          "id": "argentina",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "australia",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "bhutan",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "bolivia",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "chile",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "germany",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "greece",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "india",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "italy",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "japan",
+          "reason": "excluded"
+        },
+        {
+          "id": "mexico",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "mongolia",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "netherlands",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "peru",
+          "reason": "no-matches"
+        },
+        {
+          "id": "portugal",
+          "reason": "excluded"
+        },
+        {
+          "id": "senegal",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "slovenia",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "south-korea",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "spain",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "thailand",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "turkey",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "united-states",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "uruguay",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        }
+      ],
+      "eligibleCount": 9
+    },
+    {
+      "attempt": 2,
+      "stage": "eligibility",
+      "requirementIds": [
+        "gdp-person-below-portugal",
+        "mediterranean",
+        "mediterranean-diet",
+        "women-world-cup-winner",
+        "atlantic",
+        "world-cup-winner"
+      ],
+      "issues": [
+        {
+          "code": "eligible-count",
+          "message": "Only 10 verified, useful, permitted countries are available.",
+          "actual": 10,
+          "min": 12
+        }
+      ],
+      "exclusions": [
+        {
+          "id": "portugal",
+          "reasons": [
+            "reference country for “GDP per person below Portugal’s”"
+          ]
+        }
+      ],
+      "ineligibleCountries": [
+        {
+          "id": "argentina",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean",
+            "atlantic"
+          ]
+        },
+        {
+          "id": "australia",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean",
+            "atlantic"
+          ]
+        },
+        {
+          "id": "austria",
+          "reason": "no-matches"
+        },
+        {
+          "id": "bhutan",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean",
+            "atlantic"
+          ]
+        },
+        {
+          "id": "bolivia",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean",
+            "atlantic"
+          ]
+        },
+        {
+          "id": "chile",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean",
+            "atlantic"
+          ]
+        },
+        {
+          "id": "germany",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean",
+            "atlantic"
+          ]
+        },
+        {
+          "id": "greece",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean",
+            "atlantic"
+          ]
+        },
+        {
+          "id": "india",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean",
+            "atlantic"
+          ]
+        },
+        {
+          "id": "italy",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean",
+            "atlantic"
+          ]
+        },
+        {
+          "id": "mexico",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean",
+            "atlantic"
+          ]
+        },
+        {
+          "id": "mongolia",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean",
+            "atlantic"
+          ]
+        },
+        {
+          "id": "netherlands",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean",
+            "atlantic"
+          ]
+        },
+        {
+          "id": "portugal",
+          "reason": "excluded"
+        },
+        {
+          "id": "senegal",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean",
+            "atlantic"
+          ]
+        },
+        {
+          "id": "slovenia",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean",
+            "atlantic"
+          ]
+        },
+        {
+          "id": "south-korea",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean",
+            "atlantic"
+          ]
+        },
+        {
+          "id": "spain",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean",
+            "atlantic"
+          ]
+        },
+        {
+          "id": "thailand",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean",
+            "atlantic"
+          ]
+        },
+        {
+          "id": "turkey",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean",
+            "atlantic"
+          ]
+        },
+        {
+          "id": "united-states",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean",
+            "atlantic"
+          ]
+        },
+        {
+          "id": "uruguay",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean",
+            "atlantic"
+          ]
+        }
+      ],
+      "eligibleCount": 10
+    },
+    {
+      "attempt": 3,
+      "stage": "eligibility",
+      "requirementIds": [
+        "portuguese",
+        "closer-cairo-than-paris",
+        "europe",
+        "tango-heritage",
+        "denser-than-germany",
+        "equator"
+      ],
+      "issues": [
+        {
+          "code": "eligible-count",
+          "message": "Only 11 verified, useful, permitted countries are available.",
+          "actual": 11,
+          "min": 12
+        }
+      ],
+      "exclusions": [
+        {
+          "id": "germany",
+          "reasons": [
+            "reference country for “More densely populated than Germany”"
+          ]
+        }
+      ],
+      "ineligibleCountries": [
+        {
+          "id": "argentina",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "australia",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "bhutan",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "bolivia",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "chile",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "germany",
+          "reason": "excluded"
+        },
+        {
+          "id": "greece",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "india",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "italy",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "mexico",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "mongolia",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "netherlands",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "peru",
+          "reason": "no-matches"
+        },
+        {
+          "id": "senegal",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "slovenia",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "south-korea",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "spain",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "thailand",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "turkey",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "united-states",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "uruguay",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        }
+      ],
+      "eligibleCount": 11
+    },
+    {
+      "attempt": 4,
+      "stage": "country-mix",
+      "requirementIds": [
+        "tango-heritage",
+        "women-world-cup-winner",
+        "gdp-below-austria",
+        "closer-tokyo-than-paris",
+        "world-cup-winner",
+        "equator"
+      ],
+      "issues": [
+        {
+          "code": "familiarity-count",
+          "message": "Country familiarity “familiar”: 2; expected 4–8.",
+          "actual": 2,
+          "min": 4,
+          "max": 8
+        },
+        {
+          "code": "familiarity-count",
+          "message": "Country familiarity “moderate”: 7; expected 0–6.",
+          "actual": 7,
+          "min": 0,
+          "max": 6
+        }
+      ],
+      "exclusions": [
+        {
+          "id": "austria",
+          "reasons": [
+            "reference country for “GDP smaller than Austria’s”"
+          ]
+        }
+      ],
+      "ineligibleCountries": [
+        {
+          "id": "austria",
+          "reason": "excluded"
+        },
+        {
+          "id": "mexico",
+          "reason": "no-matches"
+        },
+        {
+          "id": "netherlands",
+          "reason": "no-matches"
+        },
+        {
+          "id": "turkey",
+          "reason": "no-matches"
+        }
+      ],
+      "eligibleCount": 28,
+      "entityIds": [
+        "mongolia",
+        "chile",
+        "nigeria",
+        "portugal",
+        "peru",
+        "senegal",
+        "united-states",
+        "brazil",
+        "south-korea",
+        "bolivia",
+        "thailand",
+        "argentina"
+      ]
+    },
+    {
+      "attempt": 5,
+      "stage": "safe-route",
+      "requirementIds": [
+        "mediterranean-diet",
+        "winter-host",
+        "capital-near-buenos-aires",
+        "women-world-cup-winner",
+        "europe",
+        "euro"
+      ],
+      "issues": [
+        {
+          "code": "safe-route-proposal",
+          "message": "The bounded private-requirement search found no conservative route."
+        }
+      ],
+      "exclusions": [],
+      "ineligibleCountries": [
+        {
+          "id": "australia",
+          "reason": "no-matches"
+        },
+        {
+          "id": "bhutan",
+          "reason": "no-matches"
+        },
+        {
+          "id": "egypt",
+          "reason": "no-matches"
+        },
+        {
+          "id": "india",
+          "reason": "no-matches"
+        },
+        {
+          "id": "indonesia",
+          "reason": "no-matches"
+        },
+        {
+          "id": "kenya",
+          "reason": "no-matches"
+        },
+        {
+          "id": "mexico",
+          "reason": "no-matches"
+        },
+        {
+          "id": "mongolia",
+          "reason": "no-matches"
+        },
+        {
+          "id": "nepal",
+          "reason": "no-matches"
+        },
+        {
+          "id": "nigeria",
+          "reason": "no-matches"
+        },
+        {
+          "id": "senegal",
+          "reason": "no-matches"
+        },
+        {
+          "id": "south-africa",
+          "reason": "no-matches"
+        },
+        {
+          "id": "thailand",
+          "reason": "no-matches"
+        }
+      ],
+      "eligibleCount": 19
+    },
+    {
+      "attempt": 6,
+      "stage": "requirement-mix",
+      "requirementIds": [
+        "europe",
+        "africa",
+        "mediterranean",
+        "area-above-india",
+        "mediterranean-diet",
+        "tango-heritage"
+      ],
+      "issues": [
+        {
+          "code": "subject-count",
+          "message": "Distinct subjects: 2; expected 3–6.",
+          "actual": 2,
+          "min": 3,
+          "max": 6
+        }
+      ]
+    },
+    {
+      "attempt": 7,
+      "stage": "eligibility",
+      "requirementIds": [
+        "world-cup-winner",
+        "winter-host",
+        "capital-near-tokyo",
+        "capital-near-paris",
+        "portuguese",
+        "landlocked"
+      ],
+      "issues": [
+        {
+          "code": "eligible-count",
+          "message": "Only 6 verified, useful, permitted countries are available.",
+          "actual": 6,
+          "min": 12
+        }
+      ],
+      "exclusions": [],
+      "ineligibleCountries": [
+        {
+          "id": "argentina",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "australia",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "bhutan",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "bolivia",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "chile",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "egypt",
+          "reason": "no-matches"
+        },
+        {
+          "id": "germany",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "greece",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "india",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "indonesia",
+          "reason": "no-matches"
+        },
+        {
+          "id": "italy",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "kenya",
+          "reason": "no-matches"
+        },
+        {
+          "id": "mexico",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "mongolia",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "netherlands",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "nigeria",
+          "reason": "no-matches"
+        },
+        {
+          "id": "peru",
+          "reason": "no-matches"
+        },
+        {
+          "id": "senegal",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "slovenia",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "south-africa",
+          "reason": "no-matches"
+        },
+        {
+          "id": "south-korea",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "spain",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "thailand",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "turkey",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "united-states",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "uruguay",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        }
+      ],
+      "eligibleCount": 6
+    },
+    {
+      "attempt": 8,
+      "stage": "eligibility",
+      "requirementIds": [
+        "left",
+        "world-cup-winner",
+        "mediterranean-diet",
+        "asia",
+        "people-below-australia",
+        "equator"
+      ],
+      "issues": [
+        {
+          "code": "eligible-count",
+          "message": "Only 10 verified, useful, permitted countries are available.",
+          "actual": 10,
+          "min": 12
+        }
+      ],
+      "exclusions": [
+        {
+          "id": "australia",
+          "reasons": [
+            "reference country for “Fewer people than Australia”"
+          ]
+        }
+      ],
+      "ineligibleCountries": [
+        {
+          "id": "argentina",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "australia",
+          "reason": "excluded"
+        },
+        {
+          "id": "bhutan",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "bolivia",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "chile",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "germany",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "greece",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "india",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "italy",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "mexico",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "mongolia",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "netherlands",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "nigeria",
+          "reason": "no-matches"
+        },
+        {
+          "id": "peru",
+          "reason": "no-matches"
+        },
+        {
+          "id": "senegal",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "slovenia",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "south-korea",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "spain",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "thailand",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "turkey",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "united-states",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "uruguay",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        }
+      ],
+      "eligibleCount": 10
+    },
+    {
+      "attempt": 9,
+      "stage": "eligibility",
+      "requirementIds": [
+        "euro",
+        "women-world-cup-winner",
+        "people-above-japan",
+        "mediterranean-diet",
+        "portuguese",
+        "europe"
+      ],
+      "issues": [
+        {
+          "code": "eligible-count",
+          "message": "Only 6 verified, useful, permitted countries are available.",
+          "actual": 6,
+          "min": 12
+        }
+      ],
+      "exclusions": [
+        {
+          "id": "japan",
+          "reasons": [
+            "reference country for “More people than Japan”"
+          ]
+        }
+      ],
+      "ineligibleCountries": [
+        {
+          "id": "argentina",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "australia",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "bhutan",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "bolivia",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "chile",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "egypt",
+          "reason": "no-matches"
+        },
+        {
+          "id": "germany",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "greece",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "india",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "italy",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "japan",
+          "reason": "excluded"
+        },
+        {
+          "id": "kenya",
+          "reason": "no-matches"
+        },
+        {
+          "id": "mexico",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "mongolia",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "nepal",
+          "reason": "no-matches"
+        },
+        {
+          "id": "netherlands",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "peru",
+          "reason": "no-matches"
+        },
+        {
+          "id": "senegal",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "slovenia",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "south-africa",
+          "reason": "no-matches"
+        },
+        {
+          "id": "south-korea",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "spain",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "thailand",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "turkey",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "united-states",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "uruguay",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        }
+      ],
+      "eligibleCount": 6
+    },
+    {
+      "attempt": 10,
+      "stage": "requirement-mix",
+      "requirementIds": [
+        "atlantic",
+        "area-above-india",
+        "world-cup-winner",
+        "women-world-cup-winner",
+        "mediterranean",
+        "winter-host"
+      ],
+      "issues": [
+        {
+          "code": "subject-count",
+          "message": "Distinct subjects: 2; expected 3–6.",
+          "actual": 2,
+          "min": 3,
+          "max": 6
+        },
+        {
+          "code": "difficulty-count",
+          "message": "Difficulty “hard”: 0; expected 1–3.",
+          "actual": 0,
+          "min": 1,
+          "max": 3
+        }
+      ]
+    },
+    {
+      "attempt": 11,
+      "stage": "requirement-mix",
+      "requirementIds": [
+        "mediterranean-diet",
+        "atlantic",
+        "summer-host",
+        "denser-than-germany",
+        "gdp-person-above-portugal",
+        "world-cup-winner"
+      ],
+      "issues": [
+        {
+          "code": "difficulty-count",
+          "message": "Difficulty “medium”: 0; expected 1–4.",
+          "actual": 0,
+          "min": 1,
+          "max": 4
+        }
+      ]
+    },
+    {
+      "attempt": 12,
+      "stage": "safe-route",
+      "requirementIds": [
+        "summer-host",
+        "area-above-india",
+        "women-world-cup-winner",
+        "asia",
+        "south",
+        "gdp-person-above-portugal"
+      ],
+      "issues": [
+        {
+          "code": "safe-route-proposal",
+          "message": "The bounded private-requirement search found no conservative route."
+        }
+      ],
+      "exclusions": [
+        {
+          "id": "india",
+          "reasons": [
+            "reference country for “Larger than India”"
+          ]
+        },
+        {
+          "id": "portugal",
+          "reasons": [
+            "reference country for “GDP per person above Portugal’s”"
+          ]
+        }
+      ],
+      "ineligibleCountries": [
+        {
+          "id": "india",
+          "reason": "excluded"
+        },
+        {
+          "id": "nigeria",
+          "reason": "no-matches"
+        },
+        {
+          "id": "portugal",
+          "reason": "excluded"
+        },
+        {
+          "id": "senegal",
+          "reason": "no-matches"
+        }
+      ],
+      "eligibleCount": 28
+    },
+    {
+      "attempt": 13,
+      "stage": "requirement-mix",
+      "requirementIds": [
+        "africa",
+        "tango-heritage",
+        "equator",
+        "atlantic",
+        "summer-host",
+        "area-below-japan"
+      ],
+      "issues": [
+        {
+          "code": "difficulty-count",
+          "message": "Difficulty “hard”: 0; expected 1–3.",
+          "actual": 0,
+          "min": 1,
+          "max": 3
+        }
+      ]
+    },
+    {
+      "attempt": 14,
+      "stage": "safe-route",
+      "requirementIds": [
+        "capital-near-buenos-aires",
+        "europe",
+        "equator",
+        "women-world-cup-winner",
+        "tango-heritage",
+        "mediterranean-diet"
+      ],
+      "issues": [
+        {
+          "code": "safe-route-proposal",
+          "message": "The bounded private-requirement search found no conservative route."
+        }
+      ],
+      "exclusions": [],
+      "ineligibleCountries": [
+        {
+          "id": "australia",
+          "reason": "no-matches"
+        },
+        {
+          "id": "bhutan",
+          "reason": "no-matches"
+        },
+        {
+          "id": "egypt",
+          "reason": "no-matches"
+        },
+        {
+          "id": "india",
+          "reason": "no-matches"
+        },
+        {
+          "id": "mexico",
+          "reason": "no-matches"
+        },
+        {
+          "id": "mongolia",
+          "reason": "no-matches"
+        },
+        {
+          "id": "nepal",
+          "reason": "no-matches"
+        },
+        {
+          "id": "nigeria",
+          "reason": "no-matches"
+        },
+        {
+          "id": "senegal",
+          "reason": "no-matches"
+        },
+        {
+          "id": "south-africa",
+          "reason": "no-matches"
+        },
+        {
+          "id": "south-korea",
+          "reason": "no-matches"
+        },
+        {
+          "id": "thailand",
+          "reason": "no-matches"
+        }
+      ],
+      "eligibleCount": 20
+    },
+    {
+      "attempt": 15,
+      "stage": "requirement-mix",
+      "requirementIds": [
+        "people-above-japan",
+        "atlantic",
+        "equator",
+        "tango-heritage",
+        "winter-host",
+        "africa"
+      ],
+      "issues": [
+        {
+          "code": "difficulty-count",
+          "message": "Difficulty “hard”: 0; expected 1–3.",
+          "actual": 0,
+          "min": 1,
+          "max": 3
+        }
+      ]
+    },
+    {
+      "attempt": 16,
+      "stage": "eligibility",
+      "requirementIds": [
+        "summer-host",
+        "people-above-germany",
+        "closer-tokyo-than-paris",
+        "atlantic",
+        "left",
+        "asia"
+      ],
+      "issues": [
+        {
+          "code": "eligible-count",
+          "message": "Only 10 verified, useful, permitted countries are available.",
+          "actual": 10,
+          "min": 12
+        }
+      ],
+      "exclusions": [
+        {
+          "id": "germany",
+          "reasons": [
+            "reference country for “More people than Germany”"
+          ]
+        }
+      ],
+      "ineligibleCountries": [
+        {
+          "id": "argentina",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic",
+            "left"
+          ]
+        },
+        {
+          "id": "australia",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic",
+            "left"
+          ]
+        },
+        {
+          "id": "austria",
+          "reason": "no-matches"
+        },
+        {
+          "id": "bhutan",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic",
+            "left"
+          ]
+        },
+        {
+          "id": "bolivia",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic",
+            "left"
+          ]
+        },
+        {
+          "id": "chile",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic",
+            "left"
+          ]
+        },
+        {
+          "id": "germany",
+          "reason": "excluded"
+        },
+        {
+          "id": "greece",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic",
+            "left"
+          ]
+        },
+        {
+          "id": "india",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic",
+            "left"
+          ]
+        },
+        {
+          "id": "italy",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic",
+            "left"
+          ]
+        },
+        {
+          "id": "mexico",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic",
+            "left"
+          ]
+        },
+        {
+          "id": "mongolia",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic",
+            "left"
+          ]
+        },
+        {
+          "id": "netherlands",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic",
+            "left"
+          ]
+        },
+        {
+          "id": "peru",
+          "reason": "no-matches"
+        },
+        {
+          "id": "senegal",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic",
+            "left"
+          ]
+        },
+        {
+          "id": "slovenia",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic",
+            "left"
+          ]
+        },
+        {
+          "id": "south-korea",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic",
+            "left"
+          ]
+        },
+        {
+          "id": "spain",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic",
+            "left"
+          ]
+        },
+        {
+          "id": "thailand",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic",
+            "left"
+          ]
+        },
+        {
+          "id": "turkey",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic",
+            "left"
+          ]
+        },
+        {
+          "id": "united-states",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic",
+            "left"
+          ]
+        },
+        {
+          "id": "uruguay",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic",
+            "left"
+          ]
+        }
+      ],
+      "eligibleCount": 10
+    },
+    {
+      "attempt": 17,
+      "stage": "requirement-mix",
+      "requirementIds": [
+        "europe",
+        "landlocked",
+        "mediterranean",
+        "mediterranean-diet",
+        "capital-near-cairo",
+        "equator"
+      ],
+      "issues": [
+        {
+          "code": "subject-count",
+          "message": "Distinct subjects: 2; expected 3–6.",
+          "actual": 2,
+          "min": 3,
+          "max": 6
+        },
+        {
+          "code": "difficulty-count",
+          "message": "Difficulty “medium”: 0; expected 1–4.",
+          "actual": 0,
+          "min": 1,
+          "max": 4
+        }
+      ]
+    },
+    {
+      "attempt": 18,
+      "stage": "requirement-mix",
+      "requirementIds": [
+        "africa",
+        "summer-host",
+        "atlantic",
+        "mediterranean-diet",
+        "portuguese",
+        "closer-cairo-than-paris"
+      ],
+      "issues": [
+        {
+          "code": "difficulty-count",
+          "message": "Difficulty “medium”: 0; expected 1–4.",
+          "actual": 0,
+          "min": 1,
+          "max": 4
+        }
+      ]
+    },
+    {
+      "attempt": 19,
+      "stage": "eligibility",
+      "requirementIds": [
+        "world-cup-winner",
+        "portuguese",
+        "landlocked",
+        "euro",
+        "denser-than-germany",
+        "winter-host"
+      ],
+      "issues": [
+        {
+          "code": "eligible-count",
+          "message": "Only 7 verified, useful, permitted countries are available.",
+          "actual": 7,
+          "min": 12
+        }
+      ],
+      "exclusions": [
+        {
+          "id": "germany",
+          "reasons": [
+            "reference country for “More densely populated than Germany”"
+          ]
+        }
+      ],
+      "ineligibleCountries": [
+        {
+          "id": "argentina",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "australia",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "bhutan",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "bolivia",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "chile",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "egypt",
+          "reason": "no-matches"
+        },
+        {
+          "id": "germany",
+          "reason": "excluded"
+        },
+        {
+          "id": "greece",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "india",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "indonesia",
+          "reason": "no-matches"
+        },
+        {
+          "id": "italy",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "kenya",
+          "reason": "no-matches"
+        },
+        {
+          "id": "mexico",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "mongolia",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "netherlands",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "peru",
+          "reason": "no-matches"
+        },
+        {
+          "id": "senegal",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "slovenia",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "south-africa",
+          "reason": "no-matches"
+        },
+        {
+          "id": "south-korea",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "spain",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "thailand",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "turkey",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "united-states",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        },
+        {
+          "id": "uruguay",
+          "reason": "unverified",
+          "requirementIds": [
+            "portuguese"
+          ]
+        }
+      ],
+      "eligibleCount": 7
+    },
+    {
+      "attempt": 20,
+      "stage": "quality",
+      "requirementIds": [
+        "area-below-japan",
+        "gdp-person-below-portugal",
+        "europe",
+        "winter-host",
+        "women-world-cup-winner",
+        "south"
+      ],
+      "issues": [
+        {
+          "code": "optimum",
+          "message": "Minimum is 2; expected 3."
+        },
+        {
+          "code": "implied-requirement",
+          "message": "women-world-cup-winner always also satisfies winter-host.",
+          "ids": [
+            "women-world-cup-winner",
+            "winter-host"
+          ]
+        }
+      ],
+      "exclusions": [
+        {
+          "id": "japan",
+          "reasons": [
+            "reference country for “Smaller than Japan”"
+          ]
+        },
+        {
+          "id": "portugal",
+          "reasons": [
+            "reference country for “GDP per person below Portugal’s”"
+          ]
+        }
+      ],
+      "ineligibleCountries": [
+        {
+          "id": "japan",
+          "reason": "excluded"
+        },
+        {
+          "id": "portugal",
+          "reason": "excluded"
+        }
+      ],
+      "eligibleCount": 30,
+      "entityIds": [
+        "australia",
+        "slovenia",
+        "south-korea",
+        "germany",
+        "nepal",
+        "nigeria",
+        "mexico",
+        "indonesia",
+        "argentina",
+        "turkey",
+        "united-states",
+        "france"
+      ]
+    },
+    {
+      "attempt": 21,
+      "stage": "requirement-mix",
+      "requirementIds": [
+        "asia",
+        "portuguese",
+        "tango-heritage",
+        "europe",
+        "capital-near-buenos-aires",
+        "south"
+      ],
+      "issues": [
+        {
+          "code": "subject-count",
+          "message": "Distinct subjects: 2; expected 3–6.",
+          "actual": 2,
+          "min": 3,
+          "max": 6
+        }
+      ]
+    },
+    {
+      "attempt": 22,
+      "stage": "requirement-mix",
+      "requirementIds": [
+        "landlocked",
+        "mediterranean",
+        "gdp-person-above-portugal",
+        "atlantic",
+        "asia",
+        "mediterranean-diet"
+      ],
+      "issues": [
+        {
+          "code": "family-count",
+          "message": "Question family “coastal-access”: 3; expected 0–2.",
+          "actual": 3,
+          "min": 0,
+          "max": 2
+        },
+        {
+          "code": "difficulty-count",
+          "message": "Difficulty “medium”: 0; expected 1–4.",
+          "actual": 0,
+          "min": 1,
+          "max": 4
+        }
+      ]
+    },
+    {
+      "attempt": 23,
+      "stage": "quality",
+      "requirementIds": [
+        "landlocked",
+        "equator",
+        "euro",
+        "mediterranean-diet",
+        "denser-than-germany",
+        "winter-host"
+      ],
+      "issues": [
+        {
+          "code": "optimum",
+          "message": "Minimum is 4; expected 3."
+        },
+        {
+          "code": "optimal-count",
+          "message": "Optimal solutions: 32; expected 1–4.",
+          "actual": 32,
+          "min": 1,
+          "max": 4
+        },
+        {
+          "code": "implied-requirement",
+          "message": "mediterranean-diet always also satisfies euro.",
+          "ids": [
+            "mediterranean-diet",
+            "euro"
+          ]
+        }
+      ],
+      "exclusions": [
+        {
+          "id": "germany",
+          "reasons": [
+            "reference country for “More densely populated than Germany”"
+          ]
+        }
+      ],
+      "ineligibleCountries": [
+        {
+          "id": "argentina",
+          "reason": "no-matches"
+        },
+        {
+          "id": "australia",
+          "reason": "no-matches"
+        },
+        {
+          "id": "chile",
+          "reason": "no-matches"
+        },
+        {
+          "id": "egypt",
+          "reason": "no-matches"
+        },
+        {
+          "id": "germany",
+          "reason": "excluded"
+        },
+        {
+          "id": "mexico",
+          "reason": "no-matches"
+        },
+        {
+          "id": "peru",
+          "reason": "no-matches"
+        },
+        {
+          "id": "senegal",
+          "reason": "no-matches"
+        },
+        {
+          "id": "south-africa",
+          "reason": "no-matches"
+        },
+        {
+          "id": "thailand",
+          "reason": "no-matches"
+        },
+        {
+          "id": "turkey",
+          "reason": "no-matches"
+        },
+        {
+          "id": "uruguay",
+          "reason": "no-matches"
+        }
+      ],
+      "eligibleCount": 20,
+      "entityIds": [
+        "nigeria",
+        "austria",
+        "portugal",
+        "united-states",
+        "indonesia",
+        "south-korea",
+        "brazil",
+        "nepal",
+        "japan",
+        "india",
+        "mongolia",
+        "greece"
+      ]
+    },
+    {
+      "attempt": 24,
+      "stage": "eligibility",
+      "requirementIds": [
+        "left",
+        "portuguese",
+        "winter-host",
+        "landlocked",
+        "denser-than-germany",
+        "equator"
+      ],
+      "issues": [
+        {
+          "code": "eligible-count",
+          "message": "Only 10 verified, useful, permitted countries are available.",
+          "actual": 10,
+          "min": 12
+        }
+      ],
+      "exclusions": [
+        {
+          "id": "germany",
+          "reasons": [
+            "reference country for “More densely populated than Germany”"
+          ]
+        }
+      ],
+      "ineligibleCountries": [
+        {
+          "id": "argentina",
+          "reason": "unverified",
+          "requirementIds": [
+            "left",
+            "portuguese"
+          ]
+        },
+        {
+          "id": "australia",
+          "reason": "unverified",
+          "requirementIds": [
+            "left",
+            "portuguese"
+          ]
+        },
+        {
+          "id": "bhutan",
+          "reason": "unverified",
+          "requirementIds": [
+            "left",
+            "portuguese"
+          ]
+        },
+        {
+          "id": "bolivia",
+          "reason": "unverified",
+          "requirementIds": [
+            "left",
+            "portuguese"
+          ]
+        },
+        {
+          "id": "chile",
+          "reason": "unverified",
+          "requirementIds": [
+            "left",
+            "portuguese"
+          ]
+        },
+        {
+          "id": "egypt",
+          "reason": "no-matches"
+        },
+        {
+          "id": "germany",
+          "reason": "excluded"
+        },
+        {
+          "id": "greece",
+          "reason": "unverified",
+          "requirementIds": [
+            "left",
+            "portuguese"
+          ]
+        },
+        {
+          "id": "india",
+          "reason": "unverified",
+          "requirementIds": [
+            "left",
+            "portuguese"
+          ]
+        },
+        {
+          "id": "italy",
+          "reason": "unverified",
+          "requirementIds": [
+            "left",
+            "portuguese"
+          ]
+        },
+        {
+          "id": "mexico",
+          "reason": "unverified",
+          "requirementIds": [
+            "left",
+            "portuguese"
+          ]
+        },
+        {
+          "id": "mongolia",
+          "reason": "unverified",
+          "requirementIds": [
+            "left",
+            "portuguese"
+          ]
+        },
+        {
+          "id": "netherlands",
+          "reason": "unverified",
+          "requirementIds": [
+            "left",
+            "portuguese"
+          ]
+        },
+        {
+          "id": "peru",
+          "reason": "no-matches"
+        },
+        {
+          "id": "senegal",
+          "reason": "unverified",
+          "requirementIds": [
+            "left",
+            "portuguese"
+          ]
+        },
+        {
+          "id": "slovenia",
+          "reason": "unverified",
+          "requirementIds": [
+            "left",
+            "portuguese"
+          ]
+        },
+        {
+          "id": "south-korea",
+          "reason": "unverified",
+          "requirementIds": [
+            "left",
+            "portuguese"
+          ]
+        },
+        {
+          "id": "spain",
+          "reason": "unverified",
+          "requirementIds": [
+            "left",
+            "portuguese"
+          ]
+        },
+        {
+          "id": "thailand",
+          "reason": "unverified",
+          "requirementIds": [
+            "left",
+            "portuguese"
+          ]
+        },
+        {
+          "id": "turkey",
+          "reason": "unverified",
+          "requirementIds": [
+            "left",
+            "portuguese"
+          ]
+        },
+        {
+          "id": "united-states",
+          "reason": "unverified",
+          "requirementIds": [
+            "left",
+            "portuguese"
+          ]
+        },
+        {
+          "id": "uruguay",
+          "reason": "unverified",
+          "requirementIds": [
+            "left",
+            "portuguese"
+          ]
+        }
+      ],
+      "eligibleCount": 10
+    },
+    {
+      "attempt": 25,
+      "stage": "eligibility",
+      "requirementIds": [
+        "europe",
+        "people-above-germany",
+        "mediterranean",
+        "mediterranean-diet",
+        "equator",
+        "landlocked"
+      ],
+      "issues": [
+        {
+          "code": "eligible-count",
+          "message": "Only 10 verified, useful, permitted countries are available.",
+          "actual": 10,
+          "min": 12
+        }
+      ],
+      "exclusions": [
+        {
+          "id": "germany",
+          "reasons": [
+            "reference country for “More people than Germany”"
+          ]
+        }
+      ],
+      "ineligibleCountries": [
+        {
+          "id": "argentina",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean"
+          ]
+        },
+        {
+          "id": "australia",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean"
+          ]
+        },
+        {
+          "id": "bhutan",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean"
+          ]
+        },
+        {
+          "id": "bolivia",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean"
+          ]
+        },
+        {
+          "id": "chile",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean"
+          ]
+        },
+        {
+          "id": "germany",
+          "reason": "excluded"
+        },
+        {
+          "id": "greece",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean"
+          ]
+        },
+        {
+          "id": "india",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean"
+          ]
+        },
+        {
+          "id": "italy",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean"
+          ]
+        },
+        {
+          "id": "mexico",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean"
+          ]
+        },
+        {
+          "id": "mongolia",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean"
+          ]
+        },
+        {
+          "id": "netherlands",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean"
+          ]
+        },
+        {
+          "id": "peru",
+          "reason": "no-matches"
+        },
+        {
+          "id": "senegal",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean"
+          ]
+        },
+        {
+          "id": "slovenia",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean"
+          ]
+        },
+        {
+          "id": "south-africa",
+          "reason": "no-matches"
+        },
+        {
+          "id": "south-korea",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean"
+          ]
+        },
+        {
+          "id": "spain",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean"
+          ]
+        },
+        {
+          "id": "thailand",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean"
+          ]
+        },
+        {
+          "id": "turkey",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean"
+          ]
+        },
+        {
+          "id": "united-states",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean"
+          ]
+        },
+        {
+          "id": "uruguay",
+          "reason": "unverified",
+          "requirementIds": [
+            "mediterranean"
+          ]
+        }
+      ],
+      "eligibleCount": 10
+    },
+    {
+      "attempt": 26,
+      "stage": "country-mix",
+      "requirementIds": [
+        "landlocked",
+        "closer-tokyo-than-paris",
+        "tango-heritage",
+        "women-world-cup-winner",
+        "euro",
+        "south"
+      ],
+      "issues": [
+        {
+          "code": "familiarity-count",
+          "message": "Country familiarity “less-familiar”: 1; expected 2–4.",
+          "actual": 1,
+          "min": 2,
+          "max": 4
+        }
+      ],
+      "exclusions": [],
+      "ineligibleCountries": [
+        {
+          "id": "egypt",
+          "reason": "no-matches"
+        },
+        {
+          "id": "mexico",
+          "reason": "no-matches"
+        },
+        {
+          "id": "nigeria",
+          "reason": "no-matches"
+        },
+        {
+          "id": "senegal",
+          "reason": "no-matches"
+        },
+        {
+          "id": "turkey",
+          "reason": "no-matches"
+        }
+      ],
+      "eligibleCount": 27,
+      "entityIds": [
+        "bolivia",
+        "argentina",
+        "portugal",
+        "thailand",
+        "south-korea",
+        "united-states",
+        "france",
+        "india",
+        "germany",
+        "italy",
+        "netherlands",
+        "indonesia"
+      ]
+    },
+    {
+      "attempt": 27,
+      "stage": "safe-route",
+      "requirementIds": [
+        "asia",
+        "capital-near-tokyo",
+        "tango-heritage",
+        "euro",
+        "europe",
+        "winter-host"
+      ],
+      "issues": [
+        {
+          "code": "safe-route-proposal",
+          "message": "The bounded private-requirement search found no conservative route."
+        }
+      ],
+      "exclusions": [],
+      "ineligibleCountries": [
+        {
+          "id": "australia",
+          "reason": "no-matches"
+        },
+        {
+          "id": "bolivia",
+          "reason": "no-matches"
+        },
+        {
+          "id": "brazil",
+          "reason": "no-matches"
+        },
+        {
+          "id": "chile",
+          "reason": "no-matches"
+        },
+        {
+          "id": "kenya",
+          "reason": "no-matches"
+        },
+        {
+          "id": "mexico",
+          "reason": "no-matches"
+        },
+        {
+          "id": "nigeria",
+          "reason": "no-matches"
+        },
+        {
+          "id": "peru",
+          "reason": "no-matches"
+        },
+        {
+          "id": "senegal",
+          "reason": "no-matches"
+        },
+        {
+          "id": "south-africa",
+          "reason": "no-matches"
+        }
+      ],
+      "eligibleCount": 22
+    },
+    {
+      "attempt": 28,
+      "stage": "requirement-mix",
+      "requirementIds": [
+        "winter-host",
+        "gdp-below-austria",
+        "people-below-australia",
+        "south",
+        "tango-heritage",
+        "europe"
+      ],
+      "issues": [
+        {
+          "code": "difficulty-count",
+          "message": "Difficulty “hard”: 0; expected 1–3.",
+          "actual": 0,
+          "min": 1,
+          "max": 3
+        }
+      ]
+    },
+    {
+      "attempt": 29,
+      "stage": "eligibility",
+      "requirementIds": [
+        "south",
+        "world-cup-winner",
+        "summer-host",
+        "capital-near-cairo",
+        "tango-heritage",
+        "left"
+      ],
+      "issues": [
+        {
+          "code": "eligible-count",
+          "message": "Only 10 verified, useful, permitted countries are available.",
+          "actual": 10,
+          "min": 12
+        }
+      ],
+      "exclusions": [],
+      "ineligibleCountries": [
+        {
+          "id": "argentina",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "australia",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "bhutan",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "bolivia",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "chile",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "germany",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "greece",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "india",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "italy",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "mexico",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "mongolia",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "netherlands",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "nigeria",
+          "reason": "no-matches"
+        },
+        {
+          "id": "portugal",
+          "reason": "no-matches"
+        },
+        {
+          "id": "senegal",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "slovenia",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "south-korea",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "spain",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "thailand",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "turkey",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "united-states",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        },
+        {
+          "id": "uruguay",
+          "reason": "unverified",
+          "requirementIds": [
+            "left"
+          ]
+        }
+      ],
+      "eligibleCount": 10
+    },
+    {
+      "attempt": 30,
+      "stage": "eligibility",
+      "requirementIds": [
+        "people-below-australia",
+        "winter-host",
+        "mediterranean-diet",
+        "south",
+        "atlantic",
+        "tango-heritage"
+      ],
+      "issues": [
+        {
+          "code": "eligible-count",
+          "message": "Only 10 verified, useful, permitted countries are available.",
+          "actual": 10,
+          "min": 12
+        }
+      ],
+      "exclusions": [
+        {
+          "id": "australia",
+          "reasons": [
+            "reference country for “Fewer people than Australia”"
+          ]
+        }
+      ],
+      "ineligibleCountries": [
+        {
+          "id": "argentina",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "australia",
+          "reason": "excluded"
+        },
+        {
+          "id": "bhutan",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "bolivia",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "chile",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "egypt",
+          "reason": "no-matches"
+        },
+        {
+          "id": "germany",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "greece",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "india",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "italy",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "mexico",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "mongolia",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "nepal",
+          "reason": "no-matches"
+        },
+        {
+          "id": "netherlands",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "senegal",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "slovenia",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "south-korea",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "spain",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "thailand",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "turkey",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "united-states",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        },
+        {
+          "id": "uruguay",
+          "reason": "unverified",
+          "requirementIds": [
+            "atlantic"
+          ]
+        }
+      ],
+      "eligibleCount": 10
+    }
+  ],
+  "traceDropped": 4449,
+  "puzzles": [
+    {
+      "id": "countries-20261022-001",
+      "version": 1,
+      "title": "A world of overlaps",
+      "entityIds": [
+        "uruguay",
+        "chile",
+        "spain",
+        "indonesia",
+        "austria",
+        "netherlands",
+        "united-states",
+        "bhutan",
+        "bolivia",
+        "nigeria",
+        "italy",
+        "mexico"
+      ],
+      "attributeIds": [
+        "winter-host",
+        "south",
+        "denser-than-germany",
+        "world-cup-winner",
+        "landlocked",
+        "people-above-japan"
+      ],
+      "authoring": {
+        "safeSelectionIds": [
+          "austria",
+          "chile",
+          "netherlands",
+          "spain",
+          "mexico"
+        ]
+      },
+      "rules": {
+        "maxSelected": 6,
+        "maxChecks": 3,
+        "expectedOptimal": 3,
+        "clueMode": "hidden"
+      }
+    },
+    {
+      "id": "countries-20261022-002",
+      "version": 1,
+      "title": "A world of overlaps",
+      "entityIds": [
+        "france",
+        "brazil",
+        "india",
+        "kenya",
+        "bhutan",
+        "south-korea",
+        "united-states",
+        "netherlands",
+        "nigeria",
+        "greece",
+        "portugal",
+        "mongolia"
+      ],
+      "attributeIds": [
+        "equator",
+        "people-above-germany",
+        "mediterranean-diet",
+        "asia",
+        "gdp-above-austria",
+        "africa"
+      ],
+      "authoring": {
+        "safeSelectionIds": [
+          "kenya",
+          "nigeria",
+          "greece",
+          "mongolia",
+          "netherlands"
+        ]
+      },
+      "rules": {
+        "maxSelected": 6,
+        "maxChecks": 3,
+        "expectedOptimal": 3,
+        "clueMode": "hidden"
+      }
+    },
+    {
+      "id": "countries-20261022-003",
+      "version": 1,
+      "title": "A world of overlaps",
+      "entityIds": [
+        "spain",
+        "indonesia",
+        "germany",
+        "argentina",
+        "uruguay",
+        "nigeria",
+        "united-states",
+        "kenya",
+        "italy",
+        "slovenia",
+        "south-korea",
+        "mexico"
+      ],
+      "attributeIds": [
+        "capital-near-cairo",
+        "women-world-cup-winner",
+        "equator",
+        "people-above-japan",
+        "tango-heritage",
+        "winter-host"
+      ],
+      "authoring": {
+        "safeSelectionIds": [
+          "spain",
+          "kenya",
+          "nigeria",
+          "argentina",
+          "italy"
+        ]
+      },
+      "rules": {
+        "maxSelected": 6,
+        "maxChecks": 3,
+        "expectedOptimal": 3,
+        "clueMode": "hidden"
+      }
+    },
+    {
+      "id": "countries-20261022-004",
+      "version": 1,
+      "title": "A world of overlaps",
+      "entityIds": [
+        "nepal",
+        "japan",
+        "bolivia",
+        "kenya",
+        "greece",
+        "argentina",
+        "spain",
+        "thailand",
+        "brazil",
+        "india",
+        "egypt",
+        "portugal"
+      ],
+      "attributeIds": [
+        "asia",
+        "landlocked",
+        "equator",
+        "capital-near-paris",
+        "gdp-above-austria",
+        "summer-host"
+      ],
+      "authoring": {
+        "safeSelectionIds": [
+          "egypt",
+          "bolivia",
+          "kenya",
+          "argentina",
+          "greece"
+        ]
+      },
+      "rules": {
+        "maxSelected": 6,
+        "maxChecks": 3,
+        "expectedOptimal": 3,
+        "clueMode": "hidden"
+      }
+    },
+    {
+      "id": "countries-20261022-005",
+      "version": 1,
+      "title": "A world of overlaps",
+      "entityIds": [
+        "indonesia",
+        "peru",
+        "nepal",
+        "south-africa",
+        "egypt",
+        "austria",
+        "japan",
+        "kenya",
+        "nigeria",
+        "portugal",
+        "france",
+        "brazil"
+      ],
+      "attributeIds": [
+        "winter-host",
+        "denser-than-germany",
+        "portuguese",
+        "south",
+        "africa",
+        "landlocked"
+      ],
+      "authoring": {
+        "safeSelectionIds": [
+          "france",
+          "nigeria",
+          "portugal",
+          "peru",
+          "nepal"
+        ]
+      },
+      "rules": {
+        "maxSelected": 6,
+        "maxChecks": 3,
+        "expectedOptimal": 3,
+        "clueMode": "hidden"
+      }
+    },
+    {
+      "id": "countries-20261022-006",
+      "version": 1,
+      "title": "A world of overlaps",
+      "entityIds": [
+        "nepal",
+        "egypt",
+        "france",
+        "nigeria",
+        "austria",
+        "south-africa",
+        "indonesia",
+        "peru",
+        "brazil",
+        "japan",
+        "kenya",
+        "portugal"
+      ],
+      "attributeIds": [
+        "south",
+        "capital-near-tokyo",
+        "euro",
+        "mediterranean",
+        "portuguese",
+        "people-above-germany"
+      ],
+      "authoring": {
+        "safeSelectionIds": [
+          "kenya",
+          "nepal",
+          "france",
+          "portugal",
+          "nigeria"
+        ]
+      },
+      "rules": {
+        "maxSelected": 6,
+        "maxChecks": 3,
+        "expectedOptimal": 3,
+        "clueMode": "hidden"
+      }
+    },
+    {
+      "id": "countries-20261022-007",
+      "version": 1,
+      "title": "A world of overlaps",
+      "entityIds": [
+        "uruguay",
+        "italy",
+        "france",
+        "japan",
+        "nigeria",
+        "kenya",
+        "united-states",
+        "brazil",
+        "thailand",
+        "nepal",
+        "bolivia",
+        "egypt"
+      ],
+      "attributeIds": [
+        "equator",
+        "world-cup-winner",
+        "denser-than-germany",
+        "landlocked",
+        "winter-host",
+        "asia"
+      ],
+      "authoring": {
+        "safeSelectionIds": [
+          "kenya",
+          "uruguay",
+          "nigeria",
+          "bolivia",
+          "united-states",
+          "egypt"
+        ]
+      },
+      "rules": {
+        "maxSelected": 6,
+        "maxChecks": 3,
+        "expectedOptimal": 3,
+        "clueMode": "hidden"
+      }
+    }
+  ],
+  "reports": [
+    {
+      "accepted": true,
+      "issues": [],
+      "mix": {
+        "families": {
+          "event-hosting": 1,
+          "hemisphere": 1,
+          "numeric-comparison": 2,
+          "sporting-achievement": 1,
+          "coastal-access": 1
+        },
+        "reasoning": {
+          "recall": 4,
+          "estimation": 2
+        },
+        "subjects": {
+          "sport": 2,
+          "geography": 2,
+          "population": 2
+        },
+        "difficulties": {
+          "medium": 2,
+          "easy": 3,
+          "hard": 1
+        }
+      },
+      "familiarity": {
+        "less-familiar": 3,
+        "moderate": 5,
+        "familiar": 4
+      },
+      "analysis": {
+        "solvable": true,
+        "minimum": 3,
+        "optimalSolutions": [
+          [
+            "uruguay",
+            "austria",
+            "nigeria"
+          ],
+          [
+            "bolivia",
+            "nigeria",
+            "italy"
+          ]
+        ],
+        "validBySize": {
+          "3": 2,
+          "4": 41,
+          "5": 206,
+          "6": 453
+        },
+        "combinationsBySize": {
+          "1": 12,
+          "2": 66,
+          "3": 220,
+          "4": 495,
+          "5": 792,
+          "6": 924
+        },
+        "completionRates": {
+          "1": 0,
+          "2": 0,
+          "3": 0.00909090909090909,
+          "4": 0.08282828282828283,
+          "5": 0.2601010101010101,
+          "6": 0.4902597402597403
+        },
+        "irreducibleBySize": {
+          "3": 2,
+          "4": 23,
+          "5": 12
+        },
+        "irreducibleExamples": {
+          "3": [
+            [
+              "uruguay",
+              "austria",
+              "nigeria"
+            ],
+            [
+              "bolivia",
+              "nigeria",
+              "italy"
+            ]
+          ],
+          "4": [
+            [
+              "uruguay",
+              "indonesia",
+              "austria",
+              "netherlands"
+            ],
+            [
+              "spain",
+              "indonesia",
+              "austria",
+              "netherlands"
+            ],
+            [
+              "uruguay",
+              "austria",
+              "netherlands",
+              "united-states"
+            ],
+            [
+              "uruguay",
+              "netherlands",
+              "united-states",
+              "bhutan"
+            ],
+            [
+              "uruguay",
+              "netherlands",
+              "united-states",
+              "bolivia"
+            ]
+          ],
+          "5": [
+            [
+              "chile",
+              "spain",
+              "austria",
+              "netherlands",
+              "united-states"
+            ],
+            [
+              "chile",
+              "spain",
+              "netherlands",
+              "united-states",
+              "bhutan"
+            ],
+            [
+              "spain",
+              "indonesia",
+              "netherlands",
+              "united-states",
+              "bhutan"
+            ],
+            [
+              "chile",
+              "spain",
+              "united-states",
+              "bhutan",
+              "nigeria"
+            ],
+            [
+              "spain",
+              "indonesia",
+              "united-states",
+              "bhutan",
+              "nigeria"
+            ]
+          ]
+        },
+        "prunableRates": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0.4390243902439024,
+          "5": 0.941747572815534,
+          "6": 1
+        },
+        "implications": [],
+        "validSolutionCount": 702,
+        "nearOptimalSolutionCount": 41,
+        "attributeFrequency": {
+          "winter-host": 3,
+          "south": 4,
+          "denser-than-germany": 2,
+          "world-cup-winner": 3,
+          "landlocked": 3,
+          "people-above-japan": 4
+        },
+        "countryCoverage": {
+          "uruguay": 2,
+          "chile": 1,
+          "spain": 1,
+          "indonesia": 2,
+          "austria": 2,
+          "netherlands": 1,
+          "united-states": 2,
+          "bhutan": 1,
+          "bolivia": 2,
+          "nigeria": 2,
+          "italy": 2,
+          "mexico": 1
+        }
+      }
+    },
+    {
+      "accepted": true,
+      "issues": [],
+      "mix": {
+        "families": {
+          "hemisphere": 1,
+          "numeric-comparison": 2,
+          "cultural-recognition": 1,
+          "continent": 2
+        },
+        "reasoning": {
+          "recall": 4,
+          "estimation": 2
+        },
+        "subjects": {
+          "geography": 3,
+          "population": 1,
+          "culture": 1,
+          "economy": 1
+        },
+        "difficulties": {
+          "easy": 3,
+          "medium": 2,
+          "hard": 1
+        }
+      },
+      "familiarity": {
+        "familiar": 4,
+        "less-familiar": 3,
+        "moderate": 5
+      },
+      "analysis": {
+        "solvable": true,
+        "minimum": 3,
+        "optimalSolutions": [
+          [
+            "india",
+            "kenya",
+            "greece"
+          ],
+          [
+            "india",
+            "kenya",
+            "portugal"
+          ]
+        ],
+        "validBySize": {
+          "3": 2,
+          "4": 39,
+          "5": 181,
+          "6": 381
+        },
+        "combinationsBySize": {
+          "1": 12,
+          "2": 66,
+          "3": 220,
+          "4": 495,
+          "5": 792,
+          "6": 924
+        },
+        "completionRates": {
+          "1": 0,
+          "2": 0,
+          "3": 0.00909090909090909,
+          "4": 0.07878787878787878,
+          "5": 0.22853535353535354,
+          "6": 0.41233766233766234
+        },
+        "irreducibleBySize": {
+          "3": 2,
+          "4": 22,
+          "5": 8
+        },
+        "irreducibleExamples": {
+          "3": [
+            [
+              "india",
+              "kenya",
+              "greece"
+            ],
+            [
+              "india",
+              "kenya",
+              "portugal"
+            ]
+          ],
+          "4": [
+            [
+              "brazil",
+              "kenya",
+              "bhutan",
+              "greece"
+            ],
+            [
+              "brazil",
+              "kenya",
+              "south-korea",
+              "greece"
+            ],
+            [
+              "kenya",
+              "bhutan",
+              "united-states",
+              "greece"
+            ],
+            [
+              "kenya",
+              "south-korea",
+              "united-states",
+              "greece"
+            ],
+            [
+              "brazil",
+              "india",
+              "nigeria",
+              "greece"
+            ]
+          ],
+          "5": [
+            [
+              "france",
+              "kenya",
+              "bhutan",
+              "nigeria",
+              "greece"
+            ],
+            [
+              "kenya",
+              "bhutan",
+              "netherlands",
+              "nigeria",
+              "greece"
+            ],
+            [
+              "france",
+              "kenya",
+              "bhutan",
+              "nigeria",
+              "portugal"
+            ],
+            [
+              "kenya",
+              "bhutan",
+              "netherlands",
+              "nigeria",
+              "portugal"
+            ],
+            [
+              "france",
+              "kenya",
+              "nigeria",
+              "greece",
+              "mongolia"
+            ]
+          ]
+        },
+        "prunableRates": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0.4358974358974359,
+          "5": 0.9558011049723757,
+          "6": 1
+        },
+        "implications": [],
+        "validSolutionCount": 603,
+        "nearOptimalSolutionCount": 39,
+        "attributeFrequency": {
+          "equator": 2,
+          "people-above-germany": 4,
+          "mediterranean-diet": 2,
+          "asia": 4,
+          "gdp-above-austria": 6,
+          "africa": 2
+        },
+        "countryCoverage": {
+          "france": 1,
+          "brazil": 3,
+          "india": 3,
+          "kenya": 2,
+          "bhutan": 1,
+          "south-korea": 2,
+          "united-states": 2,
+          "netherlands": 1,
+          "nigeria": 2,
+          "greece": 1,
+          "portugal": 1,
+          "mongolia": 1
+        }
+      }
+    },
+    {
+      "accepted": true,
+      "issues": [],
+      "mix": {
+        "families": {
+          "capital-distance": 1,
+          "sporting-achievement": 1,
+          "hemisphere": 1,
+          "numeric-comparison": 1,
+          "cultural-recognition": 1,
+          "event-hosting": 1
+        },
+        "reasoning": {
+          "estimation": 2,
+          "recall": 4
+        },
+        "subjects": {
+          "geography": 2,
+          "sport": 2,
+          "population": 1,
+          "culture": 1
+        },
+        "difficulties": {
+          "hard": 1,
+          "medium": 4,
+          "easy": 1
+        }
+      },
+      "familiarity": {
+        "familiar": 5,
+        "moderate": 4,
+        "less-familiar": 3
+      },
+      "analysis": {
+        "solvable": true,
+        "minimum": 3,
+        "optimalSolutions": [
+          [
+            "indonesia",
+            "germany",
+            "argentina"
+          ],
+          [
+            "indonesia",
+            "germany",
+            "uruguay"
+          ]
+        ],
+        "validBySize": {
+          "3": 2,
+          "4": 33,
+          "5": 158,
+          "6": 367
+        },
+        "combinationsBySize": {
+          "1": 12,
+          "2": 66,
+          "3": 220,
+          "4": 495,
+          "5": 792,
+          "6": 924
+        },
+        "completionRates": {
+          "1": 0,
+          "2": 0,
+          "3": 0.00909090909090909,
+          "4": 0.06666666666666667,
+          "5": 0.1994949494949495,
+          "6": 0.3971861471861472
+        },
+        "irreducibleBySize": {
+          "3": 2,
+          "4": 16,
+          "5": 6,
+          "6": 4
+        },
+        "irreducibleExamples": {
+          "3": [
+            [
+              "indonesia",
+              "germany",
+              "argentina"
+            ],
+            [
+              "indonesia",
+              "germany",
+              "uruguay"
+            ]
+          ],
+          "4": [
+            [
+              "germany",
+              "argentina",
+              "nigeria",
+              "kenya"
+            ],
+            [
+              "germany",
+              "uruguay",
+              "nigeria",
+              "kenya"
+            ],
+            [
+              "germany",
+              "argentina",
+              "united-states",
+              "kenya"
+            ],
+            [
+              "germany",
+              "uruguay",
+              "united-states",
+              "kenya"
+            ],
+            [
+              "spain",
+              "indonesia",
+              "argentina",
+              "italy"
+            ]
+          ],
+          "5": [
+            [
+              "spain",
+              "argentina",
+              "nigeria",
+              "kenya",
+              "italy"
+            ],
+            [
+              "spain",
+              "uruguay",
+              "nigeria",
+              "kenya",
+              "italy"
+            ],
+            [
+              "spain",
+              "indonesia",
+              "argentina",
+              "slovenia",
+              "south-korea"
+            ],
+            [
+              "spain",
+              "indonesia",
+              "uruguay",
+              "slovenia",
+              "south-korea"
+            ],
+            [
+              "spain",
+              "argentina",
+              "kenya",
+              "italy",
+              "mexico"
+            ]
+          ],
+          "6": [
+            [
+              "spain",
+              "argentina",
+              "nigeria",
+              "kenya",
+              "slovenia",
+              "south-korea"
+            ],
+            [
+              "spain",
+              "uruguay",
+              "nigeria",
+              "kenya",
+              "slovenia",
+              "south-korea"
+            ],
+            [
+              "spain",
+              "argentina",
+              "kenya",
+              "slovenia",
+              "south-korea",
+              "mexico"
+            ],
+            [
+              "spain",
+              "uruguay",
+              "kenya",
+              "slovenia",
+              "south-korea",
+              "mexico"
+            ]
+          ]
+        },
+        "prunableRates": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0.5151515151515151,
+          "5": 0.9620253164556962,
+          "6": 0.989100817438692
+        },
+        "implications": [],
+        "validSolutionCount": 560,
+        "nearOptimalSolutionCount": 33,
+        "attributeFrequency": {
+          "capital-near-cairo": 3,
+          "women-world-cup-winner": 3,
+          "equator": 2,
+          "people-above-japan": 4,
+          "tango-heritage": 2,
+          "winter-host": 4
+        },
+        "countryCoverage": {
+          "spain": 1,
+          "indonesia": 2,
+          "germany": 3,
+          "argentina": 1,
+          "uruguay": 1,
+          "nigeria": 1,
+          "united-states": 3,
+          "kenya": 1,
+          "italy": 2,
+          "slovenia": 1,
+          "south-korea": 1,
+          "mexico": 1
+        }
+      }
+    },
+    {
+      "accepted": true,
+      "issues": [],
+      "mix": {
+        "families": {
+          "continent": 1,
+          "coastal-access": 1,
+          "hemisphere": 1,
+          "capital-distance": 1,
+          "numeric-comparison": 1,
+          "event-hosting": 1
+        },
+        "reasoning": {
+          "recall": 4,
+          "estimation": 2
+        },
+        "subjects": {
+          "geography": 4,
+          "economy": 1,
+          "sport": 1
+        },
+        "difficulties": {
+          "easy": 4,
+          "hard": 1,
+          "medium": 1
+        }
+      },
+      "familiarity": {
+        "less-familiar": 3,
+        "familiar": 5,
+        "moderate": 4
+      },
+      "analysis": {
+        "solvable": true,
+        "minimum": 3,
+        "optimalSolutions": [
+          [
+            "nepal",
+            "kenya",
+            "spain"
+          ],
+          [
+            "nepal",
+            "greece",
+            "brazil"
+          ],
+          [
+            "nepal",
+            "spain",
+            "brazil"
+          ],
+          [
+            "nepal",
+            "brazil",
+            "portugal"
+          ]
+        ],
+        "validBySize": {
+          "3": 4,
+          "4": 57,
+          "5": 225,
+          "6": 441
+        },
+        "combinationsBySize": {
+          "1": 12,
+          "2": 66,
+          "3": 220,
+          "4": 495,
+          "5": 792,
+          "6": 924
+        },
+        "completionRates": {
+          "1": 0,
+          "2": 0,
+          "3": 0.01818181818181818,
+          "4": 0.11515151515151516,
+          "5": 0.2840909090909091,
+          "6": 0.4772727272727273
+        },
+        "irreducibleBySize": {
+          "3": 4,
+          "4": 25,
+          "5": 1
+        },
+        "irreducibleExamples": {
+          "3": [
+            [
+              "nepal",
+              "kenya",
+              "spain"
+            ],
+            [
+              "nepal",
+              "greece",
+              "brazil"
+            ],
+            [
+              "nepal",
+              "spain",
+              "brazil"
+            ],
+            [
+              "nepal",
+              "brazil",
+              "portugal"
+            ]
+          ],
+          "4": [
+            [
+              "nepal",
+              "japan",
+              "kenya",
+              "greece"
+            ],
+            [
+              "japan",
+              "bolivia",
+              "kenya",
+              "greece"
+            ],
+            [
+              "nepal",
+              "kenya",
+              "greece",
+              "argentina"
+            ],
+            [
+              "japan",
+              "bolivia",
+              "kenya",
+              "spain"
+            ],
+            [
+              "nepal",
+              "kenya",
+              "greece",
+              "thailand"
+            ]
+          ],
+          "5": [
+            [
+              "bolivia",
+              "kenya",
+              "greece",
+              "argentina",
+              "egypt"
+            ]
+          ]
+        },
+        "prunableRates": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0.5614035087719298,
+          "5": 0.9955555555555555,
+          "6": 1
+        },
+        "implications": [],
+        "validSolutionCount": 727,
+        "nearOptimalSolutionCount": 57,
+        "attributeFrequency": {
+          "asia": 5,
+          "landlocked": 2,
+          "equator": 2,
+          "capital-near-paris": 3,
+          "gdp-above-austria": 6,
+          "summer-host": 4
+        },
+        "countryCoverage": {
+          "nepal": 2,
+          "japan": 3,
+          "bolivia": 1,
+          "kenya": 1,
+          "greece": 2,
+          "argentina": 1,
+          "spain": 3,
+          "thailand": 2,
+          "brazil": 3,
+          "india": 2,
+          "egypt": 1,
+          "portugal": 1
+        }
+      }
+    },
+    {
+      "accepted": true,
+      "issues": [],
+      "mix": {
+        "families": {
+          "event-hosting": 1,
+          "numeric-comparison": 1,
+          "language": 1,
+          "hemisphere": 1,
+          "continent": 1,
+          "coastal-access": 1
+        },
+        "reasoning": {
+          "recall": 5,
+          "estimation": 1
+        },
+        "subjects": {
+          "sport": 1,
+          "population": 1,
+          "culture": 1,
+          "geography": 3
+        },
+        "difficulties": {
+          "medium": 1,
+          "hard": 1,
+          "easy": 4
+        }
+      },
+      "familiarity": {
+        "moderate": 6,
+        "less-familiar": 2,
+        "familiar": 4
+      },
+      "analysis": {
+        "solvable": true,
+        "minimum": 3,
+        "optimalSolutions": [
+          [
+            "austria",
+            "nigeria",
+            "brazil"
+          ]
+        ],
+        "validBySize": {
+          "3": 1,
+          "4": 25,
+          "5": 136,
+          "6": 322
+        },
+        "combinationsBySize": {
+          "1": 12,
+          "2": 66,
+          "3": 220,
+          "4": 495,
+          "5": 792,
+          "6": 924
+        },
+        "completionRates": {
+          "1": 0,
+          "2": 0,
+          "3": 0.004545454545454545,
+          "4": 0.050505050505050504,
+          "5": 0.1717171717171717,
+          "6": 0.3484848484848485
+        },
+        "irreducibleBySize": {
+          "3": 1,
+          "4": 16,
+          "5": 10
+        },
+        "irreducibleExamples": {
+          "3": [
+            [
+              "austria",
+              "nigeria",
+              "brazil"
+            ]
+          ],
+          "4": [
+            [
+              "nepal",
+              "south-africa",
+              "japan",
+              "portugal"
+            ],
+            [
+              "south-africa",
+              "austria",
+              "japan",
+              "portugal"
+            ],
+            [
+              "nepal",
+              "japan",
+              "kenya",
+              "portugal"
+            ],
+            [
+              "austria",
+              "japan",
+              "kenya",
+              "portugal"
+            ],
+            [
+              "indonesia",
+              "austria",
+              "nigeria",
+              "portugal"
+            ]
+          ],
+          "5": [
+            [
+              "indonesia",
+              "nepal",
+              "egypt",
+              "japan",
+              "portugal"
+            ],
+            [
+              "peru",
+              "nepal",
+              "egypt",
+              "japan",
+              "portugal"
+            ],
+            [
+              "indonesia",
+              "egypt",
+              "austria",
+              "japan",
+              "portugal"
+            ],
+            [
+              "peru",
+              "egypt",
+              "austria",
+              "japan",
+              "portugal"
+            ],
+            [
+              "indonesia",
+              "nepal",
+              "japan",
+              "nigeria",
+              "portugal"
+            ]
+          ]
+        },
+        "prunableRates": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0.36,
+          "5": 0.9264705882352942,
+          "6": 1
+        },
+        "implications": [],
+        "validSolutionCount": 484,
+        "nearOptimalSolutionCount": 25,
+        "attributeFrequency": {
+          "winter-host": 3,
+          "denser-than-germany": 2,
+          "portuguese": 2,
+          "south": 5,
+          "africa": 4,
+          "landlocked": 2
+        },
+        "countryCoverage": {
+          "indonesia": 1,
+          "peru": 1,
+          "nepal": 1,
+          "south-africa": 2,
+          "egypt": 1,
+          "austria": 2,
+          "japan": 2,
+          "kenya": 2,
+          "nigeria": 2,
+          "portugal": 1,
+          "france": 1,
+          "brazil": 2
+        }
+      }
+    },
+    {
+      "accepted": true,
+      "issues": [],
+      "mix": {
+        "families": {
+          "hemisphere": 1,
+          "capital-distance": 1,
+          "currency": 1,
+          "coastal-access": 1,
+          "language": 1,
+          "numeric-comparison": 1
+        },
+        "reasoning": {
+          "recall": 4,
+          "estimation": 2
+        },
+        "subjects": {
+          "geography": 3,
+          "economy": 1,
+          "culture": 1,
+          "population": 1
+        },
+        "difficulties": {
+          "easy": 4,
+          "hard": 1,
+          "medium": 1
+        }
+      },
+      "familiarity": {
+        "less-familiar": 2,
+        "familiar": 4,
+        "moderate": 6
+      },
+      "analysis": {
+        "solvable": true,
+        "minimum": 3,
+        "optimalSolutions": [
+          [
+            "nepal",
+            "france",
+            "brazil"
+          ],
+          [
+            "france",
+            "brazil",
+            "japan"
+          ]
+        ],
+        "validBySize": {
+          "3": 2,
+          "4": 34,
+          "5": 154,
+          "6": 337
+        },
+        "combinationsBySize": {
+          "1": 12,
+          "2": 66,
+          "3": 220,
+          "4": 495,
+          "5": 792,
+          "6": 924
+        },
+        "completionRates": {
+          "1": 0,
+          "2": 0,
+          "3": 0.00909090909090909,
+          "4": 0.06868686868686869,
+          "5": 0.19444444444444445,
+          "6": 0.3647186147186147
+        },
+        "irreducibleBySize": {
+          "3": 2,
+          "4": 17,
+          "5": 3
+        },
+        "irreducibleExamples": {
+          "3": [
+            [
+              "nepal",
+              "france",
+              "brazil"
+            ],
+            [
+              "france",
+              "brazil",
+              "japan"
+            ]
+          ],
+          "4": [
+            [
+              "nepal",
+              "egypt",
+              "austria",
+              "brazil"
+            ],
+            [
+              "egypt",
+              "austria",
+              "brazil",
+              "japan"
+            ],
+            [
+              "nepal",
+              "egypt",
+              "south-africa",
+              "portugal"
+            ],
+            [
+              "nepal",
+              "egypt",
+              "indonesia",
+              "portugal"
+            ],
+            [
+              "nepal",
+              "france",
+              "indonesia",
+              "portugal"
+            ]
+          ],
+          "5": [
+            [
+              "nepal",
+              "france",
+              "nigeria",
+              "south-africa",
+              "portugal"
+            ],
+            [
+              "nepal",
+              "france",
+              "nigeria",
+              "peru",
+              "portugal"
+            ],
+            [
+              "nepal",
+              "france",
+              "nigeria",
+              "kenya",
+              "portugal"
+            ]
+          ]
+        },
+        "prunableRates": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0.5,
+          "5": 0.9805194805194806,
+          "6": 1
+        },
+        "implications": [],
+        "validSolutionCount": 527,
+        "nearOptimalSolutionCount": 34,
+        "attributeFrequency": {
+          "south": 5,
+          "capital-near-tokyo": 2,
+          "euro": 3,
+          "mediterranean": 2,
+          "portuguese": 2,
+          "people-above-germany": 5
+        },
+        "countryCoverage": {
+          "nepal": 1,
+          "egypt": 2,
+          "france": 2,
+          "nigeria": 1,
+          "austria": 1,
+          "south-africa": 1,
+          "indonesia": 2,
+          "peru": 1,
+          "brazil": 3,
+          "japan": 2,
+          "kenya": 1,
+          "portugal": 2
+        }
+      }
+    },
+    {
+      "accepted": true,
+      "issues": [],
+      "mix": {
+        "families": {
+          "hemisphere": 1,
+          "sporting-achievement": 1,
+          "numeric-comparison": 1,
+          "coastal-access": 1,
+          "event-hosting": 1,
+          "continent": 1
+        },
+        "reasoning": {
+          "recall": 5,
+          "estimation": 1
+        },
+        "subjects": {
+          "geography": 3,
+          "sport": 2,
+          "population": 1
+        },
+        "difficulties": {
+          "easy": 4,
+          "hard": 1,
+          "medium": 1
+        }
+      },
+      "familiarity": {
+        "less-familiar": 4,
+        "familiar": 6,
+        "moderate": 2
+      },
+      "analysis": {
+        "solvable": true,
+        "minimum": 3,
+        "optimalSolutions": [
+          [
+            "japan",
+            "brazil",
+            "nepal"
+          ],
+          [
+            "japan",
+            "brazil",
+            "bolivia"
+          ]
+        ],
+        "validBySize": {
+          "3": 2,
+          "4": 28,
+          "5": 137,
+          "6": 326
+        },
+        "combinationsBySize": {
+          "1": 12,
+          "2": 66,
+          "3": 220,
+          "4": 495,
+          "5": 792,
+          "6": 924
+        },
+        "completionRates": {
+          "1": 0,
+          "2": 0,
+          "3": 0.00909090909090909,
+          "4": 0.05656565656565657,
+          "5": 0.17297979797979798,
+          "6": 0.3528138528138528
+        },
+        "irreducibleBySize": {
+          "3": 2,
+          "4": 11,
+          "5": 11,
+          "6": 2
+        },
+        "irreducibleExamples": {
+          "3": [
+            [
+              "japan",
+              "brazil",
+              "nepal"
+            ],
+            [
+              "japan",
+              "brazil",
+              "bolivia"
+            ]
+          ],
+          "4": [
+            [
+              "uruguay",
+              "japan",
+              "kenya",
+              "nepal"
+            ],
+            [
+              "italy",
+              "japan",
+              "kenya",
+              "nepal"
+            ],
+            [
+              "france",
+              "japan",
+              "kenya",
+              "nepal"
+            ],
+            [
+              "italy",
+              "nigeria",
+              "kenya",
+              "nepal"
+            ],
+            [
+              "france",
+              "nigeria",
+              "kenya",
+              "nepal"
+            ]
+          ],
+          "5": [
+            [
+              "uruguay",
+              "nigeria",
+              "kenya",
+              "united-states",
+              "nepal"
+            ],
+            [
+              "italy",
+              "nigeria",
+              "kenya",
+              "thailand",
+              "bolivia"
+            ],
+            [
+              "france",
+              "nigeria",
+              "kenya",
+              "thailand",
+              "bolivia"
+            ],
+            [
+              "italy",
+              "nigeria",
+              "brazil",
+              "thailand",
+              "bolivia"
+            ],
+            [
+              "france",
+              "nigeria",
+              "brazil",
+              "thailand",
+              "bolivia"
+            ]
+          ],
+          "6": [
+            [
+              "uruguay",
+              "nigeria",
+              "kenya",
+              "united-states",
+              "thailand",
+              "bolivia"
+            ],
+            [
+              "uruguay",
+              "nigeria",
+              "kenya",
+              "united-states",
+              "bolivia",
+              "egypt"
+            ]
+          ]
+        },
+        "prunableRates": {
+          "1": 0,
+          "2": 0,
+          "3": 0,
+          "4": 0.6071428571428572,
+          "5": 0.9197080291970803,
+          "6": 0.9938650306748467
+        },
+        "implications": [],
+        "validSolutionCount": 493,
+        "nearOptimalSolutionCount": 28,
+        "attributeFrequency": {
+          "equator": 2,
+          "world-cup-winner": 4,
+          "denser-than-germany": 2,
+          "landlocked": 2,
+          "winter-host": 4,
+          "asia": 4
+        },
+        "countryCoverage": {
+          "uruguay": 1,
+          "italy": 2,
+          "france": 2,
+          "japan": 3,
+          "nigeria": 1,
+          "kenya": 1,
+          "united-states": 1,
+          "brazil": 2,
+          "thailand": 1,
+          "nepal": 2,
+          "bolivia": 1,
+          "egypt": 1
+        }
+      }
+    }
+  ]
+}

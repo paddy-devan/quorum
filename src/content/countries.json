@@ -1,8 +1,8 @@
 {
-  "version": "countries-2-rich-demo",
+  "version": "countries-4-quality",
   "theme": "Countries",
-  "reviewedOn": "2026-10-23",
-  "scope": "Geographical requirements use primary territory, excluding overseas regions and dependencies (France means metropolitan France). Statistical comparisons use the World Bank’s reporting territory and 2023 data. Capital points are fixed to the demo’s 2023 convention: Jakarta for Indonesia and Pretoria for South Africa. Historical and cultural requirements state their own date range. Tap any requirement for its exact definition.",
+  "reviewedOn": "2026-10-24",
+  "scope": "Geographical requirements use primary territory, excluding overseas regions and dependencies (France means metropolitan France). Statistical comparisons use the World Bank’s reporting territory and 2023 data. Capital points are fixed to the catalog’s 2023 snapshot: Jakarta for Indonesia and Pretoria for South Africa, and Sucre (the constitutional capital) for Bolivia. Historical and cultural requirements state their own date range. Tap any requirement for its exact definition.",
   "sources": [
     {
       "id": "un-regions",
@@ -107,7 +107,7 @@
     },
     {
       "id": "fifa-winners",
-      "title": "FIFA · World Cup champions · 1982–2026 (demo stops at 2022)",
+      "title": "FIFA · World Cup champions · 1982–2026 (snapshot ends in 2022)",
       "url": "https://www.fifa.com/en/tournaments/mens/worldcup/articles/world-cup-champions-1982-2026-italy-argentina-germany-brazil-france-spain",
       "retrievedOn": "2026-10-23"
     },
@@ -122,63 +122,125 @@
       "title": "UNESCO · Mediterranean diet · inscription 00884",
       "url": "https://ich.unesco.org/en/RL/mediterranean-diet-00884",
       "retrievedOn": "2026-10-23"
+    },
+    {
+      "id": "unesco-tango",
+      "title": "UNESCO: Tango, Argentina and Uruguay, inscription 2009",
+      "url": "https://ich.unesco.org/en/RL/tango-00258",
+      "retrievedOn": "2026-10-24"
+    },
+    {
+      "id": "fifa-women-winners",
+      "title": "FIFA: Women’s World Cup all-time ranking (titles through 2019)",
+      "url": "https://www.fifa.com/en/tournaments/womens/womensworldcup/australia-new-zealand2023/articles/womens-world-cup-all-time-ranking-teams",
+      "retrievedOn": "2026-10-24"
+    },
+    {
+      "id": "fifa-women-2023",
+      "title": "FIFA Annual Report 2023: Women’s World Cup summary",
+      "url": "https://inside.fifa.com/official-documents/annual-report/2023/2023-at-a-glance/fifa-womens-world-cup-summary",
+      "retrievedOn": "2026-10-24"
     }
   ],
   "attributes": [
     {
       "id": "africa",
       "label": "In Africa",
-      "definition": "Has land in Africa in its primary geographical territory. Transcontinental countries qualify. Overseas regions and dependencies are excluded."
+      "definition": "Has land in Africa in its primary geographical territory. Transcontinental countries qualify. Overseas regions and dependencies are excluded.",
+      "category": "geography",
+      "difficulty": "easy",
+      "reasoning": "recall",
+      "family": "continent"
     },
     {
       "id": "equator",
       "label": "Crosses the equator",
-      "definition": "The equator crosses land in the country’s primary geographical territory, not merely its territorial waters."
+      "definition": "The equator crosses land in the country’s primary geographical territory, not merely its territorial waters.",
+      "category": "geography",
+      "difficulty": "easy",
+      "reasoning": "recall",
+      "family": "hemisphere"
     },
     {
       "id": "landlocked",
       "label": "Landlocked",
-      "definition": "The country has no coastline on an ocean or a sea connected to an ocean. Lakes do not count as a coast."
+      "definition": "The country has no coastline on an ocean or a sea connected to an ocean. Lakes do not count as a coast.",
+      "category": "geography",
+      "difficulty": "easy",
+      "reasoning": "recall",
+      "family": "coastal-access"
     },
     {
       "id": "portuguese",
       "label": "Portuguese is official",
-      "definition": "Portuguese is an official language at national level, not simply a widely spoken or regional language."
+      "definition": "Portuguese is an official language at national level, not simply a widely spoken or regional language.",
+      "category": "culture",
+      "difficulty": "easy",
+      "reasoning": "recall",
+      "family": "language"
     },
     {
       "id": "left",
       "label": "Drives on the left",
-      "definition": "Normal road traffic keeps to the left side of the road."
+      "definition": "Normal road traffic keeps to the left side of the road.",
+      "category": "culture",
+      "difficulty": "easy",
+      "reasoning": "recall",
+      "family": "driving-side"
     },
     {
       "id": "south",
       "label": "Southern Hemisphere",
-      "definition": "Some land in the country’s primary geographical territory lies south of the equator. Overseas regions and dependencies are excluded; France means metropolitan France."
+      "definition": "Some land in the country’s primary geographical territory lies south of the equator. Overseas regions and dependencies are excluded; France means metropolitan France.",
+      "category": "geography",
+      "difficulty": "easy",
+      "reasoning": "recall",
+      "family": "hemisphere"
     },
     {
       "id": "europe",
       "label": "In Europe",
-      "definition": "Has land in Europe in its primary geographical territory. Transcontinental countries qualify. Overseas regions and dependencies are excluded."
+      "definition": "Has land in Europe in its primary geographical territory. Transcontinental countries qualify. Overseas regions and dependencies are excluded.",
+      "category": "geography",
+      "difficulty": "easy",
+      "reasoning": "recall",
+      "family": "continent"
     },
     {
       "id": "euro",
       "label": "Uses the euro",
-      "definition": "The euro is the country’s official national currency, not merely accepted by some businesses."
+      "definition": "The euro is the country’s official national currency, not merely accepted by some businesses.",
+      "category": "economy",
+      "difficulty": "easy",
+      "reasoning": "recall",
+      "family": "currency"
     },
     {
       "id": "asia",
       "label": "In Asia",
-      "definition": "Has land in Asia in its primary geographical territory. Transcontinental countries qualify. Overseas regions and dependencies are excluded."
+      "definition": "Has land in Asia in its primary geographical territory. Transcontinental countries qualify. Overseas regions and dependencies are excluded.",
+      "category": "geography",
+      "difficulty": "easy",
+      "reasoning": "recall",
+      "family": "continent"
     },
     {
       "id": "atlantic",
       "label": "Atlantic coastline",
-      "definition": "The primary geographical territory has a coast on the Atlantic Ocean, including the Gulf of Guinea. The Mediterranean Sea is excluded."
+      "definition": "The primary geographical territory has a coast on the Atlantic Ocean, including the Gulf of Guinea. The Mediterranean Sea is excluded.",
+      "category": "geography",
+      "difficulty": "easy",
+      "reasoning": "recall",
+      "family": "coastal-access"
     },
     {
       "id": "mediterranean",
       "label": "Mediterranean coast",
-      "definition": "The primary geographical territory has a coast directly on the Mediterranean Sea."
+      "definition": "The primary geographical territory has a coast directly on the Mediterranean Sea.",
+      "category": "geography",
+      "difficulty": "easy",
+      "reasoning": "recall",
+      "family": "coastal-access"
     },
     {
       "id": "gdp-above-austria",
@@ -190,7 +252,11 @@
         "year": 2023,
         "operator": "greater",
         "referenceId": "austria"
-      }
+      },
+      "category": "economy",
+      "difficulty": "medium",
+      "reasoning": "estimation",
+      "family": "numeric-comparison"
     },
     {
       "id": "people-above-japan",
@@ -202,7 +268,11 @@
         "year": 2023,
         "operator": "greater",
         "referenceId": "japan"
-      }
+      },
+      "category": "population",
+      "difficulty": "medium",
+      "reasoning": "estimation",
+      "family": "numeric-comparison"
     },
     {
       "id": "people-below-australia",
@@ -214,7 +284,11 @@
         "year": 2023,
         "operator": "less",
         "referenceId": "australia"
-      }
+      },
+      "category": "population",
+      "difficulty": "medium",
+      "reasoning": "estimation",
+      "family": "numeric-comparison"
     },
     {
       "id": "area-below-japan",
@@ -226,7 +300,11 @@
         "year": 2023,
         "operator": "less",
         "referenceId": "japan"
-      }
+      },
+      "category": "geography",
+      "difficulty": "medium",
+      "reasoning": "estimation",
+      "family": "numeric-comparison"
     },
     {
       "id": "area-above-india",
@@ -238,7 +316,11 @@
         "year": 2023,
         "operator": "greater",
         "referenceId": "india"
-      }
+      },
+      "category": "geography",
+      "difficulty": "medium",
+      "reasoning": "estimation",
+      "family": "numeric-comparison"
     },
     {
       "id": "people-above-germany",
@@ -250,7 +332,11 @@
         "year": 2023,
         "operator": "greater",
         "referenceId": "germany"
-      }
+      },
+      "category": "population",
+      "difficulty": "medium",
+      "reasoning": "estimation",
+      "family": "numeric-comparison"
     },
     {
       "id": "gdp-person-above-portugal",
@@ -262,7 +348,11 @@
         "year": 2023,
         "operator": "greater",
         "referenceId": "portugal"
-      }
+      },
+      "category": "economy",
+      "difficulty": "hard",
+      "reasoning": "estimation",
+      "family": "numeric-comparison"
     },
     {
       "id": "denser-than-germany",
@@ -274,57 +364,81 @@
         "year": 2023,
         "operator": "greater",
         "referenceId": "germany"
-      }
+      },
+      "category": "population",
+      "difficulty": "hard",
+      "reasoning": "estimation",
+      "family": "numeric-comparison"
     },
     {
       "id": "capital-near-cairo",
       "label": "Capital within 2,000 miles of Cairo",
-      "definition": "The fixed capital point is no more than 2,000 statute miles from Cairo, measured along a great circle on a spherical Earth (mean radius 3,958.7613 miles). This is city-to-city distance, not distance from the nearest border. Answers use unrounded distances. Capital points follow the demo’s 2023 convention, using Pretoria for South Africa and Jakarta for Indonesia.",
+      "definition": "The fixed capital point is no more than 2,000 statute miles from Cairo, measured along a great circle on a spherical Earth (mean radius 3,958.7613 miles). This is city-to-city distance, not distance from the nearest border. Answers use unrounded distances. Capital points follow the catalog’s 2023 snapshot, using Pretoria for South Africa and Jakarta for Indonesia. For Bolivia, the fixed point is Sucre, the constitutional capital, rather than the seat of government at La Paz.",
       "rule": {
         "kind": "distance",
         "placeId": "cairo",
         "maxMiles": 2000
-      }
+      },
+      "category": "geography",
+      "difficulty": "hard",
+      "reasoning": "estimation",
+      "family": "capital-distance"
     },
     {
       "id": "capital-near-paris",
       "label": "Capital within 1,500 miles of Paris",
-      "definition": "The fixed capital point is no more than 1,500 statute miles from Paris, measured along a great circle on a spherical Earth (mean radius 3,958.7613 miles). This is city-to-city distance, not distance from the nearest border. Answers use unrounded distances. Capital points follow the demo’s 2023 convention, using Pretoria for South Africa and Jakarta for Indonesia.",
+      "definition": "The fixed capital point is no more than 1,500 statute miles from Paris, measured along a great circle on a spherical Earth (mean radius 3,958.7613 miles). This is city-to-city distance, not distance from the nearest border. Answers use unrounded distances. Capital points follow the catalog’s 2023 snapshot, using Pretoria for South Africa and Jakarta for Indonesia. For Bolivia, the fixed point is Sucre, the constitutional capital, rather than the seat of government at La Paz.",
       "rule": {
         "kind": "distance",
         "placeId": "paris",
         "maxMiles": 1500
-      }
+      },
+      "category": "geography",
+      "difficulty": "hard",
+      "reasoning": "estimation",
+      "family": "capital-distance"
     },
     {
       "id": "capital-near-tokyo",
       "label": "Capital within 3,500 miles of Tokyo",
-      "definition": "The fixed capital point is no more than 3,500 statute miles from Tokyo, measured along a great circle on a spherical Earth (mean radius 3,958.7613 miles). This is city-to-city distance, not distance from the nearest border. Answers use unrounded distances. Capital points follow the demo’s 2023 convention, using Pretoria for South Africa and Jakarta for Indonesia.",
+      "definition": "The fixed capital point is no more than 3,500 statute miles from Tokyo, measured along a great circle on a spherical Earth (mean radius 3,958.7613 miles). This is city-to-city distance, not distance from the nearest border. Answers use unrounded distances. Capital points follow the catalog’s 2023 snapshot, using Pretoria for South Africa and Jakarta for Indonesia. For Bolivia, the fixed point is Sucre, the constitutional capital, rather than the seat of government at La Paz.",
       "rule": {
         "kind": "distance",
         "placeId": "tokyo",
         "maxMiles": 3500
-      }
+      },
+      "category": "geography",
+      "difficulty": "hard",
+      "reasoning": "estimation",
+      "family": "capital-distance"
     },
     {
       "id": "closer-cairo-than-paris",
       "label": "Capital closer to Cairo than Paris",
-      "definition": "Compare great-circle distances from the fixed capital point to Cairo and Paris. Cairo must be strictly closer; ties do not qualify. Uses the demo’s 2023 capital convention, with Pretoria for South Africa and Jakarta for Indonesia.",
+      "definition": "Compare great-circle distances from the fixed capital point to Cairo and Paris. Cairo must be strictly closer; ties do not qualify. Uses the catalog’s 2023 capital snapshot, with Pretoria for South Africa and Jakarta for Indonesia. For Bolivia, the fixed point is Sucre, the constitutional capital, rather than the seat of government at La Paz.",
       "rule": {
         "kind": "closer",
         "firstPlaceId": "cairo",
         "secondPlaceId": "paris"
-      }
+      },
+      "category": "geography",
+      "difficulty": "hard",
+      "reasoning": "estimation",
+      "family": "relative-distance"
     },
     {
       "id": "closer-tokyo-than-paris",
       "label": "Capital closer to Tokyo than Paris",
-      "definition": "Compare great-circle distances from the fixed capital point to Tokyo and Paris. Tokyo must be strictly closer; ties do not qualify. Uses the demo’s 2023 capital convention, with Pretoria for South Africa and Jakarta for Indonesia.",
+      "definition": "Compare great-circle distances from the fixed capital point to Tokyo and Paris. Tokyo must be strictly closer; ties do not qualify. Uses the catalog’s 2023 capital snapshot, with Pretoria for South Africa and Jakarta for Indonesia. For Bolivia, the fixed point is Sucre, the constitutional capital, rather than the seat of government at La Paz.",
       "rule": {
         "kind": "closer",
         "firstPlaceId": "tokyo",
         "secondPlaceId": "paris"
-      }
+      },
+      "category": "geography",
+      "difficulty": "hard",
+      "reasoning": "estimation",
+      "family": "relative-distance"
     },
     {
       "id": "summer-host",
@@ -335,7 +449,11 @@
         "collectionId": "summer-olympics",
         "fromYear": 1896,
         "toYear": 2024
-      }
+      },
+      "category": "sport",
+      "difficulty": "easy",
+      "reasoning": "recall",
+      "family": "event-hosting"
     },
     {
       "id": "winter-host",
@@ -346,7 +464,11 @@
         "collectionId": "winter-olympics",
         "fromYear": 1924,
         "toYear": 2024
-      }
+      },
+      "category": "sport",
+      "difficulty": "medium",
+      "reasoning": "recall",
+      "family": "event-hosting"
     },
     {
       "id": "world-cup-winner",
@@ -357,7 +479,11 @@
         "collectionId": "world-cup",
         "fromYear": 1930,
         "toYear": 2022
-      }
+      },
+      "category": "sport",
+      "difficulty": "easy",
+      "reasoning": "recall",
+      "family": "sporting-achievement"
     },
     {
       "id": "mediterranean-diet",
@@ -368,7 +494,11 @@
         "collectionId": "mediterranean-diet",
         "fromYear": 2010,
         "toYear": 2024
-      }
+      },
+      "category": "culture",
+      "difficulty": "hard",
+      "reasoning": "recall",
+      "family": "cultural-recognition"
     },
     {
       "id": "autocracy-1980",
@@ -381,7 +511,88 @@
           0,
           1
         ]
-      }
+      },
+      "category": "history",
+      "difficulty": "hard",
+      "reasoning": "recall",
+      "family": "regime-history",
+      "generationEnabled": false
+    },
+    {
+      "id": "gdp-below-austria",
+      "label": "GDP smaller than Austria’s",
+      "definition": "Total nominal GDP in current US dollars, not GDP per person or purchasing-power parity. Uses World Bank 2023 figures for both countries, with strict comparisons on unrounded data. Statistical reporting territories may include overseas territory.",
+      "rule": {
+        "kind": "comparison",
+        "metric": "gdpUsd",
+        "year": 2023,
+        "operator": "less",
+        "referenceId": "austria"
+      },
+      "category": "economy",
+      "difficulty": "medium",
+      "reasoning": "estimation",
+      "family": "numeric-comparison"
+    },
+    {
+      "id": "gdp-person-below-portugal",
+      "label": "GDP per person below Portugal’s",
+      "definition": "Nominal GDP divided by population, in current US dollars. This is an economic average, not personal income. Uses World Bank 2023 figures for both countries, with strict comparisons on unrounded data. Statistical reporting territories may include overseas territory.",
+      "rule": {
+        "kind": "comparison",
+        "metric": "gdpPerPerson",
+        "year": 2023,
+        "operator": "less",
+        "referenceId": "portugal"
+      },
+      "category": "economy",
+      "difficulty": "hard",
+      "reasoning": "estimation",
+      "family": "numeric-comparison"
+    },
+    {
+      "id": "capital-near-buenos-aires",
+      "label": "Capital within 3,500 miles of Buenos Aires",
+      "definition": "The fixed capital point is no more than 3,500 statute miles from Buenos Aires, measured along a great circle on a spherical Earth (mean radius 3,958.7613 miles). This is city-to-city distance, not distance from the nearest border. Answers use unrounded distances and the catalog’s 2023 capital snapshot. For Bolivia, the fixed point is Sucre, the constitutional capital, rather than the seat of government at La Paz.",
+      "rule": {
+        "kind": "distance",
+        "placeId": "buenos-aires",
+        "maxMiles": 3500
+      },
+      "category": "geography",
+      "difficulty": "hard",
+      "reasoning": "estimation",
+      "family": "capital-distance"
+    },
+    {
+      "id": "tango-heritage",
+      "label": "UNESCO Tango heritage",
+      "definition": "Is a named participant in UNESCO’s shared Tango inscription, added in 2009, as recorded through 2024. This refers to the named cultural heritage record, not whether tango is practised in the country.",
+      "rule": {
+        "kind": "event",
+        "collectionId": "tango",
+        "fromYear": 2009,
+        "toYear": 2024
+      },
+      "category": "culture",
+      "difficulty": "medium",
+      "family": "cultural-recognition",
+      "reasoning": "recall"
+    },
+    {
+      "id": "women-world-cup-winner",
+      "label": "Has won the women’s football World Cup",
+      "definition": "Won the senior women’s FIFA World Cup at least once from 1991 through 2023 inclusive. Men’s, youth and club competitions are separate events.",
+      "rule": {
+        "kind": "event",
+        "collectionId": "women-world-cup",
+        "fromYear": 1991,
+        "toYear": 2023
+      },
+      "category": "sport",
+      "difficulty": "medium",
+      "family": "sporting-achievement",
+      "reasoning": "recall"
     }
   ],
   "entities": [
@@ -519,7 +730,8 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "familiar"
     },
     {
       "id": "portugal",
@@ -655,7 +867,8 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "moderate"
     },
     {
       "id": "kenya",
@@ -794,7 +1007,8 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "less-familiar"
     },
     {
       "id": "south-africa",
@@ -930,7 +1144,8 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "moderate"
     },
     {
       "id": "japan",
@@ -1066,7 +1281,8 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "familiar"
     },
     {
       "id": "egypt",
@@ -1202,7 +1418,8 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "familiar"
     },
     {
       "id": "austria",
@@ -1339,7 +1556,8 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "moderate"
     },
     {
       "id": "indonesia",
@@ -1475,7 +1693,8 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "moderate"
     },
     {
       "id": "peru",
@@ -1611,7 +1830,8 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "moderate"
     },
     {
       "id": "france",
@@ -1747,7 +1967,8 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "familiar"
     },
     {
       "id": "nigeria",
@@ -1883,7 +2104,8 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "moderate"
     },
     {
       "id": "nepal",
@@ -2021,14 +2243,68 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "less-familiar"
     },
     {
       "id": "argentina",
       "name": "Argentina",
       "symbol": "🇦🇷",
       "clue": "South America",
-      "facts": {},
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Argentina does not qualify: it does not meet the definition ‘has land in Africa’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "Argentina does not qualify: it does not meet the definition ‘has land in Asia’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "Argentina does not qualify: it does not meet the definition ‘has land in Europe’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Argentina does not qualify: it does not meet the definition ‘has land crossed by the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "south": {
+          "value": true,
+          "explanation": "Argentina qualifies: it does meet the definition ‘has land south of the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Argentina does not qualify: it does not meet the definition ‘is landlocked’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "Argentina does not qualify: it does not meet the definition ‘uses the euro as its official national currency’.",
+          "sourceIds": [
+            "euro-area"
+          ]
+        }
+      },
       "statistics": {
         "population": {
           "value": 45538401,
@@ -2075,14 +2351,68 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "moderate"
     },
     {
       "id": "chile",
       "name": "Chile",
       "symbol": "🇨🇱",
       "clue": "South America",
-      "facts": {},
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Chile does not qualify: it does not meet the definition ‘has land in Africa’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "Chile does not qualify: it does not meet the definition ‘has land in Asia’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "Chile does not qualify: it does not meet the definition ‘has land in Europe’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Chile does not qualify: it does not meet the definition ‘has land crossed by the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "south": {
+          "value": true,
+          "explanation": "Chile qualifies: it does meet the definition ‘has land south of the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Chile does not qualify: it does not meet the definition ‘is landlocked’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "Chile does not qualify: it does not meet the definition ‘uses the euro as its official national currency’.",
+          "sourceIds": [
+            "euro-area"
+          ]
+        }
+      },
       "statistics": {
         "population": {
           "value": 19658835,
@@ -2129,14 +2459,68 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "moderate"
     },
     {
       "id": "italy",
       "name": "Italy",
       "symbol": "🇮🇹",
       "clue": "Europe",
-      "facts": {},
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Italy does not qualify: it does not meet the definition ‘has land in Africa’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "Italy does not qualify: it does not meet the definition ‘has land in Asia’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "europe": {
+          "value": true,
+          "explanation": "Italy qualifies: it does meet the definition ‘has land in Europe’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Italy does not qualify: it does not meet the definition ‘has land crossed by the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "south": {
+          "value": false,
+          "explanation": "Italy does not qualify: it does not meet the definition ‘has land south of the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Italy does not qualify: it does not meet the definition ‘is landlocked’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "euro": {
+          "value": true,
+          "explanation": "Italy qualifies: it does meet the definition ‘uses the euro as its official national currency’.",
+          "sourceIds": [
+            "euro-area"
+          ]
+        }
+      },
       "statistics": {
         "population": {
           "value": 58984216,
@@ -2183,14 +2567,68 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "familiar"
     },
     {
       "id": "greece",
       "name": "Greece",
       "symbol": "🇬🇷",
       "clue": "Europe",
-      "facts": {},
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Greece does not qualify: it does not meet the definition ‘has land in Africa’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "Greece does not qualify: it does not meet the definition ‘has land in Asia’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "europe": {
+          "value": true,
+          "explanation": "Greece qualifies: it does meet the definition ‘has land in Europe’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Greece does not qualify: it does not meet the definition ‘has land crossed by the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "south": {
+          "value": false,
+          "explanation": "Greece does not qualify: it does not meet the definition ‘has land south of the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Greece does not qualify: it does not meet the definition ‘is landlocked’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "euro": {
+          "value": true,
+          "explanation": "Greece qualifies: it does meet the definition ‘uses the euro as its official national currency’.",
+          "sourceIds": [
+            "euro-area"
+          ]
+        }
+      },
       "statistics": {
         "population": {
           "value": 10407351,
@@ -2237,14 +2675,68 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "moderate"
     },
     {
       "id": "spain",
       "name": "Spain",
       "symbol": "🇪🇸",
       "clue": "Europe",
-      "facts": {},
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Spain does not qualify: it does not meet the definition ‘has land in Africa’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "Spain does not qualify: it does not meet the definition ‘has land in Asia’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "europe": {
+          "value": true,
+          "explanation": "Spain qualifies: it does meet the definition ‘has land in Europe’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Spain does not qualify: it does not meet the definition ‘has land crossed by the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "south": {
+          "value": false,
+          "explanation": "Spain does not qualify: it does not meet the definition ‘has land south of the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Spain does not qualify: it does not meet the definition ‘is landlocked’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "euro": {
+          "value": true,
+          "explanation": "Spain qualifies: it does meet the definition ‘uses the euro as its official national currency’.",
+          "sourceIds": [
+            "euro-area"
+          ]
+        }
+      },
       "statistics": {
         "population": {
           "value": 48352528,
@@ -2291,14 +2783,68 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "familiar"
     },
     {
       "id": "turkey",
       "name": "Turkey",
       "symbol": "🇹🇷",
       "clue": "Europe and Asia",
-      "facts": {},
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Turkey does not qualify: it does not meet the definition ‘has land in Africa’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "asia": {
+          "value": true,
+          "explanation": "Turkey qualifies: it does meet the definition ‘has land in Asia’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "europe": {
+          "value": true,
+          "explanation": "Turkey qualifies: it does meet the definition ‘has land in Europe’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Turkey does not qualify: it does not meet the definition ‘has land crossed by the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "south": {
+          "value": false,
+          "explanation": "Turkey does not qualify: it does not meet the definition ‘has land south of the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Turkey does not qualify: it does not meet the definition ‘is landlocked’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "Turkey does not qualify: it does not meet the definition ‘uses the euro as its official national currency’.",
+          "sourceIds": [
+            "euro-area"
+          ]
+        }
+      },
       "statistics": {
         "population": {
           "value": 85325965,
@@ -2345,14 +2891,68 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "moderate"
     },
     {
       "id": "germany",
       "name": "Germany",
       "symbol": "🇩🇪",
       "clue": "Europe",
-      "facts": {},
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Germany does not qualify: it does not meet the definition ‘has land in Africa’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "Germany does not qualify: it does not meet the definition ‘has land in Asia’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "europe": {
+          "value": true,
+          "explanation": "Germany qualifies: it does meet the definition ‘has land in Europe’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Germany does not qualify: it does not meet the definition ‘has land crossed by the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "south": {
+          "value": false,
+          "explanation": "Germany does not qualify: it does not meet the definition ‘has land south of the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Germany does not qualify: it does not meet the definition ‘is landlocked’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "euro": {
+          "value": true,
+          "explanation": "Germany qualifies: it does meet the definition ‘uses the euro as its official national currency’.",
+          "sourceIds": [
+            "euro-area"
+          ]
+        }
+      },
       "statistics": {
         "population": {
           "value": 83287273,
@@ -2392,14 +2992,68 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "familiar"
     },
     {
       "id": "australia",
       "name": "Australia",
       "symbol": "🇦🇺",
       "clue": "Oceania",
-      "facts": {},
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Australia does not qualify: it does not meet the definition ‘has land in Africa’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "Australia does not qualify: it does not meet the definition ‘has land in Asia’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "Australia does not qualify: it does not meet the definition ‘has land in Europe’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Australia does not qualify: it does not meet the definition ‘has land crossed by the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "south": {
+          "value": true,
+          "explanation": "Australia qualifies: it does meet the definition ‘has land south of the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Australia does not qualify: it does not meet the definition ‘is landlocked’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "Australia does not qualify: it does not meet the definition ‘uses the euro as its official national currency’.",
+          "sourceIds": [
+            "euro-area"
+          ]
+        }
+      },
       "statistics": {
         "population": {
           "value": 26659922,
@@ -2446,14 +3100,68 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "familiar"
     },
     {
       "id": "mexico",
       "name": "Mexico",
       "symbol": "🇲🇽",
       "clue": "North America",
-      "facts": {},
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Mexico does not qualify: it does not meet the definition ‘has land in Africa’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "Mexico does not qualify: it does not meet the definition ‘has land in Asia’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "Mexico does not qualify: it does not meet the definition ‘has land in Europe’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Mexico does not qualify: it does not meet the definition ‘has land crossed by the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "south": {
+          "value": false,
+          "explanation": "Mexico does not qualify: it does not meet the definition ‘has land south of the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Mexico does not qualify: it does not meet the definition ‘is landlocked’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "Mexico does not qualify: it does not meet the definition ‘uses the euro as its official national currency’.",
+          "sourceIds": [
+            "euro-area"
+          ]
+        }
+      },
       "statistics": {
         "population": {
           "value": 129739759,
@@ -2500,14 +3208,68 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "familiar"
     },
     {
       "id": "south-korea",
       "name": "South Korea",
       "symbol": "🇰🇷",
       "clue": "Asia",
-      "facts": {},
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "South Korea does not qualify: it does not meet the definition ‘has land in Africa’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "asia": {
+          "value": true,
+          "explanation": "South Korea qualifies: it does meet the definition ‘has land in Asia’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "South Korea does not qualify: it does not meet the definition ‘has land in Europe’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "South Korea does not qualify: it does not meet the definition ‘has land crossed by the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "south": {
+          "value": false,
+          "explanation": "South Korea does not qualify: it does not meet the definition ‘has land south of the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "South Korea does not qualify: it does not meet the definition ‘is landlocked’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "South Korea does not qualify: it does not meet the definition ‘uses the euro as its official national currency’.",
+          "sourceIds": [
+            "euro-area"
+          ]
+        }
+      },
       "statistics": {
         "population": {
           "value": 51712619,
@@ -2554,14 +3316,68 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "moderate"
     },
     {
       "id": "thailand",
       "name": "Thailand",
       "symbol": "🇹🇭",
       "clue": "Asia",
-      "facts": {},
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Thailand does not qualify: it does not meet the definition ‘has land in Africa’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "asia": {
+          "value": true,
+          "explanation": "Thailand qualifies: it does meet the definition ‘has land in Asia’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "Thailand does not qualify: it does not meet the definition ‘has land in Europe’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Thailand does not qualify: it does not meet the definition ‘has land crossed by the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "south": {
+          "value": false,
+          "explanation": "Thailand does not qualify: it does not meet the definition ‘has land south of the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Thailand does not qualify: it does not meet the definition ‘is landlocked’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "Thailand does not qualify: it does not meet the definition ‘uses the euro as its official national currency’.",
+          "sourceIds": [
+            "euro-area"
+          ]
+        }
+      },
       "statistics": {
         "population": {
           "value": 71702435,
@@ -2608,14 +3424,68 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "moderate"
     },
     {
       "id": "india",
       "name": "India",
       "symbol": "🇮🇳",
       "clue": "Asia",
-      "facts": {},
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "India does not qualify: it does not meet the definition ‘has land in Africa’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "asia": {
+          "value": true,
+          "explanation": "India qualifies: it does meet the definition ‘has land in Asia’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "India does not qualify: it does not meet the definition ‘has land in Europe’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "India does not qualify: it does not meet the definition ‘has land crossed by the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "south": {
+          "value": false,
+          "explanation": "India does not qualify: it does not meet the definition ‘has land south of the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "India does not qualify: it does not meet the definition ‘is landlocked’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "India does not qualify: it does not meet the definition ‘uses the euro as its official national currency’.",
+          "sourceIds": [
+            "euro-area"
+          ]
+        }
+      },
       "statistics": {
         "population": {
           "value": 1438069596,
@@ -2662,14 +3532,68 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "familiar"
     },
     {
       "id": "netherlands",
       "name": "Netherlands",
       "symbol": "🇳🇱",
       "clue": "Europe",
-      "facts": {},
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Netherlands does not qualify: it does not meet the definition ‘has land in Africa’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "Netherlands does not qualify: it does not meet the definition ‘has land in Asia’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "europe": {
+          "value": true,
+          "explanation": "Netherlands qualifies: it does meet the definition ‘has land in Europe’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Netherlands does not qualify: it does not meet the definition ‘has land crossed by the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "south": {
+          "value": false,
+          "explanation": "Netherlands does not qualify: it does not meet the definition ‘has land south of the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Netherlands does not qualify: it does not meet the definition ‘is landlocked’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "euro": {
+          "value": true,
+          "explanation": "Netherlands qualifies: it does meet the definition ‘uses the euro as its official national currency’.",
+          "sourceIds": [
+            "euro-area"
+          ]
+        }
+      },
       "statistics": {
         "population": {
           "value": 17877117,
@@ -2716,7 +3640,652 @@
             "regimes-owid"
           ]
         }
-      ]
+      ],
+      "familiarity": "moderate"
+    },
+    {
+      "id": "uruguay",
+      "name": "Uruguay",
+      "symbol": "🇺🇾",
+      "clue": "Look for overlaps between its geography, culture and history.",
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Uruguay does not qualify: it does not meet the definition ‘has land in Africa’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "Uruguay does not qualify: it does not meet the definition ‘has land in Asia’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "Uruguay does not qualify: it does not meet the definition ‘has land in Europe’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Uruguay does not qualify: it does not meet the definition ‘has land crossed by the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "south": {
+          "value": true,
+          "explanation": "Uruguay qualifies: it does meet the definition ‘has land south of the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Uruguay does not qualify: it does not meet the definition ‘is landlocked’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "Uruguay does not qualify: it does not meet the definition ‘uses the euro as its official national currency’.",
+          "sourceIds": [
+            "euro-area"
+          ]
+        }
+      },
+      "statistics": {
+        "population": {
+          "value": 3388081,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 79208725899.5531,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 176220,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Montevideo",
+        "latitude": -34.905376,
+        "longitude": -56.186823,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "familiarity": "less-familiar"
+    },
+    {
+      "id": "slovenia",
+      "name": "Slovenia",
+      "symbol": "🇸🇮",
+      "clue": "Look for overlaps between its geography, culture and history.",
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Slovenia does not qualify: it does not meet the definition ‘has land in Africa’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "Slovenia does not qualify: it does not meet the definition ‘has land in Asia’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "europe": {
+          "value": true,
+          "explanation": "Slovenia qualifies: it does meet the definition ‘has land in Europe’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Slovenia does not qualify: it does not meet the definition ‘has land crossed by the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "south": {
+          "value": false,
+          "explanation": "Slovenia does not qualify: it does not meet the definition ‘has land south of the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Slovenia does not qualify: it does not meet the definition ‘is landlocked’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "euro": {
+          "value": true,
+          "explanation": "Slovenia qualifies: it does meet the definition ‘uses the euro as its official national currency’.",
+          "sourceIds": [
+            "euro-area"
+          ]
+        }
+      },
+      "statistics": {
+        "population": {
+          "value": 2120461,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 69255264238.3855,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 20480,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Ljubljana",
+        "latitude": 46.055288,
+        "longitude": 14.514969,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "familiarity": "less-familiar"
+    },
+    {
+      "id": "bolivia",
+      "name": "Bolivia",
+      "symbol": "🇧🇴",
+      "clue": "Look for overlaps between its geography, culture and history.",
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Bolivia does not qualify: it does not meet the definition ‘has land in Africa’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "Bolivia does not qualify: it does not meet the definition ‘has land in Asia’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "Bolivia does not qualify: it does not meet the definition ‘has land in Europe’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Bolivia does not qualify: it does not meet the definition ‘has land crossed by the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "south": {
+          "value": true,
+          "explanation": "Bolivia qualifies: it does meet the definition ‘has land south of the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "landlocked": {
+          "value": true,
+          "explanation": "Bolivia qualifies: it does meet the definition ‘is landlocked’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "Bolivia does not qualify: it does not meet the definition ‘uses the euro as its official national currency’.",
+          "sourceIds": [
+            "euro-area"
+          ]
+        }
+      },
+      "statistics": {
+        "population": {
+          "value": 12244159,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 52340206946.4544,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 1098580,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Sucre",
+        "latitude": -19.040971,
+        "longitude": -65.259516,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "familiarity": "less-familiar"
+    },
+    {
+      "id": "bhutan",
+      "name": "Bhutan",
+      "symbol": "🇧🇹",
+      "clue": "Look for overlaps between its geography, culture and history.",
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Bhutan does not qualify: it does not meet the definition ‘has land in Africa’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "asia": {
+          "value": true,
+          "explanation": "Bhutan qualifies: it does meet the definition ‘has land in Asia’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "Bhutan does not qualify: it does not meet the definition ‘has land in Europe’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Bhutan does not qualify: it does not meet the definition ‘has land crossed by the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "south": {
+          "value": false,
+          "explanation": "Bhutan does not qualify: it does not meet the definition ‘has land south of the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "landlocked": {
+          "value": true,
+          "explanation": "Bhutan qualifies: it does meet the definition ‘is landlocked’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "Bhutan does not qualify: it does not meet the definition ‘uses the euro as its official national currency’.",
+          "sourceIds": [
+            "euro-area"
+          ]
+        }
+      },
+      "statistics": {
+        "population": {
+          "value": 786385,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 3012896789.79753,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 38390,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Thimphu",
+        "latitude": 27.472986,
+        "longitude": 89.639014,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "familiarity": "less-familiar"
+    },
+    {
+      "id": "senegal",
+      "name": "Senegal",
+      "symbol": "🇸🇳",
+      "clue": "Look for overlaps between its geography, culture and history.",
+      "facts": {
+        "africa": {
+          "value": true,
+          "explanation": "Senegal qualifies: it does meet the definition ‘has land in Africa’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "Senegal does not qualify: it does not meet the definition ‘has land in Asia’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "Senegal does not qualify: it does not meet the definition ‘has land in Europe’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Senegal does not qualify: it does not meet the definition ‘has land crossed by the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "south": {
+          "value": false,
+          "explanation": "Senegal does not qualify: it does not meet the definition ‘has land south of the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "Senegal does not qualify: it does not meet the definition ‘is landlocked’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "Senegal does not qualify: it does not meet the definition ‘uses the euro as its official national currency’.",
+          "sourceIds": [
+            "euro-area"
+          ]
+        }
+      },
+      "statistics": {
+        "population": {
+          "value": 18077573,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 30696331295.7826,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 196710,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Dakar",
+        "latitude": 14.717778,
+        "longitude": -17.475076,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "familiarity": "less-familiar"
+    },
+    {
+      "id": "mongolia",
+      "name": "Mongolia",
+      "symbol": "🇲🇳",
+      "clue": "Look for overlaps between its geography, culture and history.",
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "Mongolia does not qualify: it does not meet the definition ‘has land in Africa’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "asia": {
+          "value": true,
+          "explanation": "Mongolia qualifies: it does meet the definition ‘has land in Asia’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "Mongolia does not qualify: it does not meet the definition ‘has land in Europe’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "Mongolia does not qualify: it does not meet the definition ‘has land crossed by the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "south": {
+          "value": false,
+          "explanation": "Mongolia does not qualify: it does not meet the definition ‘has land south of the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "landlocked": {
+          "value": true,
+          "explanation": "Mongolia qualifies: it does meet the definition ‘is landlocked’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "Mongolia does not qualify: it does not meet the definition ‘uses the euro as its official national currency’.",
+          "sourceIds": [
+            "euro-area"
+          ]
+        }
+      },
+      "statistics": {
+        "population": {
+          "value": 3481145,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 20325121393.9074,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 1564115.75,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Ulaanbaatar",
+        "latitude": 47.918619,
+        "longitude": 106.91467,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "familiarity": "less-familiar"
+    },
+    {
+      "id": "united-states",
+      "name": "United States",
+      "symbol": "🇺🇸",
+      "clue": "Look for overlaps between its geography, culture and history.",
+      "facts": {
+        "africa": {
+          "value": false,
+          "explanation": "United States does not qualify: it does not meet the definition ‘has land in Africa’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "asia": {
+          "value": false,
+          "explanation": "United States does not qualify: it does not meet the definition ‘has land in Asia’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "europe": {
+          "value": false,
+          "explanation": "United States does not qualify: it does not meet the definition ‘has land in Europe’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map",
+            "un-regions"
+          ]
+        },
+        "equator": {
+          "value": false,
+          "explanation": "United States does not qualify: it does not meet the definition ‘has land crossed by the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "south": {
+          "value": false,
+          "explanation": "United States does not qualify: it does not meet the definition ‘has land south of the equator’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "landlocked": {
+          "value": false,
+          "explanation": "United States does not qualify: it does not meet the definition ‘is landlocked’. Geography uses primary territory, excluding overseas regions and dependencies.",
+          "sourceIds": [
+            "world-map"
+          ]
+        },
+        "euro": {
+          "value": false,
+          "explanation": "United States does not qualify: it does not meet the definition ‘uses the euro as its official national currency’.",
+          "sourceIds": [
+            "euro-area"
+          ]
+        }
+      },
+      "statistics": {
+        "population": {
+          "value": 336755052,
+          "year": 2023,
+          "sourceIds": [
+            "wb-population"
+          ]
+        },
+        "gdpUsd": {
+          "value": 27811517000000,
+          "year": 2023,
+          "sourceIds": [
+            "wb-gdpUsd"
+          ]
+        },
+        "surfaceAreaKm2": {
+          "value": 9831510,
+          "year": 2023,
+          "sourceIds": [
+            "wb-surfaceAreaKm2"
+          ]
+        }
+      },
+      "capital": {
+        "name": "Washington, D.C.",
+        "latitude": 38.901495,
+        "longitude": -77.011364,
+        "sourceIds": [
+          "natural-earth-capitals"
+        ]
+      },
+      "familiarity": "familiar"
     }
   ],
   "places": [
@@ -2743,6 +4312,15 @@
       "name": "Paris",
       "latitude": 48.858092,
       "longitude": 2.352992,
+      "sourceIds": [
+        "natural-earth-capitals"
+      ]
+    },
+    {
+      "id": "buenos-aires",
+      "name": "Buenos Aires",
+      "latitude": -34.610715,
+      "longitude": -58.432513,
       "sourceIds": [
         "natural-earth-capitals"
       ]
@@ -2779,7 +4357,14 @@
         "south-korea",
         "thailand",
         "india",
-        "netherlands"
+        "netherlands",
+        "uruguay",
+        "slovenia",
+        "bolivia",
+        "bhutan",
+        "senegal",
+        "mongolia",
+        "united-states"
       ],
       "sourceIds": [
         "olympic-hosts"
@@ -2869,6 +4454,26 @@
           "entityId": "netherlands",
           "year": 1928,
           "description": "Amsterdam hosted the Summer Olympics"
+        },
+        {
+          "entityId": "united-states",
+          "year": 1904,
+          "description": "St Louis hosted the Summer Olympics"
+        },
+        {
+          "entityId": "united-states",
+          "year": 1932,
+          "description": "Los Angeles hosted the Summer Olympics"
+        },
+        {
+          "entityId": "united-states",
+          "year": 1984,
+          "description": "Los Angeles hosted the Summer Olympics"
+        },
+        {
+          "entityId": "united-states",
+          "year": 1996,
+          "description": "Atlanta hosted the Summer Olympics"
         }
       ]
     },
@@ -2902,7 +4507,14 @@
         "south-korea",
         "thailand",
         "india",
-        "netherlands"
+        "netherlands",
+        "uruguay",
+        "slovenia",
+        "bolivia",
+        "bhutan",
+        "senegal",
+        "mongolia",
+        "united-states"
       ],
       "sourceIds": [
         "olympic-hosts"
@@ -2962,6 +4574,26 @@
           "entityId": "south-korea",
           "year": 2018,
           "description": "PyeongChang hosted the Winter Olympics"
+        },
+        {
+          "entityId": "united-states",
+          "year": 1932,
+          "description": "Lake Placid hosted the Winter Olympics"
+        },
+        {
+          "entityId": "united-states",
+          "year": 1960,
+          "description": "Squaw Valley hosted the Winter Olympics"
+        },
+        {
+          "entityId": "united-states",
+          "year": 1980,
+          "description": "Lake Placid hosted the Winter Olympics"
+        },
+        {
+          "entityId": "united-states",
+          "year": 2002,
+          "description": "Salt Lake City hosted the Winter Olympics"
         }
       ]
     },
@@ -2995,7 +4627,14 @@
         "south-korea",
         "thailand",
         "india",
-        "netherlands"
+        "netherlands",
+        "uruguay",
+        "slovenia",
+        "bolivia",
+        "bhutan",
+        "senegal",
+        "mongolia",
+        "united-states"
       ],
       "sourceIds": [
         "fifa-winners",
@@ -3096,6 +4735,16 @@
           "entityId": "spain",
           "year": 2010,
           "description": "Won the men’s FIFA World Cup"
+        },
+        {
+          "entityId": "uruguay",
+          "year": 1930,
+          "description": "Won the men’s FIFA World Cup"
+        },
+        {
+          "entityId": "uruguay",
+          "year": 1950,
+          "description": "Won the men’s FIFA World Cup"
         }
       ]
     },
@@ -3129,7 +4778,14 @@
         "south-korea",
         "thailand",
         "india",
-        "netherlands"
+        "netherlands",
+        "uruguay",
+        "slovenia",
+        "bolivia",
+        "bhutan",
+        "senegal",
+        "mongolia",
+        "united-states"
       ],
       "sourceIds": [
         "unesco-diet"
@@ -3154,6 +4810,147 @@
           "entityId": "portugal",
           "year": 2013,
           "description": "Joined UNESCO’s shared Mediterranean diet inscription, despite having an Atlantic coastline"
+        }
+      ]
+    },
+    {
+      "id": "tango",
+      "name": "UNESCO Tango inscription",
+      "fromYear": 2009,
+      "toYear": 2024,
+      "reviewedEntityIds": [
+        "brazil",
+        "portugal",
+        "kenya",
+        "south-africa",
+        "japan",
+        "egypt",
+        "austria",
+        "indonesia",
+        "peru",
+        "france",
+        "nigeria",
+        "nepal",
+        "argentina",
+        "chile",
+        "italy",
+        "greece",
+        "spain",
+        "turkey",
+        "germany",
+        "australia",
+        "mexico",
+        "south-korea",
+        "thailand",
+        "india",
+        "netherlands",
+        "uruguay",
+        "slovenia",
+        "bolivia",
+        "bhutan",
+        "senegal",
+        "mongolia",
+        "united-states"
+      ],
+      "sourceIds": [
+        "unesco-tango"
+      ],
+      "events": [
+        {
+          "entityId": "argentina",
+          "year": 2009,
+          "description": "Named in UNESCO’s shared Tango inscription"
+        },
+        {
+          "entityId": "uruguay",
+          "year": 2009,
+          "description": "Named in UNESCO’s shared Tango inscription"
+        }
+      ]
+    },
+    {
+      "id": "women-world-cup",
+      "name": "women’s FIFA World Cup champions",
+      "fromYear": 1991,
+      "toYear": 2023,
+      "reviewedEntityIds": [
+        "brazil",
+        "portugal",
+        "kenya",
+        "south-africa",
+        "japan",
+        "egypt",
+        "austria",
+        "indonesia",
+        "peru",
+        "france",
+        "nigeria",
+        "nepal",
+        "argentina",
+        "chile",
+        "italy",
+        "greece",
+        "spain",
+        "turkey",
+        "germany",
+        "australia",
+        "mexico",
+        "south-korea",
+        "thailand",
+        "india",
+        "netherlands",
+        "uruguay",
+        "slovenia",
+        "bolivia",
+        "bhutan",
+        "senegal",
+        "mongolia",
+        "united-states"
+      ],
+      "sourceIds": [
+        "fifa-women-winners",
+        "fifa-women-2023"
+      ],
+      "events": [
+        {
+          "entityId": "united-states",
+          "year": 1991,
+          "description": "Won the women’s FIFA World Cup"
+        },
+        {
+          "entityId": "united-states",
+          "year": 1999,
+          "description": "Won the women’s FIFA World Cup"
+        },
+        {
+          "entityId": "united-states",
+          "year": 2015,
+          "description": "Won the women’s FIFA World Cup"
+        },
+        {
+          "entityId": "united-states",
+          "year": 2019,
+          "description": "Won the women’s FIFA World Cup"
+        },
+        {
+          "entityId": "germany",
+          "year": 2003,
+          "description": "Won the women’s FIFA World Cup"
+        },
+        {
+          "entityId": "germany",
+          "year": 2007,
+          "description": "Won the women’s FIFA World Cup"
+        },
+        {
+          "entityId": "japan",
+          "year": 2011,
+          "description": "Won the women’s FIFA World Cup"
+        },
+        {
+          "entityId": "spain",
+          "year": 2023,
+          "description": "Won the women’s FIFA World Cup"
         }
       ]
     }

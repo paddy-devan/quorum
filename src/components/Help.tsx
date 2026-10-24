@@ -40,6 +40,10 @@ export function Help({
           stays safe even if your next check misses.
         </li>
       </ol>
+      <p>
+        During testing, use the arrows beside the puzzle number to try another
+        day. Each day keeps its own progress. The Quorum logo returns to today.
+      </p>
       <div className="tutorial">
         <h3>Try a tiny example</h3>
         <p>These are imaginary islands, just to show the idea.</p>

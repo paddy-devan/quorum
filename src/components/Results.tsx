@@ -24,10 +24,13 @@ export function Results({
       .map((id) => puzzle.entities.find((entity) => entity.id === id)!.name)
       .join(" + ");
   async function share() {
+    const url = new URL(window.location.href);
+    url.search = "";
+    url.searchParams.set("date", daily.date);
     const text = shareText(
       daily,
       run,
-      `${window.location.origin}${window.location.pathname}${window.location.search}`,
+      url.toString(),
     );
     try {
       if (
@@ -79,7 +82,7 @@ export function Results({
                 {best?.coveredIds.length ?? 0} of {puzzle.attributes.length}{" "}
                 requirements.
               </strong>{" "}
-              {daily.demoId ? "Try another angle in the next demo." : "There’s always a new angle tomorrow."}
+              Try another angle in the next puzzle.
             </>
           )}
         </p>
@@ -205,9 +208,7 @@ export function Results({
           </details>
         ))}
       </details>
-      {daily.demoId ? (
-        <p className="next-puzzle">Try another board or restart this one from Demos.</p>
-      ) : <p className="next-puzzle">A new daily puzzle arrives at 00:00 UTC.</p>}
+      <p className="next-puzzle">Use the arrows beside the puzzle number to try another day.</p>
     </section>
   );
 }

@@ -1,202 +1,380 @@
 {
   "epoch": "2026-10-22",
+  "generation": {
+    "algorithmVersion": "seeded-safe-route-v1",
+    "catalogVersion": "countries-4-quality",
+    "seed": 20261022,
+    "profile": {
+      "id": "daily-testing",
+      "version": 1,
+      "candidateCount": 12,
+      "requirementCount": 6,
+      "maxSelected": 6,
+      "maxPerFamily": 2,
+      "estimationCount": {
+        "min": 1,
+        "max": 2
+      },
+      "minSubjects": 3,
+      "difficultyCounts": {
+        "easy": {
+          "min": 1,
+          "max": 4
+        },
+        "medium": {
+          "min": 1,
+          "max": 4
+        },
+        "hard": {
+          "min": 1,
+          "max": 3
+        }
+      },
+      "familiarityCounts": {
+        "familiar": {
+          "min": 4,
+          "max": 8
+        },
+        "moderate": {
+          "min": 0,
+          "max": 6
+        },
+        "less-familiar": {
+          "min": 2,
+          "max": 4
+        }
+      },
+      "matchingCountries": {
+        "min": 2,
+        "max": 7
+      },
+      "optimalSize": 3,
+      "optimalCount": {
+        "min": 1,
+        "max": 4
+      },
+      "completionRates": {
+        "4": {
+          "min": 0.05,
+          "max": 0.3
+        },
+        "5": {
+          "min": 0.15,
+          "max": 0.6
+        },
+        "6": {
+          "min": 0.3,
+          "max": 0.85
+        }
+      },
+      "minIrreducibleBySize": {
+        "4": 1,
+        "5": 1
+      },
+      "safeRouteSizes": [
+        5,
+        6
+      ],
+      "preventImplications": true,
+      "maxAdjacentRequirementOverlap": 4
+    },
+    "maxAttempts": 100000,
+    "attempts": 4479
+  },
   "puzzles": [
     {
-      "id": "countries-crossroads",
-      "version": 3,
-      "title": "A world of possibilities.",
+      "id": "countries-20261022-001",
+      "version": 1,
+      "title": "A world of overlaps",
       "entityIds": [
-        "brazil",
-        "portugal",
-        "kenya",
-        "south-africa",
-        "japan",
-        "egypt",
-        "austria",
+        "uruguay",
+        "chile",
+        "spain",
         "indonesia",
-        "peru",
-        "france",
+        "austria",
+        "netherlands",
+        "united-states",
+        "bhutan",
+        "bolivia",
         "nigeria",
-        "nepal"
+        "italy",
+        "mexico"
       ],
       "attributeIds": [
-        "africa",
-        "landlocked",
-        "portuguese",
-        "left",
+        "winter-host",
         "south",
-        "europe"
+        "denser-than-germany",
+        "world-cup-winner",
+        "landlocked",
+        "people-above-japan"
       ],
+      "authoring": {
+        "safeSelectionIds": [
+          "austria",
+          "chile",
+          "netherlands",
+          "spain",
+          "mexico"
+        ]
+      },
       "rules": {
         "maxSelected": 6,
         "maxChecks": 3,
         "expectedOptimal": 3,
-        "clueMode": "partial"
+        "clueMode": "hidden"
       }
     },
     {
-      "id": "countries-atlantic",
-      "version": 3,
-      "title": "A world of possibilities.",
+      "id": "countries-20261022-002",
+      "version": 1,
+      "title": "A world of overlaps",
       "entityIds": [
-        "brazil",
-        "portugal",
-        "kenya",
-        "south-africa",
-        "japan",
-        "egypt",
-        "austria",
-        "indonesia",
-        "peru",
         "france",
+        "brazil",
+        "india",
+        "kenya",
+        "bhutan",
+        "south-korea",
+        "united-states",
+        "netherlands",
         "nigeria",
-        "nepal"
+        "greece",
+        "portugal",
+        "mongolia"
       ],
       "attributeIds": [
-        "africa",
-        "landlocked",
-        "portuguese",
-        "left",
-        "south",
-        "atlantic"
+        "equator",
+        "people-above-germany",
+        "mediterranean-diet",
+        "asia",
+        "gdp-above-austria",
+        "africa"
       ],
+      "authoring": {
+        "safeSelectionIds": [
+          "kenya",
+          "nigeria",
+          "greece",
+          "mongolia",
+          "netherlands"
+        ]
+      },
       "rules": {
         "maxSelected": 6,
         "maxChecks": 3,
         "expectedOptimal": 3,
-        "clueMode": "partial"
+        "clueMode": "hidden"
       }
     },
     {
-      "id": "countries-coastlines",
-      "version": 3,
-      "title": "A world of possibilities.",
+      "id": "countries-20261022-003",
+      "version": 1,
+      "title": "A world of overlaps",
       "entityIds": [
-        "brazil",
-        "portugal",
-        "kenya",
-        "south-africa",
-        "japan",
-        "egypt",
-        "austria",
+        "spain",
         "indonesia",
-        "peru",
-        "france",
+        "germany",
+        "argentina",
+        "uruguay",
         "nigeria",
-        "nepal"
+        "united-states",
+        "kenya",
+        "italy",
+        "slovenia",
+        "south-korea",
+        "mexico"
       ],
       "attributeIds": [
+        "capital-near-cairo",
+        "women-world-cup-winner",
+        "equator",
+        "people-above-japan",
+        "tango-heritage",
+        "winter-host"
+      ],
+      "authoring": {
+        "safeSelectionIds": [
+          "spain",
+          "kenya",
+          "nigeria",
+          "argentina",
+          "italy"
+        ]
+      },
+      "rules": {
+        "maxSelected": 6,
+        "maxChecks": 3,
+        "expectedOptimal": 3,
+        "clueMode": "hidden"
+      }
+    },
+    {
+      "id": "countries-20261022-004",
+      "version": 1,
+      "title": "A world of overlaps",
+      "entityIds": [
+        "nepal",
+        "japan",
+        "bolivia",
+        "kenya",
+        "greece",
+        "argentina",
+        "spain",
+        "thailand",
+        "brazil",
+        "india",
+        "egypt",
+        "portugal"
+      ],
+      "attributeIds": [
+        "asia",
+        "landlocked",
+        "equator",
+        "capital-near-paris",
+        "gdp-above-austria",
+        "summer-host"
+      ],
+      "authoring": {
+        "safeSelectionIds": [
+          "egypt",
+          "bolivia",
+          "kenya",
+          "argentina",
+          "greece"
+        ]
+      },
+      "rules": {
+        "maxSelected": 6,
+        "maxChecks": 3,
+        "expectedOptimal": 3,
+        "clueMode": "hidden"
+      }
+    },
+    {
+      "id": "countries-20261022-005",
+      "version": 1,
+      "title": "A world of overlaps",
+      "entityIds": [
+        "indonesia",
+        "peru",
+        "nepal",
+        "south-africa",
+        "egypt",
+        "austria",
+        "japan",
+        "kenya",
+        "nigeria",
+        "portugal",
+        "france",
+        "brazil"
+      ],
+      "attributeIds": [
+        "winter-host",
+        "denser-than-germany",
         "portuguese",
-        "left",
         "south",
+        "africa",
+        "landlocked"
+      ],
+      "authoring": {
+        "safeSelectionIds": [
+          "france",
+          "nigeria",
+          "portugal",
+          "peru",
+          "nepal"
+        ]
+      },
+      "rules": {
+        "maxSelected": 6,
+        "maxChecks": 3,
+        "expectedOptimal": 3,
+        "clueMode": "hidden"
+      }
+    },
+    {
+      "id": "countries-20261022-006",
+      "version": 1,
+      "title": "A world of overlaps",
+      "entityIds": [
+        "nepal",
+        "egypt",
+        "france",
+        "nigeria",
+        "austria",
+        "south-africa",
+        "indonesia",
+        "peru",
+        "brazil",
+        "japan",
+        "kenya",
+        "portugal"
+      ],
+      "attributeIds": [
+        "south",
+        "capital-near-tokyo",
         "euro",
         "mediterranean",
-        "atlantic"
-      ],
-      "rules": {
-        "maxSelected": 6,
-        "maxChecks": 3,
-        "expectedOptimal": 3,
-        "clueMode": "partial"
-      }
-    },
-    {
-      "id": "countries-equator",
-      "version": 2,
-      "title": "Across the equator.",
-      "entityIds": [
-        "brazil",
-        "portugal",
-        "kenya",
-        "south-africa",
-        "japan",
-        "egypt",
-        "austria",
-        "indonesia",
-        "peru",
-        "france",
-        "nigeria",
-        "nepal"
-      ],
-      "attributeIds": [
-        "africa",
-        "equator",
-        "landlocked",
-        "south",
-        "euro",
-        "asia"
-      ],
-      "rules": {
-        "maxSelected": 6,
-        "maxChecks": 3,
-        "expectedOptimal": 3,
-        "clueMode": "partial"
-      }
-    },
-    {
-      "id": "countries-land-and-sea",
-      "version": 2,
-      "title": "From land to sea.",
-      "entityIds": [
-        "brazil",
-        "portugal",
-        "kenya",
-        "south-africa",
-        "japan",
-        "egypt",
-        "austria",
-        "indonesia",
-        "peru",
-        "france",
-        "nigeria",
-        "nepal"
-      ],
-      "attributeIds": [
-        "equator",
-        "landlocked",
-        "south",
-        "asia",
-        "atlantic",
-        "mediterranean"
-      ],
-      "rules": {
-        "maxSelected": 6,
-        "maxChecks": 3,
-        "expectedOptimal": 3,
-        "clueMode": "partial"
-      }
-    },
-    {
-      "id": "countries-continents",
-      "version": 2,
-      "title": "Continental connections.",
-      "entityIds": [
-        "brazil",
-        "portugal",
-        "kenya",
-        "south-africa",
-        "japan",
-        "egypt",
-        "austria",
-        "indonesia",
-        "peru",
-        "france",
-        "nigeria",
-        "nepal"
-      ],
-      "attributeIds": [
-        "africa",
-        "landlocked",
         "portuguese",
-        "south",
-        "europe",
-        "asia"
+        "people-above-germany"
       ],
+      "authoring": {
+        "safeSelectionIds": [
+          "kenya",
+          "nepal",
+          "france",
+          "portugal",
+          "nigeria"
+        ]
+      },
       "rules": {
         "maxSelected": 6,
         "maxChecks": 3,
         "expectedOptimal": 3,
-        "clueMode": "partial"
+        "clueMode": "hidden"
+      }
+    },
+    {
+      "id": "countries-20261022-007",
+      "version": 1,
+      "title": "A world of overlaps",
+      "entityIds": [
+        "uruguay",
+        "italy",
+        "france",
+        "japan",
+        "nigeria",
+        "kenya",
+        "united-states",
+        "brazil",
+        "thailand",
+        "nepal",
+        "bolivia",
+        "egypt"
+      ],
+      "attributeIds": [
+        "equator",
+        "world-cup-winner",
+        "denser-than-germany",
+        "landlocked",
+        "winter-host",
+        "asia"
+      ],
+      "authoring": {
+        "safeSelectionIds": [
+          "kenya",
+          "uruguay",
+          "nigeria",
+          "bolivia",
+          "united-states",
+          "egypt"
+        ]
+      },
+      "rules": {
+        "maxSelected": 6,
+        "maxChecks": 3,
+        "expectedOptimal": 3,
+        "clueMode": "hidden"
       }
     }
   ]

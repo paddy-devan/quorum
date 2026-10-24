@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { dailyPuzzle, demoPuzzle, demoPuzzles, puzzles, utcDate } from "./content/loader";
+import { adjacentPuzzle, dailyPuzzle, puzzles, utcDate } from "./content/loader";
 import { bestCheck, resultLabel, submitCheck } from "./game/engine";
 import type { Attribute, DailyPuzzle } from "./game/types";
 import {
@@ -21,18 +21,11 @@ import { Results } from "./components/Results";
 const isLocal = ["localhost", "127.0.0.1", "[::1]"].includes(
   window.location.hostname,
 );
-const testDate = isLocal
-  ? new URLSearchParams(window.location.search).get("date")
-  : null;
-const requestedDemo = new URLSearchParams(window.location.search).get("demo");
+const requestedDate = new URLSearchParams(window.location.search).get("date");
 
 function startingDaily() {
-  if (requestedDemo) {
-    const demo = demoPuzzle(requestedDemo);
-    if (demo) return demo;
-  }
   try {
-    return dailyPuzzle(testDate || utcDate());
+    return dailyPuzzle(requestedDate || utcDate());
   } catch {
     return dailyPuzzle();
   }
@@ -59,7 +52,7 @@ export default function App() {
     return { storage, persistent, person: participant(storage) };
   });
   useEffect(() => {
-    if (testDate || daily.demoId) return;
+    if (requestedDate === daily.date) return;
     function rollover() {
       setDaily((previous) =>
         previous.date === utcDate() ? previous : dailyPuzzle(),
@@ -71,7 +64,7 @@ export default function App() {
       window.clearInterval(timer);
       document.removeEventListener("visibilitychange", rollover);
     };
-  }, [daily.demoId]);
+  }, [daily.date]);
   return <Game key={`${daily.date}:${daily.puzzle.id}`} daily={daily} local={local} />;
 }
 
@@ -91,7 +84,6 @@ function Game({
   const [run, setRun] = useState(() => loadRun(storage, daily, person.id));
   const [help, setHelp] = useState(false);
   const [localTesting, setLocalTesting] = useState(false);
-  const [demos, setDemos] = useState(false);
   const [definition, setDefinition] = useState<Attribute | null>(null);
   const [confirm, setConfirm] = useState<"finish" | "reset" | null>(null);
   const [message, setMessage] = useState("");
@@ -220,9 +212,6 @@ function Game({
             </a>
           </h1>
           <div className="puzzle-meta">
-            {daily.demoId ? (
-              <span>Demo {daily.number} of {demoPuzzles.length} · {puzzle.title}</span>
-            ) : <>
             <span>
               {new Intl.DateTimeFormat("en-GB", {
                 day: "numeric",
@@ -231,17 +220,24 @@ function Game({
                 timeZone: "UTC",
               }).format(new Date(`${daily.date}T12:00:00Z`))}
             </span>
-            <span className="meta-dot" aria-hidden="true">
-              ·
-            </span>
-            <span>Puzzle #{String(daily.number).padStart(3, "0")}</span>
-            </>}
+            <nav className="puzzle-navigation" aria-label={`Browse ${puzzles.length} test puzzles`}>
+              <a
+                className="puzzle-arrow"
+                href={`?date=${adjacentPuzzle(daily.date, -1).date}`}
+                aria-label="Previous puzzle"
+                title="Previous puzzle"
+              ><span aria-hidden="true">‹</span></a>
+              <span className="puzzle-number">Puzzle #{String(daily.number).padStart(3, "0")}</span>
+              <a
+                className="puzzle-arrow"
+                href={`?date=${adjacentPuzzle(daily.date, 1).date}`}
+                aria-label="Next puzzle"
+                title="Next puzzle"
+              ><span aria-hidden="true">›</span></a>
+            </nav>
           </div>
         </div>
         <div className="header-actions">
-          <button className="demo-button" onClick={() => setDemos(true)} aria-haspopup="dialog">
-            {daily.demoId ? "Demos" : "Try demos"}
-          </button>
           {isLocal ? (
             <button
               className="icon-button local-testing-button"
@@ -297,7 +293,7 @@ function Game({
           <div className="play-area">
             {run.finished ? (
               <div className="finished-strip">
-                {daily.demoId ? "This demo is complete." : "Today’s Quorum is complete."}{" "}
+                This day’s Quorum is complete.{" "}
                 <button
                   onClick={() =>
                     resultRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -433,25 +429,6 @@ function Game({
           </div>
         ) : null}
       </main>
-      {demos ? (
-        <Modal title="A few different angles" onClose={() => setDemos(false)}>
-          <p>Three puzzles mixing culture, history and a little estimation. Each has twelve countries, six requirements and three checks.</p>
-          <div className="demo-list">
-            {demoPuzzles.map((demo, index) => (
-              <a key={demo.id} href={`?demo=${demo.id}`} aria-current={daily.demoId === demo.id ? "page" : undefined}>
-                <span>Demo {index + 1}</span>
-                <strong>{demo.title}</strong>
-                <ArrowIcon />
-              </a>
-            ))}
-          </div>
-          <div className="dialog-actions">
-            <a className="secondary-button" href={window.location.pathname}>Daily puzzle</a>
-            {daily.demoId ? <button className="text-button" onClick={() => { setDemos(false); setConfirm("reset"); }}>Restart this demo</button> : null}
-          </div>
-          <p className="scope-note">Demo progress is saved separately. Statistics use 2023 figures; each historical requirement gives its cutoff date.</p>
-        </Modal>
-      ) : null}
       {isLocal && localTesting ? (
         <Modal title="Local testing" onClose={() => setLocalTesting(false)}>
           <div className="local-tools">
@@ -508,14 +485,14 @@ function Game({
       {confirm ? (
         <Modal
           title={
-            confirm === "finish" ? "Ready to reveal?" : daily.demoId ? "Restart this demo?" : "Reset this local game?"
+            confirm === "finish" ? "Ready to reveal?" : "Reset this local game?"
           }
           onClose={() => setConfirm(null)}
         >
           <p>
             {confirm === "finish"
               ? `This ends your game and reveals the facts. ${remaining} ${remaining === 1 ? "check remains" : "checks remain"}. Only checked combinations count towards your result.`
-              : daily.demoId ? "Your checks and selection for this demo will be cleared. Your daily puzzle and other demos will be kept." : "Your checks and selection for this day will be cleared. Other days and your anonymous identity will be kept."}
+              : "Your checks and selection for this day will be cleared. Other days and your anonymous identity will be kept."}
           </p>
           <div className="dialog-actions">
             <button

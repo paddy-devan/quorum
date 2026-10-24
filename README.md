@@ -1,10 +1,10 @@
 # Quorum
 
-Quorum is a daily country puzzle: choose the smallest group of countries that together meets six requirements. It runs entirely in the browser, with six daily test puzzles, three richer demos, a sourced country catalog, local progress and local analytics.
+Quorum is a daily country puzzle: choose the smallest group of countries that together meets six requirements. It runs entirely in the browser, with seven varied test puzzles, a sourced country catalog, local progress and local analytics.
 
 ## Run locally
 
-Install Node.js 22.12 or later, then run `npm ci` and `npm run dev`. Open the printed address (normally http://127.0.0.1:5173). Choose **Try demos** in the header, or open `?demo=demo-crossroads` directly, to play the richer requirements. The header’s **Local testing** icon previews another day, resets that day’s progress or exports local events. Run `npm run check` for TypeScript validation, all tests and a production build. `npm run preview` serves the built app locally.
+Install Node.js 22.12 or later, then run `npm ci` and `npm run dev`. Open the printed address (normally http://127.0.0.1:5173). The arrows beside **Puzzle #nnn** cycle through seven days of puzzles, each with separate saved progress. Click the Quorum logo to return to today. The header’s **Local testing** icon previews a date, resets that day’s progress or exports local events. Run `npm run check` for TypeScript validation, all tests and a production build. `npm run preview` serves the built app locally. To inspect or generate puzzle content, see [the authoring guide](docs/puzzle-authoring.md).
 
 ## Deployment
 

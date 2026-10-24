@@ -20,6 +20,12 @@ export interface Attribute {
   label: string;
   definition: string;
   rule?: RequirementRule;
+  category?: "geography" | "culture" | "history" | "sport" | "economy" | "population";
+  difficulty?: "easy" | "medium" | "hard";
+  family?: string;
+  reasoning?: "recall" | "estimation";
+  excludedEntityIds?: string[];
+  generationEnabled?: boolean;
 }
 
 export interface Measurement {
@@ -57,6 +63,7 @@ export interface Entity {
   name: string;
   symbol: string;
   clue: string;
+  familiarity?: "familiar" | "moderate" | "less-familiar";
   facts: Record<string, Fact>;
   statistics?: Partial<Record<"population" | "gdpUsd" | "surfaceAreaKm2", Measurement>>;
   capital?: Omit<Place, "id">;
@@ -81,6 +88,7 @@ export interface PuzzleDefinition {
   title: string;
   entityIds: string[];
   attributeIds: string[];
+  authoring?: { safeSelectionIds: string[] };
   rules: {
     maxSelected: number;
     maxChecks: number;
@@ -106,7 +114,6 @@ export interface DailyPuzzle {
   date: string;
   number: number;
   puzzle: Puzzle;
-  demoId?: string;
 }
 
 export interface Evaluation {

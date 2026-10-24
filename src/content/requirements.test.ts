@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { catalog, demoDefinitions, loadPuzzle } from "./loader";
+import { catalog, loadPuzzle } from "./loader";
 import { distanceMiles, resolveCatalog, resolveRequirement } from "./requirements";
 import type { Attribute, Catalog } from "../game/types";
 
@@ -14,7 +14,11 @@ describe("data-driven requirements", () => {
     const input = structuredClone(catalog);
     entity(input, "brazil").statistics!.gdpUsd!.year = 2022;
     expect(resolveCatalog(input).entities[0].facts["gdp-above-austria"].value).toBeNull();
-    expect(() => loadPuzzle(resolveCatalog(input), demoDefinitions[0])).toThrow("Unverified");
+    expect(() => loadPuzzle(resolveCatalog(input), {
+      id: "unknown-test", version: 1, title: "Unknown observation",
+      entityIds: ["brazil"], attributeIds: ["gdp-above-austria"],
+      rules: { maxSelected: 1, maxChecks: 3, expectedOptimal: 1, clueMode: "hidden" },
+    })).toThrow("Unverified");
   });
   it("derives per-person and density measures from matching dated observations", () => {
     expect(entity(catalog, "austria").facts["gdp-person-above-portugal"].value).toBe(true);

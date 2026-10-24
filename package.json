@@ -15,7 +15,9 @@
     "check": "npm run typecheck && npm test && vite build",
     "preview": "vite preview --host 127.0.0.1",
     "preview:deploy": "npm run check && wrangler preview",
-    "deploy": "npm run check && wrangler deploy"
+    "deploy": "npm run check && wrangler deploy",
+    "puzzles:audit": "vite-node scripts/puzzles.mjs audit",
+    "puzzles:generate": "vite-node scripts/puzzles.mjs generate"
   },
   "dependencies": {
     "react": "19.2.4",
